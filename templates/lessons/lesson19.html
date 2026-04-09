@@ -1,0 +1,207 @@
+{% extends "base.html" %}
+
+{% block title %}
+LearnPython
+{% endblock %}
+
+{% block link1 %}
+{{ url_for('home') }}
+{% endblock %}
+
+{% block link2 %}
+{{ url_for('lessons') }}
+{% endblock %}
+
+{% block link3 %}
+{{ url_for('interpreter') }}
+{% endblock %}
+
+{% block link4 %}
+{{ url_for('account') }}
+{% endblock %}
+
+{% block tillink1 %}
+Главная страница
+{% endblock %}
+
+{% block tillink2 %}
+Уроки
+{% endblock %}
+
+{% block tillink3 %}
+Интерпретатор
+{% endblock %}
+
+{% block tillink4 %}
+Аккаунт
+{% endblock %}
+
+{% block h1 %}
+19 урок
+{% endblock %}
+
+{% block p %}
+Выход из цикла
+{% endblock %}
+
+{% block main %}
+<div class="container my-4">
+    {% if completed %}
+    <div class="alert alert-success" role="alert">
+        ✅ Вы уже завершили этот урок! Результат: {{ score }}/{{ total }} ({{ (score/total*100)|round(1) }}%)
+    </div>
+    {% endif %}
+
+    <p class="lead">
+        Иногда нужно прервать выполнение цикла досрочно или пропустить отдельные итерации.
+        Для этого в Python есть операторы <code>break</code>, <code>continue</code> и специальный блок <code>else</code>.
+    </p>
+
+    <!-- Карточка: break -->
+    <div class="card mb-4 border-primary shadow-sm">
+        <div class="card-header bg-primary text-white d-flex align-items-center">
+            <span class="fs-4 me-2">⛔</span>
+            <h5 class="mb-0">Оператор break</h5>
+        </div>
+        <div class="card-body">
+            <p><code>break</code> немедленно завершает выполнение цикла, даже если условие цикла ещё истинно или остались элементы для перебора.</p>
+            <pre class="bg-body-tertiary p-3 rounded"><code>for i in range(1, 10):
+    if i == 5:
+        break      # цикл прервётся на 5
+    print(i)
+# Вывод: 1 2 3 4</code></pre>
+            <p class="mb-0 text-muted small">Часто используется для досрочного выхода при обнаружении искомого элемента.</p>
+        </div>
+    </div>
+
+    <!-- Карточка: continue -->
+    <div class="card mb-4 border-success shadow-sm">
+        <div class="card-header bg-success text-white d-flex align-items-center">
+            <span class="fs-4 me-2">⏭️</span>
+            <h5 class="mb-0">Оператор continue</h5>
+        </div>
+        <div class="card-body">
+            <p><code>continue</code> пропускает оставшуюся часть текущей итерации и переходит к следующей (проверке условия для while или следующему элементу для for).</p>
+            <pre class="bg-body-tertiary p-3 rounded"><code>for i in range(1, 6):
+    if i == 3:
+        continue   # пропускаем вывод тройки
+    print(i)
+# Вывод: 1 2 4 5</code></pre>
+        </div>
+    </div>
+
+    <!-- Карточка: else в циклах -->
+    <div class="card mb-4 border-warning shadow-sm">
+        <div class="card-header bg-warning text-dark d-flex align-items-center">
+            <span class="fs-4 me-2">➕</span>
+            <h5 class="mb-0">Блок else в циклах</h5>
+        </div>
+        <div class="card-body">
+            <p>Блок <code>else</code> выполняется, если цикл завершился естественным образом (без <code>break</code>).</p>
+            <pre class="bg-body-tertiary p-3 rounded"><code>numbers = [2, 4, 6, 8]
+for n in numbers:
+    if n % 2 != 0:
+        print("Найдено нечётное число!")
+        break
+else:
+    print("Все числа чётные")   # выполнится, так как break не сработал</code></pre>
+        </div>
+    </div>
+
+    <!-- Карточка: break во вложенных циклах -->
+    <div class="card mb-4 border-info shadow-sm">
+        <div class="card-header bg-info text-white d-flex align-items-center">
+            <span class="fs-4 me-2">🔀</span>
+            <h5 class="mb-0">Break во вложенных циклах</h5>
+        </div>
+        <div class="card-body">
+            <p><code>break</code> прерывает только тот цикл, в котором он находится. Чтобы выйти из внешнего цикла, можно использовать флаг или исключение.</p>
+            <pre class="bg-body-tertiary p-3 rounded"><code>found = False
+for i in range(1, 4):
+    for j in range(1, 4):
+        if i * j == 6:
+            print(f"Найдено: {i} * {j} = 6")
+            found = True
+            break   # выход из внутреннего цикла
+    if found:
+        break       # выход из внешнего</code></pre>
+        </div>
+    </div>
+
+    <!-- Карточка: бесконечный цикл + break -->
+    <div class="card mb-4 border-secondary shadow-sm">
+        <div class="card-header bg-secondary text-white d-flex align-items-center">
+            <span class="fs-4 me-2">♾️</span>
+            <h5 class="mb-0">Бесконечный цикл с break</h5>
+        </div>
+        <div class="card-body">
+            <p>Бесконечный цикл (<code>while True</code>) удобно использовать, когда условие выхода сложное или зависит от ввода пользователя.</p>
+            <pre class="bg-body-tertiary p-3 rounded"><code>while True:
+    cmd = input("Введите команду (exit для выхода): ")
+    if cmd == "exit":
+        break
+    print("Выполняю:", cmd)</code></pre>
+        </div>
+    </div>
+
+    <!-- Карточка: пример поиска элемента -->
+    <div class="card mb-4 border-dark shadow-sm">
+        <div class="card-header bg-dark text-white d-flex align-items-center">
+            <span class="fs-4 me-2">🔎</span>
+            <h5 class="mb-0">Пример: поиск элемента в списке</h5>
+        </div>
+        <div class="card-body">
+            <pre class="bg-body-tertiary p-3 rounded"><code>students = ["Анна", "Борис", "Виктор", "Галина"]
+search = "Виктор"
+for student in students:
+    if student == search:
+        print(f"{search} найден!")
+        break
+else:
+    print(f"{search} отсутствует в списке")</code></pre>
+            <p>Блок <code>else</code> сообщает, что элемент не найден.</p>
+        </div>
+    </div>
+
+    <!-- Квиз -->
+    <div class="my-5">
+        <h3 class="mb-4">🎮 Проверь свои знания</h3>
+        <div id="quiz-root"></div>
+    </div>
+
+    <!-- Кнопка завершения урока -->
+    <div class="d-flex justify-content-end mt-4">
+        <button type="button"
+                class="btn btn-success btn-lg"
+                id="complete-lesson"
+                style="display: none;"
+                onclick="completeLesson()">
+            🎓 Завершить урок
+        </button>
+    </div>
+</div>
+
+<!-- React and ReactDOM (production) -->
+<script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+
+<style>
+.spinner-border {
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    animation: spinner-border 0.75s linear infinite;
+    vertical-align: text-bottom;
+}
+@keyframes spinner-border {
+    to { transform: rotate(360deg); }
+}
+</style>
+<script>
+  const LESSON_ID = {{ lesson_id }}; // Теперь это глобальная переменная для JS
+</script>
+<script src="{{ url_for('static',filename='js/quizinit.js') }}"></script>
+{% endblock %}

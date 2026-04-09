@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+
+{% block title %}
+LearnPython
+{% endblock %}
+
+{% block link1 %}
+{{ url_for('home') }}
+{% endblock %}
+
+{% block link2 %}
+{{ url_for('lessons') }}
+{% endblock %}
+
+{% block link3 %}
+{{ url_for('interpreter') }}
+{% endblock %}
+
+{% block link4 %}
+{{ url_for('account') }}
+{% endblock %}
+
+{% block tillink1 %}{{ _t('nav_home') }}{% endblock %}
+{% block tillink2 %}{{ _t('nav_lessons') }}{% endblock %}
+{% block tillink3 %}{{ _t('nav_interpreter') }}{% endblock %}
+{% block tillink4 %}{{ _t('nav_account') }}{% endblock %}
+
+{% block main %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 text-center">
+            <div class="display-1 text-warning fw-bold mb-4">⚠️</div>
+            <h1 class="display-5 fw-bold mb-4">{{ _t('err_500_title') }}</h1>
+
+            {% if lesson_id and missing_lessons %}
+                <p class="lead text-body opacity-75 mb-4">
+                    {{ _t('err_500_try_lesson') }} <strong>{{ _t('lessons_lesson')|lower }} {{ lesson_id }}</strong>, {{ _t('err_500_not_unlocked') }}
+                </p>
+
+                <div class="alert alert-info mb-5">
+                    <i class="fas fa-lock me-2"></i>
+                    <strong>{{ _t('err_500_need_pass') }} {{ lesson_id }}, {{ _t('err_500_need_first') }}</strong>
+                    <div class="mt-3">
+                        {% if missing_lessons %}
+                            <div class="d-flex flex-wrap justify-content-center gap-2 mb-3">
+                                {% for lesson_num in missing_lessons %}
+                                    <span class="badge bg-primary fs-6 px-3 py-2">
+                                        {{ _t('lessons_lesson') }} {{ lesson_num }}
+                                    </span>
+                                {% endfor %}
+                            </div>
+
+                            <p class="mb-0 mt-3">
+                                {{ _t('err_500_pass_order') }} {{ lesson_id }}.
+                            </p>
+                        {% else %}
+                            <p class="mb-0">{{ _t('err_500_all_passed') }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+            {% else %}
+                <p class="lead text-body opacity-75 mb-5">
+                    {{ _t('err_500_internal') }}<br>
+                    {{ _t('err_500_devs') }}
+                </p>
+            {% endif %}
+
+            <div class="d-flex flex-column flex-md-row justify-content-center gap-3 mb-5">
+                <a href="{{ url_for('lessons') }}" class="btn btn-primary px-4 py-2">
+                    <i class="fas fa-book me-2"></i>{{ _t('err_500_to_list') }}
+                </a>
+                {% if missing_lessons and missing_lessons|first %}
+                    <a href="{{ url_for('lesson', id=missing_lessons|first) }}" class="btn btn-success px-4 py-2">
+                        <i class="fas fa-play me-2"></i>{{ _t('err_500_start_from') }} {{ missing_lessons|first }}
+                    </a>
+                {% endif %}
+                <a href="{{ url_for('home') }}" class="btn btn-outline-secondary px-4 py-2">
+                    <i class="fas fa-home me-2"></i>{{ _t('err_to_home') }}
+                </a>
+            </div>
+
+            {% if experience is defined %}
+                <div class="mt-4 p-3 bg-info rounded">
+                    <div class="d-flex justify-content-center align-items-center gap-3">
+                        <i class="fas fa-star text-warning"></i>
+                        <span class="fw-bold">{{ _t('err_500_progress') }} {{ experience }} XP</span>
+                        <span class="badge bg-success">{{ _t('err_500_passed') }} {{ completed_lessons if completed_lessons else 0 }}/{{ total_lessons if total_lessons else 26 }}</span>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-8">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title mb-3"><i class="fas fa-lightbulb text-primary me-2"></i>{{ _t('err_500_tips_title') }}</h5>
+                    <ul class="mb-0">
+                        <li>{{ _t('err_500_tip1') }}</li>
+                        <li>{{ _t('err_500_tip2') }}</li>
+                        <li>{{ _t('err_500_tip3') }}</li>
+                        <li>{{ _t('err_500_tip4') }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .btn {
+        border-radius: 50px !important;
+        font-weight: 500;
+        padding: 0.75rem 1.5rem !important;
+        transition: all 0.3s ease;
+    }
+    .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(74, 107, 255, 0.3);
+    }
+    .badge {
+        border-radius: 8px !important;
+        font-weight: 600;
+        min-width: 90px;
+    }
+    .alert {
+        border-radius: 12px !important;
+        border-left: 4px solid #17a2b8;
+    }
+    .card {
+        border-radius: 15px !important;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .display-1 {
+        font-size: 6rem;
+        line-height: 1;
+    }
+    @media (max-width: 768px) {
+        .display-1 {
+            font-size: 4rem;
+        }
+        .badge {
+            min-width: auto;
+            width: 100%;
+            margin-bottom: 8px;
+        }
+    }
+</style>
+
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+{% endblock %}

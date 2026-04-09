@@ -1,0 +1,191 @@
+{% extends "base.html" %}
+
+{% block title %}
+LearnPython
+{% endblock %}
+
+{% block link1 %}
+{{ url_for('home') }}
+{% endblock %}
+
+{% block link2 %}
+{{ url_for('lessons') }}
+{% endblock %}
+
+{% block link3 %}
+{{ url_for('interpreter') }}
+{% endblock %}
+
+{% block link4 %}
+{{ url_for('account') }}
+{% endblock %}
+
+{% block tillink1 %}
+Главная страница
+{% endblock %}
+
+{% block tillink2 %}
+Уроки
+{% endblock %}
+
+{% block tillink3 %}
+Интерпретатор
+{% endblock %}
+
+{% block tillink4 %}
+Аккаунт
+{% endblock %}
+
+{% block h1 %}
+12 урок
+{% endblock %}
+
+{% block p %}
+Строки в Python
+{% endblock %}
+
+{% block main %}
+<div class="container my-4">
+    {% if completed %}
+    <div class="alert alert-success" role="alert">
+        ✅ Вы уже завершили этот урок! Результат: {{ score }}/{{ total }} ({{ (score/total*100)|round(1) }}%)
+    </div>
+    {% endif %}
+
+    <p class="lead">
+        Строки в Python — это последовательности символов, заключённые в кавычки. 
+        Они используются для хранения текстовой информации.
+    </p>
+
+    <!-- Создание строк -->
+    <div class="card mb-4 border-primary">
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">📝 Создание строк</h5>
+        </div>
+        <div class="card-body">
+            <p>Строки можно создавать, используя одинарные или двойные кавычки:</p>
+            <div class="row">
+                <div class="col-md-6">
+                    <pre class="bg-body-tertiary p-2 rounded"><code>name = 'Alice'
+print(name)  # Alice</code></pre>
+                </div>
+                <div class="col-md-6">
+                    <pre class="bg-body-tertiary p-2 rounded"><code>city = "New York"
+print(city)  # New York</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Апострофы и кавычки внутри строк -->
+    <div class="card mb-4 border-warning">
+        <div class="card-header bg-warning text-dark">
+            <h5 class="mb-0">⚠️ Апострофы и кавычки внутри строк</h5>
+        </div>
+        <div class="card-body">
+            <p>Если строка содержит апостроф, лучше использовать двойные кавычки, или экранировать символ <code>\'</code>:</p>
+            <div class="row">
+                <div class="col-md-6">
+                    <pre class="bg-body-tertiary p-2 rounded"><code># Используем двойные кавычки
+text = "It's a beautiful day"
+print(text)</code></pre>
+                </div>
+                <div class="col-md-6">
+                    <pre class="bg-body-tertiary p-2 rounded"><code># Экранирование апострофа
+text = 'It\'s a beautiful day'
+print(text)</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Сложение строк (конкатенация) -->
+    <div class="card mb-4 border-success">
+        <div class="card-header bg-success text-white">
+            <h5 class="mb-0">➕ Сложение строк (конкатенация)</h5>
+        </div>
+        <div class="card-body">
+            <p>Строки можно складывать с помощью оператора <code>+</code>:</p>
+            <pre class="bg-body-tertiary p-2 rounded"><code>first_name = "John"
+last_name = "Doe"
+full_name = first_name + " " + last_name
+print(full_name)  # John Doe</code></pre>
+            <p class="mt-2">Числа и строки напрямую складывать нельзя — нужно преобразовывать числа в строки функцией <code>str()</code>:</p>
+            <pre class="bg-body-tertiary p-2 rounded"><code>age = 25
+message = "I am " + str(age) + " years old"
+print(message)  # I am 25 years old</code></pre>
+        </div>
+    </div>
+
+    <!-- Нумерация символов (индексы) -->
+    <div class="card mb-4 border-info">
+        <div class="card-header bg-info text-white">
+            <h5 class="mb-0">🔢 Нумерация символов (индексы)</h5>
+        </div>
+        <div class="card-body">
+            <p>Каждый символ в строке имеет индекс: первый символ — индекс <code>0</code>, второй — <code>1</code> и т.д.</p>
+            <pre class="bg-body-tertiary p-2 rounded"><code>word = "Python"
+print(word[0])  # P
+print(word[1])  # y
+print(word[5])  # n</code></pre>
+            <p class="mt-2">Можно использовать отрицательные индексы для отсчёта с конца:</p>
+            <pre class="bg-body-tertiary p-2 rounded"><code>print(word[-1])  # n (последний символ)
+print(word[-2])  # o (предпоследний)</code></pre>
+        </div>
+    </div>
+
+    <!-- Длина строки -->
+    <div class="card mb-4 border-secondary">
+        <div class="card-header bg-secondary text-white">
+            <h5 class="mb-0">📏 Длина строки</h5>
+        </div>
+        <div class="card-body">
+            <p>Функция <code>len()</code> возвращает количество символов в строке:</p>
+            <pre class="bg-body-tertiary p-2 rounded"><code>phrase = "Hello, world!"
+print(len(phrase))  # 13</code></pre>
+        </div>
+    </div>
+
+    <!-- Квиз -->
+    <div class="my-5">
+        <h3 class="mb-4">🎮 Проверь свои знания о строках!</h3>
+        <div id="quiz-root"></div>
+    </div>
+
+    <!-- ✅ Обновлённая кнопка: button с onclick -->
+    <div class="d-flex justify-content-end mt-4">
+        <button type="button"
+                class="btn btn-success btn-lg"
+                id="complete-lesson"
+                style="display: none;"
+                onclick="completeLesson()">
+            🎓 Завершить урок
+        </button>
+    </div>
+</div>
+
+<!-- React and ReactDOM -->
+<script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+
+<style>
+/* ✨ Стили для спиннера загрузки */
+.spinner-border {
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    animation: spinner-border 0.75s linear infinite;
+    vertical-align: text-bottom;
+}
+@keyframes spinner-border {
+    to { transform: rotate(360deg); }
+}
+</style>
+<script>
+  const LESSON_ID = {{ lesson_id }}; // Теперь это глобальная переменная для JS
+</script>
+<script src="{{ url_for('static',filename='js/quizinit.js') }}"></script>
+{% endblock %}

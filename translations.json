@@ -1,0 +1,2372 @@
+{
+  "nav_home": {
+    "ru": "Главная",
+    "kk": "Басты бет",
+    "en": "Home"
+  },
+  "nav_lessons": {
+    "ru": "Уроки",
+    "kk": "Сабақтар",
+    "en": "Lessons"
+  },
+  "nav_interpreter": {
+    "ru": "Интерпретатор",
+    "kk": "Интерпретатор",
+    "en": "IDE"
+  },
+  "nav_account": {
+    "ru": "Аккаунт",
+    "kk": "Жеке кабинет",
+    "en": "Account"
+  },
+  "choose_lang": {
+    "ru": "Выберите язык:",
+    "kk": "Тілді таңдаңыз:",
+    "en": "Language:"
+  },
+  "change_theme": {
+    "ru": "Сменить тему",
+    "kk": "Тақырыпты ауыстыру",
+    "en": "Toggle theme"
+  },
+  "rights_reserved": {
+    "ru": "Все права защищены.",
+    "kk": "Барлық құқықтар қорғалған.",
+    "en": "All rights reserved."
+  },
+  "app_name": {
+    "ru": "LearnPython",
+    "kk": "LearnPython",
+    "en": "LearnPython"
+  },
+  "interpreter_editor": {
+    "ru": "Редактор кода",
+    "kk": "Код редакторы",
+    "en": "Code Editor"
+  },
+  "interpreter_run": {
+    "ru": "Запустить",
+    "kk": "Іске қосу",
+    "en": "Run"
+  },
+  "interpreter_stop": {
+    "ru": "Остановить",
+    "kk": "Тоқтату",
+    "en": "Stop"
+  },
+  "interpreter_download": {
+    "ru": "Скачать",
+    "kk": "Жүктеп алу",
+    "en": "Download"
+  },
+  "interpreter_python_load": {
+    "ru": "Python: Загрузка...",
+    "kk": "Python: Жүктелуде...",
+    "en": "Python: Loading..."
+  },
+  "interpreter_clear": {
+    "ru": "Очистить",
+    "kk": "Тазарту",
+    "en": "Clear"
+  },
+  "interpreter_welcome": {
+    "ru": "Добро пожаловать в интерпретатор! Введите свой код и нажмите «Запустить».",
+    "kk": "Интерпретаторға қош келдіңіз! Кодыңызды жазып, «Іске қосу» түймесін басыңыз.",
+    "en": "Welcome to the interpreter! Enter your code and click «Run»."
+  },
+  "interpreter_error": {
+    "ru": "Ошибка загрузки Python!",
+    "kk": "Python жүктеу қателігі!",
+    "en": "Failed to load Python!"
+  },
+  "interpreter_tech": {
+    "ru": "Технологии под капотом",
+    "kk": "Қолданылған технологиялар",
+    "en": "Under the hood"
+  },
+  "interpreter_tech_1": {
+    "ru": "Удобная среда для написания кода",
+    "kk": "Код жазуға арналған ыңғайлы орта",
+    "en": "Convenient environment for coding"
+  },
+  "interpreter_tech_2": {
+    "ru": "Выполнение кода прямо в браузере",
+    "kk": "Кодты тікелей браузерде орындау",
+    "en": "Executing code directly in the browser"
+  },
+  "interpreter_tech_3": {
+    "ru": "Библиотеки",
+    "kk": "Кітапханалар",
+    "en": "Libraries"
+  },
+  "interpreter_tech_4": {
+    "ru": "Поддержка базовых модулей",
+    "kk": "Базалық модульдерді қолдау",
+    "en": "Support for standard libraries"
+  },
+  "interpreter_tech_5": {
+    "ru": "Темы",
+    "kk": "Тақырыптар",
+    "en": "Themes"
+  },
+  "interpreter_tech_6": {
+    "ru": "Поддержка светлой и тёмной темы",
+    "kk": "Ашық және күңгірт режим",
+    "en": "Light and dark mode support"
+  },
+  "interpreter_ask_ai": {
+    "ru": "Спросить ИИ (Gemma)",
+    "kk": "ИИ көмекшісі (Gemma)",
+    "en": "Ask AI (Gemma)"
+  },
+  "home_h1": {
+    "ru": "Изучайте Python с нуля",
+    "kk": "Python-ды нөлден бастап үйреніңіз",
+    "en": "Learn Python from scratch"
+  },
+  "home_p": {
+    "ru": "Бесплатные интерактивные уроки для начинающих. Научитесь программировать на Python играючи!",
+    "kk": "Жаңадан бастаушыларға арналған тегін интерактивті сабақтар. Python-да ойнап отырып бағдарламалауды үйреніңіз!",
+    "en": "Free interactive lessons for beginners. Learn how to code in Python playfully!"
+  },
+  "home_why": {
+    "ru": "Почему именно мы?",
+    "kk": "Неге бізді таңдау керек?",
+    "en": "Why choose us?"
+  },
+  "home_li1": {
+    "ru": "26 уроков включая теорию, задачи и тесты",
+    "kk": "26 сабақ теория, есептер мен тесттерді қоса алғанда",
+    "en": "26 lessons including theory, tasks, and tests"
+  },
+  "home_li2": {
+    "ru": "Онлайн-интерпретатор",
+    "kk": "Онлайн-интерпретатор",
+    "en": "Online IDE"
+  },
+  "home_li2p": {
+    "ru": "проверяй свой код прямо в браузере",
+    "kk": "кодыңды тікелей браузерде тексер",
+    "en": "test your code directly in the browser"
+  },
+  "home_li3": {
+    "ru": "Геймификация и XP",
+    "kk": "Геймификация және XP",
+    "en": "Experience system (XP)"
+  },
+  "home_li3p": {
+    "ru": "отслеживай свой прогресс",
+    "kk": "өз жетістіктеріңді қадағала",
+    "en": "track your progress easily"
+  },
+  "home_li4": {
+    "ru": "Полностью бесплатно",
+    "kk": "Толықтай тегін",
+    "en": "Completely free forever"
+  },
+  "home_btn_start": {
+    "ru": "Начать учиться 🚀",
+    "kk": "Оқуды бастау 🚀",
+    "en": "Start learning 🚀"
+  },
+  "home_cards_1": {
+    "ru": "Уроки",
+    "kk": "26 сабақ",
+    "en": "Lessons"
+  },
+  "home_cards_1p": {
+    "ru": "Структурированный курс с примерами кода и заданиями",
+    "kk": "Код мысалдары мен тапсырмалары бар құрылымдалған курс",
+    "en": "Structured course with code examples and specific tasks"
+  },
+  "home_cards_2": {
+    "ru": "Мощный редактор",
+    "kk": "Қуатты редактор",
+    "en": "Powerful Editor"
+  },
+  "home_cards_2p": {
+    "ru": "Проверяй код прямо на сайте без установки Python",
+    "kk": "Python-ды орнатпай-ақ сайтта кодты тексеру мүмкіндігі",
+    "en": "Test the code directly on the site without installing Python"
+  },
+  "home_cards_3": {
+    "ru": "Система достижений",
+    "kk": "Жетістіктер жүйесі",
+    "en": "Achievement System"
+  },
+  "home_cards_3p": {
+    "ru": "Получай очки опыта и отслеживай свой прогресс",
+    "kk": "Тәжірибе ұпайларын (XP) алып, өз прогрессіңді қадағала",
+    "en": "Gain XP points and track your coding progress"
+  },
+  "home_join": {
+    "ru": "Присоединяйся и изучай Python вместе с нами!",
+    "kk": "Бізге қосыл және Python-ды бірге үйрен!",
+    "en": "Join and learn Python with us!"
+  },
+  "home_btn_lessons": {
+    "ru": "Перейти к урокам →",
+    "kk": "Сабақтарға өту →",
+    "en": "Go to lessons →"
+  },
+  "login_title": {
+    "ru": "Войти в LearnPython",
+    "kk": "LearnPython-ға кіру",
+    "en": "Sign in to LearnPython"
+  },
+  "login_sync": {
+    "ru": "Ваш прогресс будет синхронизирован",
+    "kk": "Сіздің прогрессіңіз синхрондалады",
+    "en": "Your progress will be synced"
+  },
+  "login_google": {
+    "ru": "Войти через Google",
+    "kk": "Google арқылы кіру",
+    "en": "Sign in with Google"
+  },
+  "login_github": {
+    "ru": "Войти через GitHub",
+    "kk": "GitHub арқылы кіру",
+    "en": "Sign in with GitHub"
+  },
+  "login_or": {
+    "ru": "ИЛИ",
+    "kk": "НЕМЕСЕ",
+    "en": "OR"
+  },
+  "login_password": {
+    "ru": "Пароль",
+    "kk": "Құпия сөз",
+    "en": "Password"
+  },
+  "login_forgot": {
+    "ru": "Забыли пароль?",
+    "kk": "Құпия сөзді ұмыттыңыз ба?",
+    "en": "Forgot password?"
+  },
+  "login_show_pass": {
+    "ru": "Показать пароль",
+    "kk": "Құпия сөзді көрсету",
+    "en": "Show password"
+  },
+  "login_btn": {
+    "ru": "Войти по почте",
+    "kk": "Поштамен кіру",
+    "en": "Sign in with Email"
+  },
+  "login_no_account": {
+    "ru": "Еще нет аккаунта?",
+    "kk": "Тіркелгіңіз жоқ па?",
+    "en": "Don't have an account?"
+  },
+  "login_create": {
+    "ru": "Создать профиль",
+    "kk": "Тіркелгі жасау",
+    "en": "Create account"
+  },
+  "reg_title": {
+    "ru": "Создайте аккаунт",
+    "kk": "Тіркелгі жасаңыз",
+    "en": "Create an account"
+  },
+  "reg_subtitle": {
+    "ru": "Начните своё путешествие в мир Python",
+    "kk": "Python әлеміне саяхатыңызды бастаңыз",
+    "en": "Begin your journey into the world of Python"
+  },
+  "reg_min_chars": {
+    "ru": "Минимум 6 символов",
+    "kk": "Кемінде 6 таңба",
+    "en": "At least 6 characters"
+  },
+  "reg_btn": {
+    "ru": "Зарегистрироваться",
+    "kk": "Тіркелу",
+    "en": "Sign up"
+  },
+  "reg_has_account": {
+    "ru": "Уже есть аккаунт?",
+    "kk": "Тіркелгіңіз бар ма?",
+    "en": "Already have an account?"
+  },
+  "reg_login": {
+    "ru": "Войти",
+    "kk": "Кіру",
+    "en": "Sign in"
+  },
+  "acc_title": {
+    "ru": "Личный кабинет",
+    "kk": "Жеке кабинет",
+    "en": "My Profile"
+  },
+  "acc_auth_badge": {
+    "ru": "Авторизованный профиль",
+    "kk": "Тіркелген профиль",
+    "en": "Authorized profile"
+  },
+  "acc_guest_badge": {
+    "ru": "Гостевой режим",
+    "kk": "Қонақ режимі",
+    "en": "Guest mode"
+  },
+  "acc_id_email": {
+    "ru": "ID / Почта",
+    "kk": "ID / Пошта",
+    "en": "ID / Email"
+  },
+  "acc_total_xp": {
+    "ru": "Общий опыт",
+    "kk": "Жалпы тәжірибе",
+    "en": "Total XP"
+  },
+  "acc_game_xp": {
+    "ru": "Опыт за игру",
+    "kk": "Ойын тәжірибесі",
+    "en": "Game XP"
+  },
+  "acc_lessons_title": {
+    "ru": "📚 Уроки",
+    "kk": "📚 Сабақтар",
+    "en": "📚 Lessons"
+  },
+  "acc_lessons_done": {
+    "ru": "Завершено уроков:",
+    "kk": "Аяқталған сабақтар:",
+    "en": "Lessons completed:"
+  },
+  "acc_missions_title": {
+    "ru": "🎮 Миссии",
+    "kk": "🎮 Миссиялар",
+    "en": "🎮 Missions"
+  },
+  "acc_missions_done": {
+    "ru": "Выполнено миссий:",
+    "kk": "Орындалған миссиялар:",
+    "en": "Missions completed:"
+  },
+  "acc_to_lessons": {
+    "ru": "К урокам",
+    "kk": "Сабақтарға",
+    "en": "To lessons"
+  },
+  "acc_to_missions": {
+    "ru": "К миссиям",
+    "kk": "Миссияларға",
+    "en": "To missions"
+  },
+  "acc_to_home": {
+    "ru": "На главную",
+    "kk": "Басты бетке",
+    "en": "Home"
+  },
+  "acc_teacher_panel": {
+    "ru": "Панель учителя",
+    "kk": "Мұғалім панелі",
+    "en": "Teacher panel"
+  },
+  "acc_bound_to": {
+    "ru": "Привязан к:",
+    "kk": "Тіркелген:",
+    "en": "Bound to:"
+  },
+  "acc_become_teacher": {
+    "ru": "Стать учителем",
+    "kk": "Мұғалім болу",
+    "en": "Become a teacher"
+  },
+  "acc_logout": {
+    "ru": "Выйти",
+    "kk": "Шығу",
+    "en": "Log out"
+  },
+  "acc_login_btn": {
+    "ru": "Войти в аккаунт",
+    "kk": "Тіркелгіге кіру",
+    "en": "Sign in"
+  },
+  "acc_danger_zone": {
+    "ru": "Опасная зона",
+    "kk": "Қауіпті аймақ",
+    "en": "Danger zone"
+  },
+  "acc_reset_progress": {
+    "ru": "Сбросить прогресс",
+    "kk": "Прогрессті нөлдеу",
+    "en": "Reset progress"
+  },
+  "acc_confirm_reset": {
+    "ru": "Вы уверены, что хотите обнулить свой опыт и пройденные уроки?",
+    "kk": "Тәжірибеңіз бен өткен сабақтарыңызды нөлдегіңіз келетініне сенімдісіз бе?",
+    "en": "Are you sure you want to reset your XP and completed lessons?"
+  },
+  "acc_unregister_teacher": {
+    "ru": "Перестать быть учителем",
+    "kk": "Мұғалім болуды тоқтату",
+    "en": "Stop being a teacher"
+  },
+  "acc_confirm_unregister": {
+    "ru": "Перестать быть учителем? Все ученики будут откреплены.",
+    "kk": "Мұғалім болуды тоқтатасыз ба? Барлық оқушылар ажыратылады.",
+    "en": "Stop being a teacher? All students will be unbound."
+  },
+  "acc_delete_account": {
+    "ru": "Удалить аккаунт",
+    "kk": "Тіркелгіні жою",
+    "en": "Delete account"
+  },
+  "acc_confirm_delete": {
+    "ru": "ВНИМАНИЕ! Ваш профиль и прогресс будут удалены навсегда. Продолжить?",
+    "kk": "НАЗАР АУДАРЫҢЫЗ! Профиліңіз бен прогрессіңіз мәңгілікке жойылады. Жалғастырасыз ба?",
+    "en": "WARNING! Your profile and progress will be permanently deleted. Continue?"
+  },
+  "acc_guest_info": {
+    "ru": "Ваш прогресс сейчас привязан к временному ID.",
+    "kk": "Сіздің прогрессіңіз уақытша ID-ге тіркелген.",
+    "en": "Your progress is currently tied to a temporary ID."
+  },
+  "acc_guest_login": {
+    "ru": "Войдите в аккаунт",
+    "kk": "Тіркелгіңізге кіріңіз",
+    "en": "Sign in"
+  },
+  "acc_guest_save": {
+    "ru": "чтобы сохранить его навсегда.",
+    "kk": "оны мәңгілікке сақтау үшін.",
+    "en": "to save it permanently."
+  },
+  "forgot_title": {
+    "ru": "Забыли пароль?",
+    "kk": "Құпия сөзді ұмыттыңыз ба?",
+    "en": "Forgot password?"
+  },
+  "forgot_subtitle": {
+    "ru": "Введите ваш Email, и мы отправим инструкции по сбросу",
+    "kk": "Email-ды жазыңыз, біз қалпына келтіру нұсқаулығын жібереміз",
+    "en": "Enter your Email, and we will send reset instructions"
+  },
+  "forgot_email": {
+    "ru": "Ваш Email",
+    "kk": "Сіздің Email",
+    "en": "Your Email"
+  },
+  "forgot_btn": {
+    "ru": "Сбросить пароль",
+    "kk": "Құпия сөзді қалпына келтіру",
+    "en": "Reset password"
+  },
+  "forgot_back": {
+    "ru": "Вернуться к входу",
+    "kk": "Кіруге оралу",
+    "en": "Back to sign in"
+  },
+  "reset_title": {
+    "ru": "Новый пароль",
+    "kk": "Жаңа құпия сөз",
+    "en": "New password"
+  },
+  "reset_subtitle": {
+    "ru": "Придумайте новый надежный пароль для вашего аккаунта",
+    "kk": "Тіркелгіңіз үшін жаңа сенімді құпия сөз ойлап табыңыз",
+    "en": "Create a new secure password for your account"
+  },
+  "reset_new_pass": {
+    "ru": "Новый пароль",
+    "kk": "Жаңа құпия сөз",
+    "en": "New password"
+  },
+  "reset_confirm_pass": {
+    "ru": "Подтвердите пароль",
+    "kk": "Құпия сөзді растаңыз",
+    "en": "Confirm password"
+  },
+  "reset_repeat": {
+    "ru": "Повторите пароль",
+    "kk": "Құпия сөзді қайталаңыз",
+    "en": "Repeat password"
+  },
+  "reset_btn": {
+    "ru": "Сохранить новый пароль",
+    "kk": "Жаңа құпия сөзді сақтау",
+    "en": "Save new password"
+  },
+  "verify_title": {
+    "ru": "Подтверждение Email",
+    "kk": "Email-ды растау",
+    "en": "Email verification"
+  },
+  "verify_subtitle": {
+    "ru": "Введите 6-значный код, отправленный на",
+    "kk": "Мына адреске жіберілген 6 таңбалы кодты енгізіңіз:",
+    "en": "Enter the 6-digit code sent to"
+  },
+  "verify_code_label": {
+    "ru": "Код подтверждения",
+    "kk": "Растау коды",
+    "en": "Verification code"
+  },
+  "verify_code_hint": {
+    "ru": "Код из 6 символов (буквы и цифры)",
+    "kk": "6 таңбалы код (әріптер мен сандар)",
+    "en": "6-character code (letters and numbers)"
+  },
+  "verify_btn": {
+    "ru": "Подтвердить Email",
+    "kk": "Email-ды растау",
+    "en": "Verify Email"
+  },
+  "verify_resend": {
+    "ru": "🔁 Отправить код повторно",
+    "kk": "🔁 Кодты қайта жіберу",
+    "en": "🔁 Resend code"
+  },
+  "lessons_h1": {
+    "ru": "Уроки LearnPython",
+    "kk": "LearnPython сабақтары",
+    "en": "LearnPython Lessons"
+  },
+  "lessons_p": {
+    "ru": "Выберите урок для изучения",
+    "kk": "Оқу үшін сабақты таңдаңыз",
+    "en": "Choose a lesson to study"
+  },
+  "lessons_progress": {
+    "ru": "📚 Прогресс обучения",
+    "kk": "📚 Оқу прогресі",
+    "en": "📚 Learning progress"
+  },
+  "lessons_of": {
+    "ru": "из",
+    "kk": "ішінен",
+    "en": "of"
+  },
+  "lessons_passed": {
+    "ru": "уроков пройдено",
+    "kk": "сабақ өтілді",
+    "en": "lessons completed"
+  },
+  "lessons_total_xp": {
+    "ru": "Всего опыта",
+    "kk": "Жалпы тәжірибе",
+    "en": "Total XP"
+  },
+  "lessons_lesson": {
+    "ru": "Урок",
+    "kk": "Сабақ",
+    "en": "Lesson"
+  },
+  "lessons_locked": {
+    "ru": "Заблокирован",
+    "kk": "Бұғатталған",
+    "en": "Locked"
+  },
+  "lessons_passed_badge": {
+    "ru": "Пройден",
+    "kk": "Өтілді",
+    "en": "Completed"
+  },
+  "lessons_result": {
+    "ru": "Результат:",
+    "kk": "Нәтиже:",
+    "en": "Result:"
+  },
+  "lessons_redo": {
+    "ru": "Пройти заново",
+    "kk": "Қайта өту",
+    "en": "Retry"
+  },
+  "lessons_go": {
+    "ru": "Перейти к уроку",
+    "kk": "Сабаққа өту",
+    "en": "Go to lesson"
+  },
+  "lessons_finish_prev": {
+    "ru": "🔒 Завершите предыдущий урок",
+    "kk": "🔒 Алдыңғы сабақты аяқтаңыз",
+    "en": "🔒 Complete previous lesson"
+  },
+  "lessons_secret": {
+    "ru": "Секретная миссия",
+    "kk": "Құпия миссия",
+    "en": "Secret mission"
+  },
+  "lessons_secret_sub": {
+    "ru": "Система управления",
+    "kk": "Басқару жүйесі",
+    "en": "Control system"
+  },
+  "lessons_secret_go": {
+    "ru": "Перейти к секретной миссии",
+    "kk": "Құпия миссияға өту",
+    "en": "Go to secret mission"
+  },
+  "lessons_secret_register": {
+    "ru": "Зарегистрируйтесь, чтобы перейти.",
+    "kk": "Өту үшін тіркеліңіз.",
+    "en": "Sign up to access."
+  },
+  "lessons_secret_after26": {
+    "ru": "Будет доступно после 26 урока.",
+    "kk": "26 сабақтан кейін қолжетімді болады.",
+    "en": "Available after lesson 26."
+  },
+  "locked_title": {
+    "ru": "Урок заблокирован",
+    "kk": "Сабақ бұғатталған",
+    "en": "Lesson locked"
+  },
+  "locked_h1": {
+    "ru": "Доступ ограничен",
+    "kk": "Кіру шектелген",
+    "en": "Access restricted"
+  },
+  "locked_heading": {
+    "ru": "🔒 Урок заблокирован!",
+    "kk": "🔒 Сабақ бұғатталған!",
+    "en": "🔒 Lesson is locked!"
+  },
+  "locked_text": {
+    "ru": "Чтобы получить доступ к этому уроку, необходимо сначала завершить предыдущий урок.",
+    "kk": "Бұл сабаққа кіру үшін алдыңғы сабақты аяқтау қажет.",
+    "en": "To access this lesson, you need to complete the previous one first."
+  },
+  "locked_go_back": {
+    "ru": "Вернитесь к списку уроков и пройдите урок",
+    "kk": "Сабақтар тізіміне оралып, мына сабақты аяқтаңыз:",
+    "en": "Go back to lessons and complete lesson"
+  },
+  "locked_btn": {
+    "ru": "📚 Вернуться к урокам",
+    "kk": "📚 Сабақтарға оралу",
+    "en": "📚 Back to lessons"
+  },
+  "locked_why_title": {
+    "ru": "💡 Почему уроки заблокированы?",
+    "kk": "💡 Неге сабақтар бұғатталған?",
+    "en": "💡 Why are lessons locked?"
+  },
+  "locked_why_text": {
+    "ru": "Уроки открываются последовательно, чтобы обеспечить правильное понимание материала. Каждый урок основывается на знаниях, полученных в предыдущих уроках.",
+    "kk": "Материалды дұрыс түсіну үшін сабақтар кезекпен ашылады. Әр сабақ алдыңғы сабақтардағы білімге негізделген.",
+    "en": "Lessons unlock sequentially to ensure proper understanding. Each lesson builds on knowledge from previous ones."
+  },
+  "locked_tip1": {
+    "ru": "✅ Пройдите квиз в конце урока",
+    "kk": "✅ Сабақ соңындағы тестті тапсырыңыз",
+    "en": "✅ Complete the quiz at the end of the lesson"
+  },
+  "locked_tip2": {
+    "ru": "✅ Получите достаточное количество баллов",
+    "kk": "✅ Жеткілікті ұпай жинаңыз",
+    "en": "✅ Get enough points"
+  },
+  "locked_tip3": {
+    "ru": "✅ Следующий урок автоматически разблокируется",
+    "kk": "✅ Келесі сабақ автоматты түрде ашылады",
+    "en": "✅ The next lesson will unlock automatically"
+  },
+  "game_system": {
+    "ru": "Система Управления",
+    "kk": "Басқару Жүйесі",
+    "en": "Control System"
+  },
+  "game_subtitle": {
+    "ru": "Подключитесь к терминалам и запрограммируйте дрона на выполнение логических операций сектора.",
+    "kk": "Терминалдарға қосылып, секторлық логикалық операцияларды орындау үшін дронды бағдарламалаңыз.",
+    "en": "Connect to terminals and program the drone to perform sector logical operations."
+  },
+  "game_uptime": {
+    "ru": "Аптайм (XP):",
+    "kk": "Аптайм (XP):",
+    "en": "Uptime (XP):"
+  },
+  "game_reset_confirm": {
+    "ru": "Внимание! Это удалит весь прогресс терминалов. Вы уверены?",
+    "kk": "Назар аударыңыз! Бұл терминалдардың барлық прогрессін жояды. Сенімдісіз бе?",
+    "en": "Warning! This will erase all terminal progress. Are you sure?"
+  },
+  "game_reset_btn": {
+    "ru": "Сбросить Память",
+    "kk": "Жадты тазарту",
+    "en": "Reset Memory"
+  },
+  "game_hacked": {
+    "ru": "ВЗЛОМАН",
+    "kk": "БҰЗЫЛДЫ",
+    "en": "HACKED"
+  },
+  "game_repeat": {
+    "ru": "Повторить",
+    "kk": "Қайталау",
+    "en": "Replay"
+  },
+  "game_blocked": {
+    "ru": "Заблокировано",
+    "kk": "Бұғатталған",
+    "en": "Locked"
+  },
+  "game_connect": {
+    "ru": "Подключиться",
+    "kk": "Қосылу",
+    "en": "Connect"
+  },
+  "game_guest_warn": {
+    "ru": "Гостевой доступ активен. Прогресс миссий не сохраняется в базу данных.",
+    "kk": "Қонақ режимі белсенді. Миссия прогрессі деректер базасына сақталмайды.",
+    "en": "Guest access active. Mission progress is not saved to the database."
+  },
+  "game_identify": {
+    "ru": "Пройти Идентификацию",
+    "kk": "Идентификациялаудан өту",
+    "en": "Verify Identity"
+  },
+  "game_lvl_robot_ctrl": {
+    "ru": "PYTHON УПРАВЛЕНИЕ РОБОТОМ",
+    "kk": "PYTHON РОБОТ БАСҚАРУ",
+    "en": "PYTHON ROBOT CONTROL"
+  },
+  "game_lvl_run": {
+    "ru": "ВЫПОЛНИТЬ ВО ФРЕЙМЕ",
+    "kk": "ФРЕЙМДЕ ОРЫНДАУ",
+    "en": "EXECUTE IN FRAME"
+  },
+  "game_lvl_loading_ide": {
+    "ru": "Загрузка IDE...",
+    "kk": "IDE жүктелуде...",
+    "en": "Loading IDE..."
+  },
+  "game_lvl_init": {
+    "ru": "ИНИЦИАЛИЗАЦИЯ ДВИЖКА...",
+    "kk": "ҚОЗҒАЛТҚЫШТЫ ІСКЕ ҚОСУ...",
+    "en": "INITIALIZING ENGINE..."
+  },
+  "game_lvl_hacked": {
+    "ru": "СИСТЕМА ВЗЛОМАНА",
+    "kk": "ЖҮЙЕ БҰЗЫЛДЫ",
+    "en": "SYSTEM HACKED"
+  },
+  "game_lvl_data_ok": {
+    "ru": "Данные успешно извлечены.",
+    "kk": "Деректер сәтті алынды.",
+    "en": "Data extracted successfully."
+  },
+  "game_lvl_finish_btn": {
+    "ru": "Завершить Сессию",
+    "kk": "Сессияны аяқтау",
+    "en": "End Session"
+  },
+  "game_lvl_clear": {
+    "ru": "очистить",
+    "kk": "тазарту",
+    "en": "clear"
+  },
+  "game_lvl_waiting": {
+    "ru": "Ожидание команд...",
+    "kk": "Командалар күтілуде...",
+    "en": "Awaiting commands..."
+  },
+  "game_lvl_init_python": {
+    "ru": "ЗАГРУЗКА ЯДРА PYTHON...",
+    "kk": "PYTHON ЯДРОСЫН ЖҮКТЕУ...",
+    "en": "LOADING PYTHON CORE..."
+  },
+  "game_lvl_ready": {
+    "ru": "Интерпретатор готов. Запуск разрешен.",
+    "kk": "Интерпретатор дайын. Іске қосуға рұқсат.",
+    "en": "Interpreter ready. Execution allowed."
+  },
+  "game_lvl_core_fail": {
+    "ru": "Сбой ядра Python:",
+    "kk": "Python ядросының қатесі:",
+    "en": "Python core failure:"
+  },
+  "game_lvl_move_fwd": {
+    "ru": "Вперед",
+    "kk": "Алға",
+    "en": "Forward"
+  },
+  "game_lvl_move_back": {
+    "ru": "Назад",
+    "kk": "Артқа",
+    "en": "Backward"
+  },
+  "game_lvl_bump": {
+    "ru": "! Препятствие по курсу. Шаг вперед невозможен.",
+    "kk": "! Жолда кедергі бар. Алға жүру мүмкін емес.",
+    "en": "! Obstacle ahead. Forward move impossible."
+  },
+  "game_lvl_bump_back": {
+    "ru": "! Препятствие сзади. Шаг назад невозможен.",
+    "kk": "! Артында кедергі бар. Артқа жүру мүмкін емес.",
+    "en": "! Obstacle behind. Backward move impossible."
+  },
+  "game_lvl_turn_left": {
+    "ru": "Поворот Влево",
+    "kk": "Солға бұрылу",
+    "en": "Turn Left"
+  },
+  "game_lvl_turn_right": {
+    "ru": "Поворот Вправо",
+    "kk": "Оңға бұрылу",
+    "en": "Turn Right"
+  },
+  "game_lvl_door_signal": {
+    "ru": "Сигнал передан. Дверь",
+    "kk": "Сигнал берілді. Есік",
+    "en": "Signal sent. Door is"
+  },
+  "game_lvl_open": {
+    "ru": "ОТКРЫТА",
+    "kk": "АШЫҚ",
+    "en": "OPEN"
+  },
+  "game_lvl_closed": {
+    "ru": "ЗАКРЫТА",
+    "kk": "ЖАБЫҚ",
+    "en": "CLOSED"
+  },
+  "game_lvl_no_interact": {
+    "ru": "! Нет объектов для взаимодействия.",
+    "kk": "! Әрекеттесетін нысандар жоқ.",
+    "en": "! No objects to interact with."
+  },
+  "game_lvl_win_msg": {
+    "ru": "МАРШРУТ ПРОЛОЖЕН. ЗОНА ЭВАКУАЦИИ ДОСТИГНУТА.",
+    "kk": "БАҒЫТ САЛЫНДЫ. ЭВАКУАЦИЯ АЙМАҒЫНА ЖЕТТІҢІЗ.",
+    "en": "ROUTE ESTABLISHED. EVACUATION ZONE REACHED."
+  },
+  "game_lvl_lose_msg": {
+    "ru": "Цель не достигнута. Робот должен находиться в зоне эвакуации (E).",
+    "kk": "Мақсатқа жеткен жоқсыз. Робот эвакуация аймағында (E) болуы керек.",
+    "en": "Goal not reached. Robot must be in the evacuation zone (E)."
+  },
+  "game_lvl_init_prog": {
+    "ru": "Инициализация программы...",
+    "kk": "Бағдарламаны инициализациялау...",
+    "en": "Initializing program..."
+  },
+  "game_lvl_syntax_err": {
+    "ru": "Синтаксическая / критическая ошибка:",
+    "kk": "Синтаксистік / критикалық қате:",
+    "en": "Syntax / critical error:"
+  },
+  "game_lvl_sending": {
+    "ru": "ПЕРЕДАЧА ДАННЫХ...",
+    "kk": "ДЕРЕКТЕРДІ ЖІБЕРУ...",
+    "en": "SENDING DATA..."
+  },
+  "game_lvl_send_fail": {
+    "ru": "Сбой передачи:",
+    "kk": "Жіберу қатесі:",
+    "en": "Transfer failed:"
+  },
+  "game_lvl_retry": {
+    "ru": "ПОВТОРИТЬ ПЕРЕДАЧУ",
+    "kk": "ҚАЙТА ЖІБЕРУ",
+    "en": "RETRY TRANSFER"
+  },
+  "game_lvl_no_net": {
+    "ru": "Сеть недоступна",
+    "kk": "Желі қолжетімсіз",
+    "en": "Network unavailable"
+  },
+  "game_lvl_comment": {
+    "ru": "# Ваш код здесь",
+    "kk": "# Кодыңызды осында жазыңыз",
+    "en": "# Your code here"
+  },
+  "game_xp_label": {
+    "ru": "Вы получаете +",
+    "kk": "Сіз аласыз +",
+    "en": "You get +"
+  },
+  "err_404_title": {
+    "ru": "Страница не найдена",
+    "kk": "Бет табылмады",
+    "en": "Page not found"
+  },
+  "err_404_text": {
+    "ru": "Кажется, вы попали на страницу, которой не существует.",
+    "kk": "Сіз жоқ бетке кіріп кеттіңіз.",
+    "en": "It seems you've reached a page that doesn't exist."
+  },
+  "err_404_text2": {
+    "ru": "Возможно, она была перемещена или удалена.",
+    "kk": "Мүмкін ол жылжытылған немесе жойылған.",
+    "en": "It might have been moved or deleted."
+  },
+  "err_to_home": {
+    "ru": "На главную",
+    "kk": "Басты бетке",
+    "en": "Home"
+  },
+  "err_to_lessons": {
+    "ru": "К урокам",
+    "kk": "Сабақтарға",
+    "en": "To lessons"
+  },
+  "err_cabinet": {
+    "ru": "Личный кабинет",
+    "kk": "Жеке кабинет",
+    "en": "My Profile"
+  },
+  "err_login_btn": {
+    "ru": "Вход",
+    "kk": "Кіру",
+    "en": "Sign in"
+  },
+  "err_tips_title": {
+    "ru": "Советы для изучения Python:",
+    "kk": "Python үйрену бойынша кеңестер:",
+    "en": "Tips for learning Python:"
+  },
+  "err_tip1": {
+    "ru": "Начните с первого урока, если вы новичок",
+    "kk": "Жаңадан бастаушы болсаңыз, бірінші сабақтан бастаңыз",
+    "en": "Start with the first lesson if you're a beginner"
+  },
+  "err_tip2": {
+    "ru": "Практикуйтесь регулярно в интерпретаторе",
+    "kk": "Интерпретаторда үнемі жаттығыңыз",
+    "en": "Practice regularly in the interpreter"
+  },
+  "err_tip3": {
+    "ru": "Не бойтесь делать ошибки — это часть обучения",
+    "kk": "Қателесуден қорықпаңыз — бұл оқудың бір бөлігі",
+    "en": "Don't be afraid to make mistakes — it's part of learning"
+  },
+  "err_tip4": {
+    "ru": "Завершите каждый урок, чтобы получить XP",
+    "kk": "XP алу үшін әр сабақты аяқтаңыз",
+    "en": "Complete every lesson to earn XP"
+  },
+  "err_progress_saved": {
+    "ru": "Ваш прогресс сохранен. Продолжайте обучение!",
+    "kk": "Прогрессіңіз сақталды. Оқуды жалғастырыңыз!",
+    "en": "Your progress is saved. Keep learning!"
+  },
+  "err_500_title": {
+    "ru": "Урок недоступен",
+    "kk": "Сабақ қолжетімсіз",
+    "en": "Lesson unavailable"
+  },
+  "err_500_try_lesson": {
+    "ru": "Вы пытаетесь перейти к",
+    "kk": "Сіз мына сабаққа өтуге тырысып жатырсыз:",
+    "en": "You are trying to access"
+  },
+  "err_500_not_unlocked": {
+    "ru": "но он еще не разблокирован!",
+    "kk": "бірақ ол әлі ашылмаған!",
+    "en": "but it is not yet unlocked!"
+  },
+  "err_500_need_pass": {
+    "ru": "Чтобы разблокировать урок",
+    "kk": "Сабақты ашу үшін",
+    "en": "To unlock lesson"
+  },
+  "err_500_need_first": {
+    "ru": "вам нужно сначала пройти:",
+    "kk": "алдымен мыналарды аяқтау қажет:",
+    "en": "you need to complete first:"
+  },
+  "err_500_pass_order": {
+    "ru": "Пройдите эти уроки в порядке возрастания, чтобы разблокировать урок",
+    "kk": "Сабақты ашу үшін бұл сабақтарды реттеп аяқтаңыз",
+    "en": "Complete these lessons in order to unlock lesson"
+  },
+  "err_500_all_passed": {
+    "ru": "Все предыдущие уроки пройдены! Попробуйте обновить страницу.",
+    "kk": "Барлық алдыңғы сабақтар аяқталған! Бетті жаңартып көріңіз.",
+    "en": "All previous lessons completed! Try refreshing the page."
+  },
+  "err_500_internal": {
+    "ru": "Произошла внутренняя ошибка при доступе к уроку.",
+    "kk": "Сабаққа кіру кезінде ішкі қате орын алды.",
+    "en": "A server error occurred while accessing the lesson."
+  },
+  "err_500_devs": {
+    "ru": "Наши разработчики уже работают над решением проблемы.",
+    "kk": "Біздің әзірлеушілер мәселені шешуде жұмыс істеп жатыр.",
+    "en": "Our developers are already working on a fix."
+  },
+  "err_500_to_list": {
+    "ru": "К списку уроков",
+    "kk": "Сабақтар тізіміне",
+    "en": "To lesson list"
+  },
+  "err_500_start_from": {
+    "ru": "Начать с урока",
+    "kk": "Мына сабақтан бастау:",
+    "en": "Start from lesson"
+  },
+  "err_500_progress": {
+    "ru": "Ваш прогресс:",
+    "kk": "Сіздің прогрессіңіз:",
+    "en": "Your progress:"
+  },
+  "err_500_passed": {
+    "ru": "Пройдено:",
+    "kk": "Аяқталды:",
+    "en": "Completed:"
+  },
+  "err_500_tips_title": {
+    "ru": "Как эффективно учить Python:",
+    "kk": "Python-ды тиімді қалай оқуға болады:",
+    "en": "How to learn Python effectively:"
+  },
+  "err_500_tip1": {
+    "ru": "Проходите уроки строго по порядку — каждый новый урок основывается на предыдущих",
+    "kk": "Сабақтарды қатаң тәртіппен өтіңіз — әр жаңа сабақ алдыңғыға негізделген",
+    "en": "Complete lessons in order — each new lesson builds on previous ones"
+  },
+  "err_500_tip2": {
+    "ru": "Выполняйте практические задания в каждом уроке для закрепления знаний",
+    "kk": "Білімді бекіту үшін әр сабақтағы практикалық тапсырмаларды орындаңыз",
+    "en": "Complete practice tasks in each lesson to reinforce your knowledge"
+  },
+  "err_500_tip3": {
+    "ru": "Используйте интерпретатор для экспериментов с кодом",
+    "kk": "Кодпен тәжірибе жасау үшін интерпретаторды пайдаланыңыз",
+    "en": "Use the interpreter to experiment with code"
+  },
+  "err_500_tip4": {
+    "ru": "Не торопитесь — лучше понять один урок полностью, чем поверхностно пройти несколько",
+    "kk": "Асықпаңыз — бірнеше сабақты үстірт өтуден гөрі бір сабақты толық түсінген жақсы",
+    "en": "Don't rush — it's better to fully understand one lesson than to skim through several"
+  },
+  "teacher_reg_title": {
+    "ru": "Регистрация учителя",
+    "kk": "Мұғалімді тіркеу",
+    "en": "Teacher registration"
+  },
+  "teacher_become": {
+    "ru": "Стать учителем",
+    "kk": "Мұғалім болу",
+    "en": "Become a teacher"
+  },
+  "teacher_get_access": {
+    "ru": "Получите доступ к панели управления учениками",
+    "kk": "Оқушыларды басқару панеліне қол жеткізіңіз",
+    "en": "Get access to the student management panel"
+  },
+  "teacher_region": {
+    "ru": "Область / Регион",
+    "kk": "Аймақ / Облыс",
+    "en": "Region / State"
+  },
+  "teacher_city": {
+    "ru": "Город",
+    "kk": "Қала",
+    "en": "City"
+  },
+  "teacher_school": {
+    "ru": "Школа",
+    "kk": "Мектеп",
+    "en": "School"
+  },
+  "teacher_fullname": {
+    "ru": "ФИО учителя",
+    "kk": "Мұғалімнің аты-жөні",
+    "en": "Teacher's full name"
+  },
+  "teacher_reg_btn": {
+    "ru": "Зарегистрироваться как учитель",
+    "kk": "Мұғалім ретінде тіркелу",
+    "en": "Register as teacher"
+  },
+  "teacher_back_acc": {
+    "ru": "Вернуться в аккаунт",
+    "kk": "Тіркелгіге оралу",
+    "en": "Back to account"
+  },
+  "teacher_join_title": {
+    "ru": "Привязка к учителю",
+    "kk": "Мұғалімге тіркелу",
+    "en": "Join a teacher"
+  },
+  "teacher_label": {
+    "ru": "Учитель:",
+    "kk": "Мұғалім:",
+    "en": "Teacher:"
+  },
+  "teacher_school_label": {
+    "ru": "Школа:",
+    "kk": "Мектеп:",
+    "en": "School:"
+  },
+  "teacher_class": {
+    "ru": "Класс",
+    "kk": "Сынып",
+    "en": "Class"
+  },
+  "teacher_student_name": {
+    "ru": "ФИО ученика",
+    "kk": "Оқушының аты-жөні",
+    "en": "Student's full name"
+  },
+  "teacher_join_btn": {
+    "ru": "Привязаться к учителю",
+    "kk": "Мұғалімге тіркелу",
+    "en": "Join teacher"
+  },
+  "teacher_panel_title": {
+    "ru": "Панель учителя",
+    "kk": "Мұғалім панелі",
+    "en": "Teacher panel"
+  },
+  "teacher_invite_label": {
+    "ru": "Пригласительная ссылка для учеников",
+    "kk": "Оқушыларға арналған шақыру сілтемесі",
+    "en": "Invite link for students"
+  },
+  "teacher_copy": {
+    "ru": "Копировать",
+    "kk": "Көшіру",
+    "en": "Copy"
+  },
+  "teacher_copied": {
+    "ru": "Скопировано!",
+    "kk": "Көшірілді!",
+    "en": "Copied!"
+  },
+  "teacher_invite_hint": {
+    "ru": "Отправьте эту ссылку вашим ученикам для привязки к вашему аккаунту",
+    "kk": "Бұл сілтемені оқушыларыңызға тіркелгіңізге тіркелу үшін жіберіңіз",
+    "en": "Share this link with your students to bind them to your account"
+  },
+  "teacher_all_classes": {
+    "ru": "Все классы",
+    "kk": "Барлық сыныптар",
+    "en": "All classes"
+  },
+  "teacher_all_statuses": {
+    "ru": "Все статусы",
+    "kk": "Барлық күйлер",
+    "en": "All statuses"
+  },
+  "teacher_status_all_lessons": {
+    "ru": "Все уроки пройдены",
+    "kk": "Барлық сабақтар аяқталды",
+    "en": "All lessons completed"
+  },
+  "teacher_status_all_missions": {
+    "ru": "Все миссии пройдены",
+    "kk": "Барлық миссиялар аяқталды",
+    "en": "All missions completed"
+  },
+  "teacher_status_active": {
+    "ru": "В процессе",
+    "kk": "Жүріп жатыр",
+    "en": "In progress"
+  },
+  "teacher_status_inactive": {
+    "ru": "Не начали",
+    "kk": "Бастамаған",
+    "en": "Not started"
+  },
+  "teacher_sort_class": {
+    "ru": "Сортировка: по классу",
+    "kk": "Сұрыптау: сынып бойынша",
+    "en": "Sort: by class"
+  },
+  "teacher_sort_name": {
+    "ru": "Сортировка: по ФИО",
+    "kk": "Сұрыптау: аты-жөні бойынша",
+    "en": "Sort: by name"
+  },
+  "teacher_sort_xp_desc": {
+    "ru": "Сортировка: XP ↓",
+    "kk": "Сұрыптау: XP ↓",
+    "en": "Sort: XP ↓"
+  },
+  "teacher_sort_xp_asc": {
+    "ru": "Сортировка: XP ↑",
+    "kk": "Сұрыптау: XP ↑",
+    "en": "Sort: XP ↑"
+  },
+  "teacher_sort_lessons_desc": {
+    "ru": "Сортировка: уроки ↓",
+    "kk": "Сұрыптау: сабақтар ↓",
+    "en": "Sort: lessons ↓"
+  },
+  "teacher_sort_missions_desc": {
+    "ru": "Сортировка: миссии ↓",
+    "kk": "Сұрыптау: миссиялар ↓",
+    "en": "Sort: missions ↓"
+  },
+  "teacher_search": {
+    "ru": "Поиск по ФИО...",
+    "kk": "Аты-жөні бойынша іздеу...",
+    "en": "Search by name..."
+  },
+  "teacher_students": {
+    "ru": "Ученики",
+    "kk": "Оқушылар",
+    "en": "Students"
+  },
+  "teacher_th_name": {
+    "ru": "ФИО",
+    "kk": "Аты-жөні",
+    "en": "Name"
+  },
+  "teacher_th_class": {
+    "ru": "Класс",
+    "kk": "Сынып",
+    "en": "Class"
+  },
+  "teacher_th_school": {
+    "ru": "Школа",
+    "kk": "Мектеп",
+    "en": "School"
+  },
+  "teacher_th_lessons": {
+    "ru": "Уроки",
+    "kk": "Сабақтар",
+    "en": "Lessons"
+  },
+  "teacher_th_missions": {
+    "ru": "Миссии",
+    "kk": "Миссиялар",
+    "en": "Missions"
+  },
+  "teacher_no_students": {
+    "ru": "У вас пока нет учеников.",
+    "kk": "Сізде әлі оқушылар жоқ.",
+    "en": "You don't have any students yet."
+  },
+  "teacher_no_students2": {
+    "ru": "Отправьте пригласительную ссылку выше.",
+    "kk": "Жоғарыдағы шақыру сілтемесін жіберіңіз.",
+    "en": "Share the invite link above."
+  },
+  "teacher_to_acc": {
+    "ru": "В аккаунт",
+    "kk": "Тіркелгіге",
+    "en": "To account"
+  },
+  "l1_h1": {
+    "ru": "1 урок",
+    "kk": "1 сабақ",
+    "en": "Lesson 1"
+  },
+  "l1_p": {
+    "ru": "Что такое Python?",
+    "kk": "Python деген не?",
+    "en": "What is Python?"
+  },
+  "l1_intro": {
+    "ru": "<strong>Python</strong> — это универсальный язык программирования, пригодный для создания самых разных программ, от текстовых процессоров до веб-браузеров.",
+    "kk": "<strong>Python</strong> — бұл мәтіндік процессорлардан бастап веб-шолғыштарға дейінгі әртүрлі бағдарламаларды жасауға жарамды әмбебап бағдарламалау тілі.",
+    "en": "<strong>Python</strong> is a universal programming language suitable for creating a wide variety of programs, from word processors to web browsers."
+  },
+  "l1_reasons_title": {
+    "ru": "Вот несколько причин изучить Python:",
+    "kk": "Python-ды үйренудің бірнеше себептері:",
+    "en": "Here are a few reasons to learn Python:"
+  },
+  "l1_card1_title": {
+    "ru": "1. Лёгок в изучении и применении",
+    "kk": "1. Үйрену және қолдану оңай",
+    "en": "1. Easy to learn and use"
+  },
+  "l1_card1_text": {
+    "ru": "Python — простой и удобный язык. По сравнению с другими языками читать и составлять программы на Python совсем не сложно.",
+    "kk": "Python — қарапайым және қолайлы тіл. Басқа тілдермен салыстырғанда Python-да бағдарламаларды оқу және құрастыру қиын емес.",
+    "en": "Python is a simple and convenient language. Compared to other languages, reading and composing programs in Python is not difficult at all."
+  },
+  "l1_card2_title": {
+    "ru": "2. Содержит мощные библиотеки",
+    "kk": "2. Қуатты кітапханалары бар",
+    "en": "2. Contains powerful libraries"
+  },
+  "l1_card2_text": {
+    "ru": "В Python есть библиотеки готовых процедур для использования в своих программах. Это позволяет создавать сложные программы быстро.",
+    "kk": "Python-да өз бағдарламаларыңызда қолдануға болатын дайын процедуралар кітапханалары бар. Бұл күрделі бағдарламаларды тез жасауға мүмкіндік береді.",
+    "en": "Python has libraries of ready-made procedures for use in your programs. This allows you to create complex programs quickly."
+  },
+  "l1_card3_title": {
+    "ru": "3. Используется серьёзными фирмами",
+    "kk": "3. Ірі компаниялар қолданады",
+    "en": "3. Used by major companies"
+  },
+  "l1_card3_text": {
+    "ru": "Python подходит для создания серьёзных программ. Например, его используют в Google, NASA и на студии Pixar.",
+    "kk": "Python салмақты бағдарламаларды жасауға жарамды. Мысалы, оны Google, NASA және Pixar студиясында қолданады.",
+    "en": "Python is suitable for creating serious programs. For example, it is used by Google, NASA, and Pixar studio."
+  },
+  "l1_quiz_title": {
+    "ru": "🎮 Проверь свои знания!",
+    "kk": "🎮 Біліміңді тексер!",
+    "en": "🎮 Test your knowledge!"
+  },
+  "l1_finish_btn": {
+    "ru": "Завершить урок",
+    "kk": "Сабақты аяқтау",
+    "en": "Finish lesson"
+  },
+  "l1_already_done": {
+    "ru": "✅ Вы уже завершили этот урок! Результат:",
+    "kk": "✅ Сіз бұл сабақты аяқтадыңыз! Нәтиже:",
+    "en": "✅ You have already completed this lesson! Result:"
+  },
+  "l2_h1": {
+    "ru": "2 урок",
+    "kk": "2 сабақ",
+    "en": "Lesson 2"
+  },
+  "l2_p": {
+    "ru": "Выполнение Python кода",
+    "kk": "Python кодын орындау",
+    "en": "Executing Python Code"
+  },
+  "l2_intro": {
+    "ru": "Перед тем как начать программировать на Python, его нужно установить на компьютер или использовать <a href=\"/interpreter\">онлайн-интерпретатор</a>. Чтобы работать с Python, мы используем PyCharm. Он бесплатен и устанавливается на ОС Windows, Mac OS, Linux.",
+    "kk": "Python-да бағдарламалауды бастамас бұрын оны компьютерге орнату керек немесе <a href=\"/interpreter\">онлайн-интерпретаторды</a> қолдану керек. Python-мен жұмыс істеу үшін біз PyCharm-ды қолданамыз. Ол тегін және Windows, Mac OS, Linux ОЖ-леріне орнатылады.",
+    "en": "Before starting to program in Python, you need to install it on your computer or use an <a href=\"/interpreter\">online interpreter</a>. To work with Python, we use PyCharm. It is free and can be installed on Windows, Mac OS, and Linux."
+  },
+  "l2_note": {
+    "ru": "<strong>Примечание:</strong> До установки PyCharm нужно установить сам <a href=\"https://www.python.org/downloads/\" target=\"_blank\" class=\"alert-link\">Python</a>.",
+    "kk": "<strong>Ескертпе:</strong> PyCharm-ды орнатпас бұрын <a href=\"https://www.python.org/downloads/\" target=\"_blank\" class=\"alert-link\">Python-ның</a> өзін орнату керек.",
+    "en": "<strong>Note:</strong> Before installing PyCharm, you need to install <a href=\"https://www.python.org/downloads/\" target=\"_blank\" class=\"alert-link\">Python</a> itself."
+  },
+  "l2_pycharm_title": {
+    "ru": "Что такое PyCharm?",
+    "kk": "PyCharm деген не?",
+    "en": "What is PyCharm?"
+  },
+  "l2_pycharm_text": {
+    "ru": "PyCharm — это мощная интегрированная среда разработки (IDE) от компании JetBrains для языка программирования Python, предоставляющая набор инструментов для написания, отладки, тестирования и развертывания кода, делая разработку более быстрой и эффективной.",
+    "kk": "PyCharm — бұл JetBrains компаниясының Python бағдарламалау тіліне арналған қуатты біріктірілген әзірлеу ортасы (IDE), ол кодты жазу, жөндеу, тестілеу және орналастыру құралдарының жиынтығын ұсынады, бұл әзірлеуді жылдамырақ және тиімдірек етеді.",
+    "en": "PyCharm is a powerful integrated development environment (IDE) from JetBrains for Python, providing a set of tools for writing, debugging, testing, and deploying code, making development faster and more efficient."
+  },
+  "l2_install_title": {
+    "ru": "Установка PyCharm",
+    "kk": "PyCharm орнату",
+    "en": "Installing PyCharm"
+  },
+  "l2_install_text": {
+    "ru": "Чтобы установить PyCharm на {os}, скачайте <a href=\"https://www.jetbrains.com/ru-ru/pycharm/download/?section={slug}\" target=\"_blank\" class=\"card-link\">программу загрузки ПО</a>.",
+    "kk": "PyCharm-ды {os} жүйесіне орнату үшін <a href=\"https://www.jetbrains.com/ru-ru/pycharm/download/?section={slug}\" target=\"_blank\" class=\"card-link\">бағдарламаны жүктеу файлын</a> жүктеп алыңыз.",
+    "en": "To install PyCharm on {os}, download the <a href=\"https://www.jetbrains.com/ru-ru/pycharm/download/?section={slug}\" target=\"_blank\" class=\"card-link\">installer</a>."
+  },
+  "l3_h1": {
+    "ru": "3 урок",
+    "kk": "3 сабақ",
+    "en": "Lesson 3"
+  },
+  "l3_p": {
+    "ru": "Ошибки в Python",
+    "kk": "Python-дағы қателер",
+    "en": "Errors in Python"
+  },
+  "l3_intro": {
+    "ru": "Бывает, что программа сначала не запускается, но это всегда можно исправить. Когда что-то в тексте программы не так, Python отображает сообщение об ошибке с информацией о том, в чем проблема.",
+    "kk": "Бағдарлама алдымен іске қосылмауы мүмкін, бірақ оны әрдайым түзетуге болады. Бағдарлама мәтінінде бірдеңе дұрыс болмаса, Python мәселенің не екені туралы ақпараты бар қате туралы хабарлама көрсетеді.",
+    "en": "Sometimes a program doesn't run at first, but it can always be fixed. When something is wrong in the program text, Python displays an error message with information about what the problem is."
+  },
+  "l3_card_prog_title": {
+    "ru": "Ошибки в окне программы",
+    "kk": "Бағдарлама терезесіндегі қателер",
+    "en": "Errors in Program Window"
+  },
+  "l3_card_prog_text": {
+    "ru": "Если запускать код из окна программы, может появиться всплывающее окно с сообщением об ошибке (например, SyntaxError). Это означает, что в программе есть ошибка, мешающая ее запуску, и ее нужно исправить.",
+    "kk": "Егер кодты бағдарлама терезесінен іске қоссаңыз, қате туралы хабарламасы бар қалқымалы терезе пайда болуы мүмкін (мысалы, SyntaxError). Бұл бағдарламада оны іске қосуға кедергі болатын қате бар екенін және оны түзету керек екенін білдіреді.",
+    "en": "If you run code from the program window, a popup with an error message (e.g., SyntaxError) may appear. This means there's an error in the program preventing it from running, and it needs to be fixed."
+  },
+  "l3_li_syntax": {
+    "ru": "Ошибка синтаксиса",
+    "kk": "Синтаксис қатесі",
+    "en": "Syntax Error"
+  },
+  "l3_li_syntax_text": {
+    "ru": "Если появится окошко с сообщением SyntaxError, обычно это значит, что в тексте программы что-то записано неверно.",
+    "kk": "SyntaxError хабарламасы бар терезе пайда болса, бұл әдетте бағдарлама мәтінінде бірдеңе дұрыс жазылмағанын білдіреді.",
+    "en": "If a window with a SyntaxError message appears, it usually means something is written incorrectly in the program text."
+  },
+  "l3_li_highlight": {
+    "ru": "Подсветка ошибки",
+    "kk": "Қатені ерекшелеу",
+    "en": "Error Highlighting"
+  },
+  "l3_li_highlight_text": {
+    "ru": "Кликни ОК во всплывшем окне, чтобы вернуться к программе. Поверх строчки с ошибкой или рядом с ней появится красная подсветка или волнистое подчеркивание.",
+    "kk": "Бағдарламаға оралу үшін қалқымалы терезедегі ОК түймесін басыңыз. Қатесі бар жолдың үстінде немесе оның жанында қызыл түспен ерекшелеу немесе ирек сызық пайда болады.",
+    "en": "Click OK in the pop-up window to return to the program. A red highlight or wavy underline will appear over or next to the line with the error."
+  },
+  "l3_card_console_title": {
+    "ru": "Ошибки в окне консоли",
+    "kk": "Консоль терезесіндегі қателер",
+    "en": "Errors in Console Window"
+  },
+  "l3_card_console_text": {
+    "ru": "Иногда ошибки печатаются красным цветом в окне консоли. Они тоже мешают запуску программы.",
+    "kk": "Кейде қателер консоль терезесінде қызыл түспен басып шығарылады. Олар да бағдарламаның іске қосылуына кедергі келтіреді.",
+    "en": "Sometimes errors are printed in red in the console window. They also prevent the program from running."
+  },
+  "l3_li_name": {
+    "ru": "Ошибка названия",
+    "kk": "Атау қатесі",
+    "en": "Name Error"
+  },
+  "l3_li_name_text": {
+    "ru": "Ошибка NameError означает, что Python не понимает какое-то слово в программе. Если в окне консоли появилась эта ошибка, сделай правый клик по строке, которая начинается с File, и выбери <code>Go to file/line</code>.",
+    "kk": "NameError қатесі Python бағдарламадағы кейбір сөзді түсінбейтінін білдіреді. Егер консоль терезесінде осы қате пайда болса, File-дан басталатын жолды оң жақ түймемен басып, <code>Go to file/line</code> таңдаңыз.",
+    "en": "A NameError means Python doesn't understand a word in the program. If this error appears in the console, right-click the line starting with 'File' and select <code>Go to file/line</code>."
+  },
+  "l3_li_fix": {
+    "ru": "Исправь ошибку",
+    "kk": "Қатені түзет",
+    "en": "Fix the Error"
+  },
+  "l3_li_fix_text": {
+    "ru": "В окне программы выделена строка с ошибкой. Отредактируй код, исправь ошибку и снова запусти программу.",
+    "kk": "Бағдарлама терезесінде қате бар жол белгіленген. Қатені түзетіп, бағдарламаны қайта іске қос.",
+    "en": "In the program window, the line with the error is highlighted. Edit the code to fix the error, then run the program again."
+  },
+  "l5_concept_5": {
+    "ru": "<strong>Переменные</strong> - хранят данные (score, feeling_brave, door_num)",
+    "kk": "<strong>Айнымалылар</strong> - деректерді сақтайды (score, feeling_brave, door_num)",
+    "en": "<strong>Variables</strong> - store data (score, feeling_brave, door_num)"
+  },
+  "l6_h1": {
+    "ru": "6 урок",
+    "kk": "6 сабақ",
+    "en": "Lesson 6"
+  },
+  "l6_p": {
+    "ru": "Выполнение программ в Python",
+    "kk": "Python-да бағдарламаларды орындау",
+    "en": "Executing Programs in Python"
+  },
+  "l6_title": {
+    "ru": "Выполнение программ",
+    "kk": "Бағдарламалардың орындалуы",
+    "en": "Program Execution"
+  },
+  "l6_lead": {
+    "ru": "Прежде чем продолжить изучение Python, важно понять, как работают программы.",
+    "kk": "Python-ды одан әрі үйренбес бұрын бағдарламалардың қалай жұмыс істейтінін түсіну маңызды.",
+    "en": "Before continuing to learn Python, it's important to understand how programs work."
+  },
+  "l6_card_input": {
+    "ru": "Ввод",
+    "kk": "Енгізу",
+    "en": "Input"
+  },
+  "l6_card_input_text": {
+    "ru": "Команда ввода<br>Клавиатура<br>Мышь",
+    "kk": "Енгізу командасы<br>Пернетақта<br>Тінтуір",
+    "en": "Input command<br>Keyboard<br>Mouse"
+  },
+  "l6_card_proc": {
+    "ru": "Обработка",
+    "kk": "Өңдеу",
+    "en": "Processing"
+  },
+  "l6_card_proc_text": {
+    "ru": "Переменные<br>Вычисления<br>Циклы<br>Ветвление<br>Функции",
+    "kk": "Айнымалылар<br>Есептеулер<br>Циклдер<br>Тармақталу<br>Функциялар",
+    "en": "Variables<br>Calculations<br>Loops<br>Branching<br>Functions"
+  },
+  "l6_card_output": {
+    "ru": "Вывод",
+    "kk": "Шығару",
+    "en": "Output"
+  },
+  "l6_card_output_text": {
+    "ru": "Команда печати<br>Экран<br>Графика",
+    "kk": "Шығару командасы<br>Экран<br>Графика",
+    "en": "Print command<br>Screen<br>Graphics"
+  },
+  "l6_code_title": {
+    "ru": "💻 Пример программы с вводом‑обработкой‑выводом",
+    "kk": "💻 Енгізу-өңдеу-шығару мысалы",
+    "en": "💻 Input-Processing-Output Example"
+  },
+  "l4_game_title": {
+    "ru": "Дом с привидениями",
+    "kk": "Елес үйі",
+    "en": "Ghost House"
+  },
+  "l4_game_ghost_intro": {
+    "ru": "Разбирая эту несложную игру, мы подчеркнем моменты, на которые стоит обращать внимание при программировании на Python. Введи код программы и запусти её - сумеешь ли ты спастись из дома с привидениями?",
+    "kk": "Бұл қарапайым ойынды талдай отырып, біз Python-да бағдарламалау кезінде назар аудару керек сәттерді атап өтеміз. Бағдарлама кодын енгізіп, оны іске қосыңыз - сіз елес үйінен қашып құтыла аласыз ба?",
+    "en": "Breaking down this simple game, we will highlight points to pay attention to when programming in Python. Enter the program code and run it - can you escape from the ghost house?"
+  },
+  "l4_code_ghost_label": {
+    "ru": "💻 Код игры на Python",
+    "kk": "💻 Python-дағы ойын коды",
+    "en": "💻 Ghost Game Code in Python"
+  },
+  "l4_how_to_run": {
+    "ru": "🚀 Как запустить?",
+    "kk": "🚀 Қалай іске қосу керек?",
+    "en": "🚀 How to Run?"
+  },
+  "l4_how_to_run_1": {
+    "ru": "Откройте <a href=\"/interpreter\" target=\"_blank\">онлайн-интерпретатор</a>",
+    "kk": "<a href=\"/interpreter\" target=\"_blank\">онлайн-интерпретаторды</a> ашыңыз",
+    "en": "Open the <a href=\"/interpreter\" target=\"_blank\">online IDE</a>"
+  },
+  "l4_how_to_run_2": {
+    "ru": "Скопируйте код выше",
+    "kk": "Жоғарыдағы кодты көшіріңіз",
+    "en": "Copy the code above"
+  },
+  "l4_how_to_run_3": {
+    "ru": "Вставьте его в редактор",
+    "kk": "Оны редакторға қойыңыз",
+    "en": "Paste it into the editor"
+  },
+  "l4_how_to_run_4": {
+    "ru": "Нажмите кнопку \"Выполнить\"",
+    "kk": "\"Орындау\" түймесін басыңыз",
+    "en": "Click the 'Run' button"
+  },
+  "l4_how_to_run_5": {
+    "ru": "Когда появится запрос, введите номер двери (1, 2 или 3)",
+    "kk": "Сұрау пайда болған кезде есік нөмірін енгізіңіз (1, 2 немесе 3)",
+    "en": "When prompted, enter a door number (1, 2, or 3)"
+  },
+  "l4_how_it_works": {
+    "ru": "📚 Как работает игра",
+    "kk": "📚 Ойын қалай жұмыс істейді",
+    "en": "📚 How the Game Works"
+  },
+  "l4_how_it_works_1": {
+    "ru": "<strong>randint(1, 3)</strong> - случайным образом выбирает дверь с привидением (1, 2 или 3)",
+    "kk": "<strong>randint(1, 3)</strong> - кездейсоқ түрде елес бар есікті таңдайды (1, 2 немесе 3)",
+    "en": "<strong>randint(1, 3)</strong> - randomly chooses the door with a ghost (1, 2, or 3)"
+  },
+  "l4_how_it_works_2": {
+    "ru": "<strong>while feeling_brave:</strong> - цикл продолжается пока не встретили призрака",
+    "kk": "<strong>while feeling_brave:</strong> - елес кездескенше цикл жалғасады",
+    "en": "<strong>while feeling_brave:</strong> - the loop continues until a ghost is found"
+  },
+  "l4_how_it_works_3": {
+    "ru": "<strong>input()</strong> - спрашивает у игрока номер двери",
+    "kk": "<strong>input()</strong> - ойыншыдан есік нөмірін сұрайды",
+    "en": "<strong>input()</strong> - asks the player for a door number"
+  },
+  "l4_how_it_works_4": {
+    "ru": "<strong>int(door)</strong> - преобразует текст в число",
+    "kk": "<strong>int(door)</strong> - мәтінді санға түрлендіреді",
+    "en": "<strong>int(door)</strong> - converts text to a number"
+  },
+  "l4_how_it_works_5": {
+    "ru": "<strong>if door_num == ghost_door:</strong> - проверяет, совпала ли дверь с призраком",
+    "kk": "<strong>if door_num == ghost_door:</strong> - есіктің елеспен сәйкес келгенін тексереді",
+    "en": "<strong>if door_num == ghost_door:</strong> - checks if the door matches the ghost"
+  },
+  "l4_how_it_works_6": {
+    "ru": "<strong>score += 1</strong> - добавляет 1 очко при успехе",
+    "kk": "<strong>score += 1</strong> - сәтті болған жағдайда 1 ұпай қосады",
+    "en": "<strong>score += 1</strong> - adds 1 point on success"
+  },
+  "l4_game_3d_title": {
+    "ru": "🎮 3D Игра: Дом с привидениями",
+    "kk": "🎮 3D Ойын: Елес үйі",
+    "en": "🎮 3D Game: Ghost House"
+  },
+  "l4_game_3d_goal": {
+    "ru": "Цель: Набери 3 очка, избегая призраков, чтобы завершить урок!",
+    "kk": "Мақсаты: Сабақты аяқтау үшін елестерден аулақ болып, 3 ұпай жинаңыз!",
+    "en": "Goal: Score 3 points avoiding ghosts to complete the lesson!"
+  },
+  "l4_game_3d_btn": {
+    "ru": "👻 Начать игру",
+    "kk": "👻 Ойынды бастау",
+    "en": "👻 Start Game"
+  },
+  "g4_title": {
+    "ru": "👻 Дом с привидениями",
+    "kk": "👻 Елестер үйі",
+    "en": "👻 Ghost House"
+  },
+  "g4_score": {
+    "ru": "Очки:",
+    "kk": "Ұпайлар:",
+    "en": "Score:"
+  },
+  "g4_score_goal": {
+    "ru": "Набери 3 очка чтобы победить!",
+    "kk": "Жеңіске жету үшін 3 ұпай жинаңыз!",
+    "en": "Score 3 points to win!"
+  },
+  "g4_choose": {
+    "ru": "Выбери дверь!",
+    "kk": "Есікті таңдаңыз!",
+    "en": "Choose a door!"
+  },
+  "g4_desc": {
+    "ru": "За одной из дверей прячется призрак...",
+    "kk": "Есіктердің бірінің артында елес тығылып тұр...",
+    "en": "A ghost is hiding behind one of the doors..."
+  },
+  "g4_door_hint": {
+    "ru": "Дверь 1, Дверь 2 или Дверь 3?",
+    "kk": "1-есік, 2-есік немесе 3-есік?",
+    "en": "Door 1, Door 2, or Door 3?"
+  },
+  "g4_safe": {
+    "ru": "✅ Призрака нет!",
+    "kk": "✅ Елес жоқ!",
+    "en": "✅ No ghost!"
+  },
+  "g4_safe_desc": {
+    "ru": "Отлично! У тебя {score} из 3 очков!",
+    "kk": "Тамаша! Сізде 3 ұпайдың {score} ұпайы бар!",
+    "en": "Great! You have {score} out of 3 points!"
+  },
+  "g4_next_room": {
+    "ru": "Следующая комната",
+    "kk": "Келесі бөлме",
+    "en": "Next Room"
+  },
+  "g4_ghost": {
+    "ru": "👻 ПРИЗРАК!",
+    "kk": "👻 ЕЛЕС!",
+    "en": "👻 GHOST!"
+  },
+  "g4_lose": {
+    "ru": "Ты проиграл! Текущий счет: {score} из 3",
+    "kk": "Сен жеңілдің! Ағымдағы ұпай: 3-тен {score}",
+    "en": "You lost! Current score: {score} out of 3"
+  },
+  "g4_try_again": {
+    "ru": "Попробуйте снова",
+    "kk": "Қайта байқап көріңіз",
+    "en": "Try again"
+  },
+  "g4_victory": {
+    "ru": "ПОБЕДА!",
+    "kk": "ЖЕҢІС!",
+    "en": "VICTORY!"
+  },
+  "g4_victory_desc": {
+    "ru": "Ты набрал 3 очка и сбежал из дома с привидениями!",
+    "kk": "Сіз 3 ұпай жинап, елестер үйінен қашып құтылдыңыз!",
+    "en": "You scored 3 points and escaped the haunted house!"
+  },
+  "g4_xp_note": {
+    "ru": "+100 XP заработано!",
+    "kk": "+100 XP алынды!",
+    "en": "+100 XP earned!"
+  },
+  "g4_finish_quiz": {
+    "ru": "Завершить квиз",
+    "kk": "Квизді аяқтау",
+    "en": "Finish quiz"
+  },
+  "g4_play_again": {
+    "ru": "🔄 Играть снова",
+    "kk": "🔄 Қайта ойнау",
+    "en": "🔄 Play Again"
+  },
+  "l5_h1": {
+    "ru": "5 урок",
+    "kk": "5 сабақ",
+    "en": "Lesson 5"
+  },
+  "l5_p": {
+    "ru": "Разбор первой игры на Python",
+    "kk": "Python-дағы алғашқы ойынды талдау",
+    "en": "First Game Breakdown"
+  },
+  "l5_intro": {
+    "ru": "Давайте разберем, как работает ваш код.",
+    "kk": "Кодыңыздың қалай жұмыс істейтінін талдап көрейік.",
+    "en": "Let's break down how your code works."
+  },
+  "l5_struct_title": {
+    "ru": "📋 Структура программы",
+    "kk": "📋 Бағдарлама құрылымы",
+    "en": "📋 Program Structure"
+  },
+  "l5_struct_text": {
+    "ru": "В Python пробелы в начале строк используются, чтобы объединять команды в блоки. Эти пробелы называют <strong>отступами</strong>. Например, строки после <code>while feeling_brave</code> начинаются с четырех пробелов, чтобы показать, что они внутри основного цикла.",
+    "kk": "Python-да жолдардың басындағы бос орындар командаларды блоктарға біріктіру үшін қолданылады. Бұл бос орындарды <strong>шегіністер</strong> деп атайды. Мысалы, <code>while feeling_brave</code> жолынан кейінгі жолдар негізгі циклдің ішінде екенін көрсету үшін төрт бос орыннан басталады.",
+    "en": "In Python, spaces at the beginning of lines are used to group commands into blocks. These spaces are called <strong>indentations</strong>. For example, lines after <code>while feeling_brave</code> start with four spaces to show they are inside the main loop."
+  },
+  "l5_part1_title": {
+    "ru": "1. Подготовка к игре",
+    "kk": "1. Ойынға дайындық",
+    "en": "1. Preparing for the Game"
+  },
+  "l5_part1_text": {
+    "ru": "Эти команды выполняются только один раз - в начале игры. Они печатают название игры, настраивают переменные и команды.",
+    "kk": "Бұл командалар ойынның басында тек бір рет орындалады. Олар ойын атауын шығарады, айнымалылар мен командаларды баптайды.",
+    "en": "These commands run only once - at the beginning of the game. They print the game title, set up variables and commands."
+  },
+  "l5_part2_title": {
+    "ru": "2. Основной цикл",
+    "kk": "2. Негізгі цикл",
+    "en": "2. The Main Loop"
+  },
+  "l5_part2_text": {
+    "ru": "В этом цикле печатаются правила игры и запрашивается ответ игрока. Пока игрок не столкнулся с привидением, цикл продолжается. Если же за дверью привидение, переменная <code>feeling_brave</code> принимает значение False (Ложь) и цикл завершается.",
+    "kk": "Бұл циклде ойын ережелері шығарылады және ойыншының жауабы сұралады. Ойыншы елеспен кездескенше цикл жалғаса береді. Егер есіктен елес шықса, <code>feeling_brave</code> айнымалысы False (Жалған) мәнін қабылдап, цикл аяқталады.",
+    "en": "In this loop, the game rules are printed and the player's response is requested. As long as the player hasn't encountered a ghost, the loop continues. If there's a ghost behind the door, the <code>feeling_brave</code> variable becomes False and the loop ends."
+  },
+  "l5_part3_title": {
+    "ru": "3. Ветвление",
+    "kk": "3. Тармақталу",
+    "en": "3. Branching"
+  },
+  "l5_part3_text": {
+    "ru": "Программа выполняет разные действия в зависимости от того, есть ли за выбранной дверью привидение. Если игрок встретил привидение, переменная <code>feeling_brave</code> принимает значение False, а если нет, счет игры увеличивается на единицу.",
+    "kk": "Бағдарлама таңдалған есіктің артында елестің бар-жоғына байланысты әртүрлі әрекеттерді орындайды. Егер ойыншы елеспен кездессе, <code>feeling_brave</code> айнымалысы False мәнін қабылдайды, егер жоқ болса, ойын ұпайы бірге артады.",
+    "en": "The program performs different actions depending on whether there is a ghost behind the chosen door. If the player meets a ghost, the <code>feeling_brave</code> variable becomes False; otherwise, the game score increases by one."
+  },
+  "l5_part4_title": {
+    "ru": "4. Конец игры",
+    "kk": "4. Ойынның соңы",
+    "en": "4. Game Over"
+  },
+  "l5_part4_text": {
+    "ru": "Эта часть выполняется только один раз, когда игрок встретит привидение. Благодаря отсутствию отступов Python знает, что эти команды вне цикла.",
+    "kk": "Бұл бөлім ойыншы елеспен кездескенде тек бір рет орындалады. Шегіністердің болмауының арқасында Python бұл командалардың циклден тыс екенін біледі.",
+    "en": "This part runs only once when the player encounters a ghost. Because of the lack of indentation, Python knows these commands are outside the loop."
+  },
+  "l5_concepts_title": {
+    "ru": "💡 Ключевые понятия",
+    "kk": "💡 Негізгі ұғымдар",
+    "en": "💡 Key Concepts"
+  },
+  "l5_concept_1": {
+    "ru": "<strong>Комментарий (#)</strong> - строка, которая игнорируется программой",
+    "kk": "<strong>Түсініктеме (#)</strong> - бағдарлама ескермейтін жол",
+    "en": "<strong>Comment (#)</strong> - a line ignored by the program"
+  },
+  "l5_concept_2": {
+    "ru": "<strong>Отступы</strong> - пробелы в начале строки, определяющие блоки кода",
+    "kk": "<strong>Шегіністер</strong> - код блоктарын анықтайтын жолдың басындағы бос орындар",
+    "en": "<strong>Indentation</strong> - spaces at the beginning of a line that define code blocks"
+  },
+  "l5_concept_3": {
+    "ru": "<strong>Цикл while</strong> - повторяет код пока условие истинно",
+    "kk": "<strong>while циклі</strong> - шарт ақиқат болғанша кодты қайталайды",
+    "en": "<strong>While Loop</strong> - repeats code as long as a condition is true"
+  },
+  "l5_concept_4": {
+    "ru": "<strong>Ветвление if-else</strong> - выполняет разный код в зависимости от условия",
+    "kk": "<strong>if-else тармақталуы</strong> - шартқа байланысты әртүрлі кодты орындайды",
+    "en": "<strong>if-else Branching</strong> - executes different code based on a condition"
+  },
+  "quiz_check": {
+    "ru": "📝 Проверь свои знания!",
+    "kk": "📝 Өз біліміңді тексер!",
+    "en": "📝 Test Your Knowledge!"
+  },
+  "l4_step1_title": {
+    "ru": "Шаг 1: Приветствие",
+    "kk": "1-қадам: Сәлемдесу",
+    "en": "Step 1: Greeting"
+  },
+  "l4_step1_text": {
+    "ru": "Используем <code>print()</code> для вывода текста персонажа.",
+    "kk": "Кейіпкердің мәтінін шығару үшін <code>print()</code> қолданамыз.",
+    "en": "We use <code>print()</code> to output character text."
+  },
+  "l4_step2_title": {
+    "ru": "Шаг 2: Выбор",
+    "kk": "2-қадам: Таңдау",
+    "en": "Step 2: Choice"
+  },
+  "l4_step2_text": {
+    "ru": "Используем <code>input()</code>, чтобы игрок мог ответить.",
+    "kk": "Ойыншы жауап бере алуы үшін <code>input()</code> қолданамыз.",
+    "en": "We use <code>input()</code> so the player can respond."
+  },
+  "l4_code_label": {
+    "ru": "Код вашей будущей игры:",
+    "kk": "Болашақ ойыныңыздың коды:",
+    "en": "Your future game's code:"
+  },
+  "l4_try_it": {
+    "ru": "Попробуйте скопировать этот код в интерпретатор!",
+    "kk": "Бұл кодты интерпретаторға көшіріп көріңіз!",
+    "en": "Try copying this code into the interpreter!"
+  },
+  "l5_indent_title": {
+    "ru": "Отступы",
+    "kk": "Шегіністер",
+    "en": "Indentations"
+  },
+  "l5_indent_text": {
+    "ru": "В Python отступы очень важны. Они показывают, какой код относится к <code>if</code> или <code>else</code>.",
+    "kk": "Python-да шегіністер өте маңызды. Олар қай код <code>if</code> немесе <code>else</code> блогына жататынын көрсетеді.",
+    "en": "Indentations are very important in Python. They show which code belongs to <code>if</code> or <code>else</code>."
+  },
+  "l5_comments_title": {
+    "ru": "Комментарии",
+    "kk": "Түсініктемелер",
+    "en": "Comments"
+  },
+  "l5_comments_text": {
+    "ru": "Все, что идет после символа <code>#</code>, — это комментарий. Компьютер его игнорирует, это текст для программиста.",
+    "kk": "<code>#</code> символынан кейінгі барлық нәрсе — түсініктеме. Компьютер оны елемейді, бұл бағдарламашыға арналған мәтін.",
+    "en": "Everything after the <code>#</code> symbol is a comment. The computer ignores it; it's text for the programmer."
+  },
+  "l6_intro": {
+    "ru": "Прежде чем продолжить изучение Python, важно понять, как работают программы.",
+    "kk": "Python-ды үйренуді жалғастырмас бұрын бағдарламалардың қалай жұмыс істейтінін түсіну маңызды.",
+    "en": "Before continuing to learn Python, it's important to understand how programs work."
+  },
+  "l6_in": {
+    "ru": "Ввод",
+    "kk": "Енгізу",
+    "en": "Input"
+  },
+  "l6_in_text": {
+    "ru": "Команда ввода<br>Клавиатура<br>Мышь",
+    "kk": "Енгізу командасы<br>Пернетақта<br>Тінтуір",
+    "en": "Input command<br>Keyboard<br>Mouse"
+  },
+  "l6_proc": {
+    "ru": "Обработка",
+    "kk": "Өңдеу",
+    "en": "Processing"
+  },
+  "l6_proc_text": {
+    "ru": "Переменные<br>Вычисления<br>Циклы<br>Ветвление<br>Функции",
+    "kk": "Айнымалылар<br>Есептеулер<br>Циклдер<br>Тармақталу<br>Функциялар",
+    "en": "Variables<br>Calculations<br>Loops<br>Branching<br>Functions"
+  },
+  "l6_out": {
+    "ru": "Вывод",
+    "kk": "Шығару",
+    "en": "Output"
+  },
+  "l6_out_text": {
+    "ru": "Команда печати<br>Экран<br>Графика",
+    "kk": "Басып шығару командасы<br>Экран<br>Графика",
+    "en": "Print command<br>Screen<br>Graphics"
+  },
+  "l6_example_title": {
+    "ru": "💻 Пример программы с вводом‑обработкой‑выводом",
+    "kk": "💻 Енгізу-өңдеу-шығару бағдарламасының мысалы",
+    "en": "💻 Example of an Input-Processing-Output program"
+  },
+  "l7_h1": {
+    "ru": "7 урок",
+    "kk": "7 сабақ",
+    "en": "Lesson 7"
+  },
+  "l7_p": {
+    "ru": "Простые команды в Python",
+    "kk": "Python-дағы қарапайым командалар",
+    "en": "Simple Commands in Python"
+  },
+  "l7_intro": {
+    "ru": "На первый взгляд может показаться, что Python сложный. Однако есть основные команды, которые нужно знать.",
+    "kk": "Бір қарағанда Python күрделі болып көрінуі мүмкін. Дегенмен, білуіңіз керек негізгі командалар бар.",
+    "en": "At first glance, Python might seem complex. However, there are basic commands you need to know."
+  },
+  "l7_th_cmd": {
+    "ru": "Команда",
+    "kk": "Команда",
+    "en": "Command"
+  },
+  "l7_th_py": {
+    "ru": "Python",
+    "kk": "Python",
+    "en": "Python"
+  },
+  "l7_cmd1": {
+    "ru": "Запустить программу",
+    "kk": "Бағдарламаны іске қосу",
+    "en": "Run program"
+  },
+  "l7_cmd1_py": {
+    "ru": "Нажмите кнопку «Запустить»",
+    "kk": "«Іске қосу» түймесін басыңыз",
+    "en": "Click the 'Run' button"
+  },
+  "l7_cmd2": {
+    "ru": "Остановить программу",
+    "kk": "Бағдарламаны тоқтату",
+    "en": "Stop program"
+  },
+  "l7_cmd2_py": {
+    "ru": "Нажмите кнопку «Стоп»",
+    "kk": "«Тоқтату» түймесін басыңыз",
+    "en": "Click the 'Stop' button"
+  },
+  "l7_cmd3": {
+    "ru": "Вывести текст",
+    "kk": "Мәтінді шығару",
+    "en": "Output text"
+  },
+  "l7_cmd4": {
+    "ru": "Присвоить переменной числовое значение",
+    "kk": "Айнымалыға сандық мән беру",
+    "en": "Assign a numeric value to a variable"
+  },
+  "l7_cmd5": {
+    "ru": "Присвоить переменной строковое значение",
+    "kk": "Айнымалыға жолдық мән беру",
+    "en": "Assign a string value to a variable"
+  },
+  "l7_cmd6": {
+    "ru": "Считать текст с клавиатуры",
+    "kk": "Мәтінді пернетақтадан оқу",
+    "en": "Read text from the keyboard"
+  },
+  "l7_cmd7": {
+    "ru": "Добавить число к переменной",
+    "kk": "Айнымалыға санды қосу",
+    "en": "Add a number to a variable"
+  },
+  "l7_cmd8": {
+    "ru": "Сложить",
+    "kk": "Қосу",
+    "en": "Add"
+  },
+  "l7_cmd9": {
+    "ru": "Вычесть",
+    "kk": "Азайту",
+    "en": "Subtract"
+  },
+  "l7_cmd10": {
+    "ru": "Умножить",
+    "kk": "Көбейту",
+    "en": "Multiply"
+  },
+  "l7_cmd11": {
+    "ru": "Разделить",
+    "kk": "Бөлу",
+    "en": "Divide"
+  },
+  "l7_example_title": {
+    "ru": "💻 Практический пример",
+    "kk": "💻 Тәжірибелік мысал",
+    "en": "💻 Practical Example"
+  },
+  "l8_h1": {
+    "ru": "8 урок",
+    "kk": "8 сабақ",
+    "en": "Lesson 8"
+  },
+  "l8_p": {
+    "ru": "Сложные команды в Python",
+    "kk": "Python-дағы күрделі командалар",
+    "en": "Advanced Commands in Python"
+  },
+  "l8_intro": {
+    "ru": "В Python можно делать и более сложные вещи, например сложные циклы, действия со строками и списками и т.п.",
+    "kk": "Python-да күрделірек нәрселерді де жасауға болады, мысалы, күрделі циклдер, жолдармен және тізімдермен әрекеттер және т.б.",
+    "en": "In Python, you can do more complex things, such as complex loops, actions with strings and lists, etc."
+  },
+  "l8_cmd1": {
+    "ru": "Цикл с условием",
+    "kk": "Шартты цикл",
+    "en": "Conditional loop"
+  },
+  "l8_cmd2": {
+    "ru": "Ожидание",
+    "kk": "Күту",
+    "en": "Wait"
+  },
+  "l8_cmd3": {
+    "ru": "Случайные числа",
+    "kk": "Кездейсоқ сандар",
+    "en": "Random numbers"
+  },
+  "l8_cmd4": {
+    "ru": "Определение функции",
+    "kk": "Функцияны анықтау",
+    "en": "Function definition"
+  },
+  "l8_cmd5": {
+    "ru": "Вызов функции",
+    "kk": "Функцияны шақыру",
+    "en": "Function call"
+  },
+  "l8_cmd6": {
+    "ru": "Функция с параметром",
+    "kk": "Параметрі бар функция",
+    "en": "Function with a parameter"
+  },
+  "l8_cmd7": {
+    "ru": "Вызов с параметром",
+    "kk": "Параметрмен шақыру",
+    "en": "Call with a parameter"
+  },
+  "l8_cmd8": {
+    "ru": "Склеивание строк",
+    "kk": "Жолдарды біріктіру",
+    "en": "String concatenation"
+  },
+  "l8_cmd9": {
+    "ru": "Первый символ строки",
+    "kk": "Жолдың бірінші таңбасы",
+    "en": "First character of a string"
+  },
+  "l8_cmd10": {
+    "ru": "Длина строки",
+    "kk": "Жолдың ұзындығы",
+    "en": "String length"
+  },
+  "l8_cmd11": {
+    "ru": "Создать пустой список",
+    "kk": "Бос тізім жасау",
+    "en": "Create an empty list"
+  },
+  "l8_cmd12": {
+    "ru": "Добавить элемент",
+    "kk": "Элемент қосу",
+    "en": "Add an element"
+  },
+  "l8_cmd13": {
+    "ru": "Количество элементов",
+    "kk": "Элементтер саны",
+    "en": "Number of elements"
+  },
+  "l8_cmd14": {
+    "ru": "Пятый элемент списка",
+    "kk": "Тізімнің бесінші элементі",
+    "en": "Fifth element of the list"
+  },
+  "l8_cmd15": {
+    "ru": "Удалить второй элемент",
+    "kk": "Екінші элементті жою",
+    "en": "Delete second element"
+  },
+  "l8_cmd16": {
+    "ru": "Проверка наличия",
+    "kk": "Бар-жоғын тексеру",
+    "en": "Check existence"
+  },
+  "l9_h1": {
+    "ru": "9 урок",
+    "kk": "9 сабақ",
+    "en": "Lesson 9"
+  },
+  "l9_p": {
+    "ru": "Переменные в Python",
+    "kk": "Python-дағы айнымалылар",
+    "en": "Variables in Python"
+  },
+  "l9_intro": {
+    "ru": "С помощью знака <code>=</code> число или строку можно поместить в переменную - это называется заданием значения переменной.",
+    "kk": "<code>=</code> белгісінің көмегімен санды немесе жолды айнымалыға орналастыруға болады - бұл айнымалының мәнін орнату деп аталады.",
+    "en": "Using the <code>=</code> sign, a number or string can be placed into a variable - this is called assigning a value to the variable."
+  },
+  "l9_var_name": {
+    "ru": "имя переменной",
+    "kk": "айнымалы атауы",
+    "en": "variable name"
+  },
+  "l9_var_val": {
+    "ru": "значение переменной",
+    "kk": "айнымалы мәні",
+    "en": "variable value"
+  },
+  "l9_num_val": {
+    "ru": "Числовое значение",
+    "kk": "Сандық мән",
+    "en": "Numeric value"
+  },
+  "l9_str_val": {
+    "ru": "Строковое значение",
+    "kk": "Жолдық мән",
+    "en": "String value"
+  },
+  "l9_print_title": {
+    "ru": "Печать переменной",
+    "kk": "Айнымалыны басып шығару",
+    "en": "Printing a variable"
+  },
+  "l9_print_text": {
+    "ru": "Команда <code>print</code> нужна, чтобы печатать текст на экране. С помощью этой команды можно узнать значение переменной.",
+    "kk": "<code>print</code> командасы экранға мәтінді басып шығару үшін қажет. Осы команданың көмегімен айнымалының мәнін білуге болады.",
+    "en": "The <code>print</code> command is used to output text to the screen. You can use it to see a variable's value."
+  },
+  "l9_change_title": {
+    "ru": "Изменение значения переменной",
+    "kk": "Айнымалы мәнін өзгерту",
+    "en": "Changing a variable value"
+  },
+  "l9_change_text": {
+    "ru": "Чтобы изменить значение переменной, просто задай ей новое значение.",
+    "kk": "Айнымалының мәнін өзгерту үшін оған жаңа мән берсеңіз болғаны.",
+    "en": "To change a variable's value, simply assign it a new value."
+  },
+  "l9_use_title": {
+    "ru": "Использование переменных",
+    "kk": "Айнымалыларды қолдану",
+    "en": "Using variables"
+  },
+  "l9_concepts_title": {
+    "ru": "Ключевые концепции",
+    "kk": "Негізгі концепциялар",
+    "en": "Key Concepts"
+  },
+  "l9_game_btn": {
+    "ru": "Начать игру",
+    "kk": "Ойынды бастау",
+    "en": "Start Game"
+  },
+  "l10_h1": {
+    "ru": "10 урок",
+    "kk": "10 сабақ",
+    "en": "Lesson 10"
+  },
+  "l10_p": {
+    "ru": "Типы данных в Python",
+    "kk": "Python-дағы деректер түрлері",
+    "en": "Data Types in Python"
+  },
+  "l10_intro": {
+    "ru": "В Python используются данные разных типов. Обычно Python сам понимает, какой тип использовать, но иногда нужно вручную менять один тип данных на другой.",
+    "kk": "Python-да әртүрлі типтегі деректер қолданылады. Әдетте Python қай типті қолдану керектігін өзі түсінеді, бірақ кейде деректердің бір типін екіншісіне қолмен өзгерту қажет болады.",
+    "en": "Different data types are used in Python. Usually, Python understands which type to use itself, but sometimes you need to manually change one data type to another."
+  },
+  "l10_int": {
+    "ru": "Числа: int (целые)",
+    "kk": "Сандар: int (бүтін)",
+    "en": "Numbers: int (integers)"
+  },
+  "l10_float": {
+    "ru": "Числа: float (вещественные)",
+    "kk": "Сандар: float (нақты)",
+    "en": "Numbers: float (floating point)"
+  },
+  "l10_str": {
+    "ru": "Строки (str)",
+    "kk": "Жолдар (str)",
+    "en": "Strings (str)"
+  },
+  "l10_bool": {
+    "ru": "Булевы значения",
+    "kk": "Бульдік мәндер",
+    "en": "Boolean values"
+  },
+  "l10_conv_title": {
+    "ru": "Преобразование типов данных",
+    "kk": "Деректер типтерін түрлендіру",
+    "en": "Data Type Conversion"
+  },
+  "l11_h1": {
+    "ru": "11 урок",
+    "kk": "11 сабақ",
+    "en": "Lesson 11"
+  },
+  "l11_p": {
+    "ru": "Вычисления в Python",
+    "kk": "Python-дағы есептеулер",
+    "en": "Calculations in Python"
+  },
+  "l11_intro": {
+    "ru": "В Python можно выполнять разные математические операции, например складывать, вычитать, умножать и делить. В вычислениях часто используют переменные.",
+    "kk": "Python-да әртүрлі математикалық амалдарды орындауға болады, мысалы, қосу, азайту, көбейту және бөлу. Есептеулерде айнымалылар жиі қолданылады.",
+    "en": "You can perform various mathematical operations in Python, such as addition, subtraction, multiplication, and division. Variables are often used in calculations."
+  },
+  "l11_brackets": {
+    "ru": "Использование скобок",
+    "kk": "Жақшаларды қолдану",
+    "en": "Using Brackets"
+  },
+  "l11_rand": {
+    "ru": "Случайные числа",
+    "kk": "Кездейсоқ сандар",
+    "en": "Random Numbers"
+  },
+  "l11_game_title": {
+    "ru": "Игра: Математические пузырьки",
+    "kk": "Ойын: Математикалық көпіршіктер",
+    "en": "Game: Math Bubbles"
+  },
+  "l12_h1": {
+    "ru": "12 урок",
+    "kk": "12 сабақ",
+    "en": "Lesson 12"
+  },
+  "l12_p": {
+    "ru": "Строки в Python",
+    "kk": "Python-дағы жолдар",
+    "en": "Strings in Python"
+  },
+  "l12_intro": {
+    "ru": "Строки в Python — это последовательности символов, заключённые в кавычки. Они используются для хранения текстовой информации.",
+    "kk": "Python-дағы жолдар — бұл тырнақшаға алынған таңбалар тізбегі. Олар мәтіндік ақпаратты сақтау үшін қолданылады.",
+    "en": "Strings in Python are sequences of characters enclosed in quotes. They are used to store textual information."
+  },
+  "l12_indices": {
+    "ru": "Нумерация символов (индексы)",
+    "kk": "Таңбаларды нөмірлеу (индекстер)",
+    "en": "Character Numbering (Indices)"
+  },
+  "l13_h1": {
+    "ru": "13 урок",
+    "kk": "13 сабақ",
+    "en": "Lesson 13"
+  },
+  "l13_p": {
+    "ru": "Ввод и вывод в Python",
+    "kk": "Python-дағы енгізу және шығару",
+    "en": "Input and Output in Python"
+  },
+  "l13_intro": {
+    "ru": "Взаимодействие с пользователем в Python осуществляется через ввод данных с клавиатуры и вывод информации на экран.",
+    "kk": "Python-да пайдаланушымен өзара әрекеттесу пернетақтадан деректерді енгізу және ақпаратты экранға шығару арқылы жүзеге асырылады.",
+    "en": "User interaction in Python is done through keyboard input and on-screen output."
+  },
+  "l13_fstr": {
+    "ru": "Форматирование строк (f-строки)",
+    "kk": "Жолдарды пішімдеу (f-жолдар)",
+    "en": "String Formatting (f-strings)"
+  },
+  "g3_title": {
+    "ru": "🐍 Определи ошибку Python!",
+    "kk": "🐍 Python қатесін анықта!",
+    "en": "🐍 Spot the Python Error!"
+  },
+  "g3_start_text": {
+    "ru": "Найди тип ошибки в коде и выбери правильный ответ.<br>Найди 10 ошибок чтобы набрать 100 очков!",
+    "kk": "Кодтағы қате түрін тауып, дұрыс жауапты таңдаңыз.<br>100 ұпай жинау үшін 10 қатені табыңыз!",
+    "en": "Find the error type in the code and choose the correct answer.<br>Find 10 errors to score 100 points!"
+  },
+  "g3_reward": {
+    "ru": "Награда:",
+    "kk": "Марапат:",
+    "en": "Reward:"
+  },
+  "g3_start_btn": {
+    "ru": "Начать игру",
+    "kk": "Ойынды бастау",
+    "en": "Start Game"
+  },
+  "g3_score": {
+    "ru": "Очки:",
+    "kk": "Ұпайлар:",
+    "en": "Score:"
+  },
+  "g3_errors": {
+    "ru": "Ошибок:",
+    "kk": "Қателер:",
+    "en": "Errors:"
+  },
+  "g3_q_title": {
+    "ru": "Какая ошибка в этом коде?",
+    "kk": "Бұл кодта қандай қате бар?",
+    "en": "What error is in this code?"
+  },
+  "g3_end_win": {
+    "ru": "🎉 Игра окончена!",
+    "kk": "🎉 Ойын аяқталды!",
+    "en": "🎉 Game Over!"
+  },
+  "g3_save_exit": {
+    "ru": "Сохранить и Выйти",
+    "kk": "Сақтау және Шығу",
+    "en": "Save and Exit"
+  },
+  "g3_play_again": {
+    "ru": "Сыграть снова",
+    "kk": "Қайта ойнау",
+    "en": "Play Again"
+  },
+  "g4_no_ghost": {
+    "ru": "✅ Призрака нет!",
+    "kk": "✅ Елес жоқ!",
+    "en": "✅ No ghost!"
+  },
+  "g4_ghost_found": {
+    "ru": "👻 ПРИЗРАК!",
+    "kk": "👻 ЕЛЕС!",
+    "en": "👻 GHOST!"
+  },
+  "g4_lose_desc": {
+    "ru": "Ты проиграл! Текущий счет: {score} из 3",
+    "kk": "Сіз ұтылдыңыз! Ағымдағы ұпай: 3-тен {score}",
+    "en": "You lost! Current score: {score} out of 3"
+  },
+  "g4_xp_reward": {
+    "ru": "+100 XP заработано!",
+    "kk": "+100 XP алынды!",
+    "en": "+100 XP earned!"
+  },
+  "l4_ghost_game": {
+    "ru": "Дом с привидениями",
+    "kk": "Елестер үйі",
+    "en": "Ghost House"
+  },
+  "l4_ghost_intro": {
+    "ru": "Разбирая эту несложную игру, мы подчеркнем моменты, на которые стоит обращать внимание при программировании на Python. Введи код программы и запусти её - сумеешь ли ты спастись из дома с привидениями?",
+    "kk": "Осы қарапайым ойынды талдай отырып, біз Python-да бағдарламалау кезінде назар аудару керек сәттерді атап өтеміз. Бағдарлама кодын енгізіп, оны іске қосыңыз - елестер үйінен қашып құтыла аласыз ба?",
+    "en": "By breaking down this simple game, we will emphasize points to look out for when programming in Python. Enter the program code and run it - can you escape the haunted house?"
+  },
+  "l4_p": {
+    "ru": "Первая игра на Python",
+    "kk": "Python-дағы бірінші ойын",
+    "en": "Your first Python game"
+  },
+  "l14_p": {
+    "ru": "Принятие решений в Python",
+    "kk": "Python-да шешім қабылдау",
+    "en": "Making decisions in Python"
+  },
+  "l15_p": {
+    "ru": "Ветвление в Python",
+    "kk": "Python-да тармақталу",
+    "en": "Branching in Python"
+  },
+  "l16_p": {
+    "ru": "Циклы в Python",
+    "kk": "Python-дағы циклдар",
+    "en": "Loops in Python"
+  },
+  "l17_p": {
+    "ru": "Цикл while",
+    "kk": "while циклі",
+    "en": "The while loop"
+  },
+  "l18_p": {
+    "ru": "Цикл for",
+    "kk": "for циклі",
+    "en": "The for loop"
+  },
+  "l19_p": {
+    "ru": "Выход с цикла в Python",
+    "kk": "Python-да циклдан шығу",
+    "en": "Breaking out of loops in Python"
+  },
+  "l20_p": {
+    "ru": "Списки в Python",
+    "kk": "Python-дағы тізімдер",
+    "en": "Lists in Python"
+  },
+  "l21_p": {
+    "ru": "Функции в Python",
+    "kk": "Python-дағы функциялар",
+    "en": "Functions in Python"
+  },
+  "l22_p": {
+    "ru": "Словари и кортежи в Python",
+    "kk": "Python-дағы сөздіктер мен кортеждер",
+    "en": "Dictionaries and tuples in Python"
+  },
+  "l23_p": {
+    "ru": "Списки в переменных в Python",
+    "kk": "Python-дағы айнымалылардағы тізімдер",
+    "en": "Lists in variables in Python"
+  },
+  "l24_p": {
+    "ru": "Переменные и функции в Python",
+    "kk": "Python-дағы айнымалылар мен функциялар",
+    "en": "Variables and functions in Python"
+  },
+  "l25_p": {
+    "ru": "Ошибки и отладка в Python",
+    "kk": "Python-дағы қателер және жөндеу",
+    "en": "Errors and debugging in Python"
+  },
+  "l26_p": {
+    "ru": "Алгоритмы в Python",
+    "kk": "Python-дағы алгоритмдер",
+    "en": "Algorithms in Python"
+  }
+}

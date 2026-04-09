@@ -1,0 +1,697 @@
+{% extends "base.html" %}
+
+{% block link1 %}{{ url_for('home') }}{% endblock %}
+{% block link2 %}{{ url_for('lessons') }}{% endblock %}
+{% block link3 %}{{ url_for('interpreter') }}{% endblock %}
+{% block link4 %}{{ url_for('account') }}{% endblock %}
+
+{% block tillink1 %}{{ _t('nav_home') }}{% endblock %}
+{% block tillink2 %}{{ _t('nav_lessons') }}{% endblock %}
+{% block tillink3 %}{{ _t('nav_interpreter') }}{% endblock %}
+{% block tillink4 %}{{ _t('nav_account') }}{% endblock %}
+
+{% block title %}LearnPython{% endblock %}
+
+{% block main %}
+<!-- Данные уровня для JS вне исполняемых скриптов (для чистоты линтера) -->
+<script id="level-data-json" type="application/json">
+    {
+        "level": {{ level | tojson | safe }},
+        "level_id": {{ level_id | tojson | safe }},
+        "comment": {{ _t('game_lvl_comment') | tojson | safe }},
+        "pyodide_path": {{ url_for('static', filename='pyodide/') | tojson | safe }},
+        "monaco_path": {{ url_for('static', filename='monaco/min/vs') | tojson | safe }}
+    }
+</script>
+<style>
+    body {
+        background-color: #050508 !important;
+        background-image:
+            radial-gradient(circle at 10% 20%, rgba(0, 255, 255, 0.05), transparent 40%),
+            radial-gradient(circle at 90% 80%, rgba(255, 0, 255, 0.05), transparent 40%);
+        color: #e0e0e0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    /* Скрыть переключатель темы, так как игра только темная */
+    #theme-btn-container,
+    #mobile-theme-toggle {
+        display: none !important;
+    }
+
+    .glass-panel {
+        background: rgba(10, 15, 25, 0.75);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(0, 255, 255, 0.15);
+        border-radius: 12px;
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.6);
+    }
+
+    .glass-header {
+        background: rgba(0, 255, 255, 0.05);
+        border-bottom: 1px solid rgba(0, 255, 255, 0.15);
+        padding: 12px 20px;
+        border-radius: 12px 12px 0 0;
+    }
+
+    .neon-text-cyan {
+        color: #00ffff;
+        text-shadow: 0 0 8px rgba(0, 255, 255, 0.6);
+    }
+
+    .neon-text-magenta {
+        color: #ff00ff;
+        text-shadow: 0 0 8px rgba(255, 0, 255, 0.6);
+    }
+
+    .terminal-btn {
+        background: rgba(0, 255, 255, 0.05);
+        border: 1px solid #00ffff;
+        color: #00ffff;
+        transition: 0.3s;
+    }
+
+    .terminal-btn:hover:not(:disabled) {
+        background: rgba(0, 255, 255, 0.2);
+        color: #fff;
+        box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+    }
+
+    .terminal-btn:disabled {
+        border-color: #444;
+        color: #666;
+        cursor: not-allowed;
+        background: transparent;
+    }
+
+    #output {
+        height: 140px;
+        overflow-y: auto;
+        font-family: 'Consolas', 'Courier New', monospace;
+        font-size: 0.9rem;
+        background: rgba(0, 0, 0, 0.5);
+        border-radius: 0 0 12px 12px;
+        padding: 10px;
+    }
+
+    #output::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    #output::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    #output::-webkit-scrollbar-thumb {
+        background: rgba(0, 255, 255, 0.3);
+        border-radius: 3px;
+    }
+
+    /* Оверлеи */
+    .game-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 10;
+        border-radius: 12px;
+        background: rgba(0, 0, 0, 0.85);
+        backdrop-filter: blur(4px);
+    }
+
+    .win-glow {
+        box-shadow: 0 0 50px rgba(0, 255, 255, 0.3) inset;
+        border: 1px solid #00ffff;
+    }
+</style>
+
+<div class="container-fluid py-4 min-vh-100 d-flex flex-column">
+    <div class="row g-3 flex-grow-1">
+        <!-- ЛЕВАЯ ПАНЕЛЬ: 3D ИГРА И ИНФО -->
+        <div class="col-lg-5 d-flex flex-column gap-3">
+
+            <!-- Инфо Миссии -->
+            <div class="glass-panel">
+                <div class="glass-header d-flex justify-content-between align-items-center">
+                    <span class="fs-5 fw-bold neon-text-cyan">
+                        <i class="bi bi-hdd-network me-2"></i>{{ level.name }}
+                    </span>
+                    <span class="badge border border-info text-info bg-transparent">
+                        <i class="bi bi-lightning-charge-fill me-1"></i>{{ level.xp }} XP
+                    </span>
+                </div>
+                <div class="p-3 text-secondary" style="font-size: 0.95rem;">
+                    {{ level.description }}
+                </div>
+            </div>
+
+            <!-- Игровой холст -->
+            <div class="glass-panel flex-grow-1 position-relative" style="min-height: 450px;">
+                <div id="game-container" class="w-100 h-100 position-absolute"
+                    style="border-radius: 12px; overflow: hidden;"></div>
+
+                <!-- Загрузка -->
+                <div id="loading-overlay" class="game-overlay text-info">
+                    <div class="spinner-border mb-3" style="width: 3rem; height: 3rem;"></div>
+                    <div class="fw-bold tracking-wide" id="loading-text">{{ _t('game_lvl_init') }}</div>
+                </div>
+
+                <!-- Победа -->
+                <div id="win-overlay" class="game-overlay win-glow d-none text-center p-4">
+                    <i class="bi bi-cpu fs-1 neon-text-cyan mb-2"></i>
+                    <h2 class="neon-text-cyan fw-bold mb-1">{{ _t('game_lvl_hacked') }}</h2>
+                    <p class="text-light mb-4">{{ _t('game_lvl_data_ok') }}<br>{{ _t('game_xp_label') | default('+') }}{{ level.xp }} XP</p>
+                    <button id="checkBtn" class="btn terminal-btn px-5 py-2 fw-bold text-uppercase">
+                        {{ _t('game_lvl_finish_btn') }}
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ПРАВАЯ ПАНЕЛЬ: РЕДАКТОР И КОНСОЛЬ -->
+        <div class="col-lg-7 d-flex flex-column gap-3">
+            <div class="glass-panel flex-grow-1 d-flex flex-column h-100">
+                <div class="glass-header d-flex justify-content-between align-items-center">
+                    <span class="fw-bold text-secondary">
+                        <i class="bi bi-terminal me-2"></i>{{ _t('game_lvl_robot_ctrl') }}
+                    </span>
+                    <button id="runBtn" class="btn btn-sm terminal-btn fw-bold px-4" disabled>
+                        <i class="bi bi-play-fill"></i> {{ _t('game_lvl_run') }}
+                    </button>
+                </div>
+
+                <!-- Редактор Monaco -->
+                <div id="editor-container" class="flex-grow-1 position-relative"
+                    style="min-height: 400px; background: rgba(0,0,0,0.3);">
+                    <div id="editor-loading"
+                        class="position-absolute top-50 start-50 translate-middle text-secondary text-center">
+                        <div class="spinner-border spinner-border-sm mb-2"></div><br>{{ _t('game_lvl_loading_ide') }}
+                    </div>
+                </div>
+
+                <!-- Консоль -->
+                <div class="border-top border-secondary border-opacity-25">
+                    <div
+                        class="px-3 py-1 bg-black bg-opacity-25 text-secondary small d-flex justify-content-between align-items-center">
+                        <span>>_ LOG OUTPUT</span>
+                        <a href="javascript:void(0)" class="text-secondary text-decoration-none"
+                            onclick="clearOutput()">{{ _t('game_lvl_clear') }}</a>
+                    </div>
+                    <div id="output">
+                        <span class="text-secondary">{{ _t('game_lvl_waiting') }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ======================= СКРИПТЫ ======================= -->
+<!-- ИЗОЛЯЦИЯ МОДУЛЕЙ AMD (ДЛЯ MONACO EDITOR) -->
+<script>
+    // Сохраняем глобальный define от других скриптов (например, Bootstrap), чтобы избежать конфликтов
+    if (window.define && window.define.amd) {
+        window.__preserved_define = window.define;
+        window.define = undefined;
+    }
+</script>
+
+<script src="{{ url_for('static', filename='pyodide/pyodide.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+<script>
+    // Глобальные данные уровня (доступны всем скриптам на странице)
+    const levelContext = JSON.parse(document.getElementById('level-data-json').textContent);
+
+    const MONACO_VS_PATH = levelContext.monaco_path;
+    var require = { paths: { 'vs': MONACO_VS_PATH } };
+</script>
+<script src="{{ url_for('static', filename='monaco/min/vs/loader.js') }}"></script>
+
+<script>
+    // Восстанавливаем define для Monaco
+    if (window.__preserved_define) {
+        window.define = window.__preserved_define;
+    }
+
+    // --- ДАННЫЕ УРОВНЯ ---
+    const levelData = levelContext.level;
+    
+    const LEVEL_ID = levelContext.level_id || levelData.id;
+    const LEVEL_XP = levelData.xp;
+    const MAP_DATA = levelData.map;
+    const START_POS = levelData.start;
+    const START_DIR = parseInt(levelData.start_dir) || 0;
+    const MATH_DIRS = [{ x: 1, z: 0 }, { x: 0, z: 1 }, { x: -1, z: 0 }, { x: 0, z: -1 }];
+
+    const FUNC_NAME = levelData.func_name || 'run_protocol';
+    const DEFAULT_CODE = "def " + FUNC_NAME + "(robot):\n    " + levelContext.comment + "\n    pass";
+    const INITIAL_CODE = levelData.initial_code || null;
+    const PYODIDE_PATH = levelContext.pyodide_path;
+
+    // --- СОСТОЯНИЕ ДВИЖКА ---
+    let editor, pyodide;
+    let scene, camera, renderer, robotGroup;
+    let logicalPos = [...START_POS];
+    let logicalDir = START_DIR;
+    let interactiveObj = { buttons: [], doors: [] };
+    let actionQueue = [];
+    let isExecuting = false;
+
+    // --- УТИЛИТЫ ---
+    function printOutput(text, type = 'info') {
+        const outDiv = document.getElementById('output');
+        let colorClass = 'text-info';
+        if (type === 'error') colorClass = 'text-danger fw-bold';
+        if (type === 'success') colorClass = 'neon-text-cyan';
+        if (type === 'warning') colorClass = 'text-warning';
+
+        outDiv.innerHTML += `<div class="${colorClass} mb-1">> ${text}</div>`;
+        outDiv.scrollTop = outDiv.scrollHeight;
+    }
+    function clearOutput() { document.getElementById('output').innerHTML = ''; }
+    function setLoadingText(text) {
+        const el = document.getElementById('loading-text');
+        if (el) el.innerText = text;
+    }
+
+    // --- MONACO EDITOR ---
+    function initEditor() {
+        require(['vs/editor/editor.main'], function () {
+            document.getElementById('editor-loading').remove();
+            let val = INITIAL_CODE !== 'null' ? INITIAL_CODE : DEFAULT_CODE;
+            editor = monaco.editor.create(document.getElementById('editor-container'), {
+                value: val,
+                language: 'python',
+                theme: 'vs-dark',
+                automaticLayout: true,
+                minimap: { enabled: false },
+                fontSize: 14,
+                fontFamily: "'JetBrains Mono', 'Fira Code', 'Consolas', monospace",
+                scrollBeyondLastLine: false,
+                renderLineHighlight: 'none',
+                hideCursorInOverviewRuler: true
+            });
+            checkReadyState();
+        });
+    }
+
+    // --- PYODIDE СРЕДА ---
+    async function initPyodideEnv() {
+        setLoadingText("{{ _t('game_lvl_init_python') }}");
+        try {
+            pyodide = await loadPyodide({ indexURL: PYODIDE_PATH });
+            printOutput("{{ _t('game_lvl_ready') }}", "success");
+            checkReadyState();
+        } catch (e) {
+            printOutput("{{ _t('game_lvl_core_fail') }} " + e.message, "error");
+        }
+    }
+
+    // --- THREE.JS СЦЕНА ОБНОВЛЕННАЯ ---
+    function init3DGame() {
+        const container = document.getElementById('game-container');
+        scene = new THREE.Scene();
+        scene.fog = new THREE.FogExp2(0x050508, 0.02);
+
+        const aspect = container.clientWidth / container.clientHeight;
+        const viewSize = Math.max(MAP_DATA.width, MAP_DATA.height) * 1.5;
+        camera = new THREE.OrthographicCamera(-viewSize * aspect, viewSize * aspect, viewSize, -viewSize, 1, 100);
+
+        const cx = (MAP_DATA.width - 1) / 2;
+        const cz = (MAP_DATA.height - 1) / 2;
+
+        camera.position.set(cx + 10, 15, cz + 10);
+        camera.lookAt(cx, 0, cz);
+
+        renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setSize(container.clientWidth, container.clientHeight);
+        container.appendChild(renderer.domElement);
+
+        scene.add(new THREE.AmbientLight(0x101520, 4.0));
+
+        const dirLight = new THREE.DirectionalLight(0xffffff, 3.0);
+        dirLight.position.set(5, 10, 5);
+        scene.add(dirLight);
+
+        buildLevelMap();
+
+        const clock = new THREE.Clock();
+        function animate() {
+            requestAnimationFrame(animate);
+            const dt = clock.getDelta();
+            const time = Date.now() * 0.002;
+
+            if (interactiveObj.goalMesh) {
+                interactiveObj.goalMesh.rotation.y += dt;
+                interactiveObj.goalMesh.position.y = 0.05 + Math.sin(time) * 0.05;
+            }
+
+            if (!currentAnim && robotGroup) {
+                robotGroup.position.y = 0.05 + Math.sin(time * 2) * 0.03;
+            }
+
+            processAnimations(dt);
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        window.addEventListener('resize', () => {
+            const asp = container.clientWidth / container.clientHeight;
+            camera.left = -viewSize * asp;
+            camera.right = viewSize * asp;
+            camera.top = viewSize;
+            camera.bottom = -viewSize;
+            camera.updateProjectionMatrix();
+            renderer.setSize(container.clientWidth, container.clientHeight);
+        });
+
+        checkReadyState();
+    }
+
+    function buildLevelMap() {
+        const cx = (MAP_DATA.width - 1) / 2;
+        const cz = (MAP_DATA.height - 1) / 2;
+
+        const tileGeo = new THREE.PlaneGeometry(0.95, 0.95);
+        const tileMat = new THREE.MeshBasicMaterial({ color: 0x333344, side: THREE.DoubleSide });
+
+        for (let x = 0; x < MAP_DATA.width; x++) {
+            for (let z = 0; z < MAP_DATA.height; z++) {
+                const mesh = new THREE.Mesh(tileGeo, tileMat);
+                mesh.rotation.x = -Math.PI / 2;
+                mesh.position.set(x, 0, z);
+                scene.add(mesh);
+            }
+        }
+
+        const grid = new THREE.GridHelper(Math.max(MAP_DATA.width, MAP_DATA.height) * 1.5, Math.max(MAP_DATA.width, MAP_DATA.height) * 1.5, 0x00ffff, 0x003333);
+        grid.position.set(cx, -0.01, cz);
+        scene.add(grid);
+
+        const wallGeo = new THREE.BoxGeometry(0.9, 1.2, 0.9);
+        const wallMat = new THREE.MeshStandardMaterial({
+            color: 0x222233, roughness: 0.1, metalness: 0.8, transparent: true, opacity: 0.9
+        });
+        const wallGlowMat = new THREE.MeshBasicMaterial({ color: 0x00ffff, wireframe: true });
+
+        MAP_DATA.walls.forEach(w => {
+            const group = new THREE.Group();
+            const mesh = new THREE.Mesh(wallGeo, wallMat);
+            const glow = new THREE.Mesh(wallGeo, wallGlowMat);
+            glow.scale.set(1.02, 1.02, 1.02);
+            group.add(mesh); group.add(glow);
+            group.position.set(w[0], 0.6, w[1]);
+            scene.add(group);
+        });
+
+        robotGroup = new THREE.Group();
+        const bodyGeo = new THREE.CylinderGeometry(0.3, 0.3, 0.2, 16);
+        const bodyMat = new THREE.MeshStandardMaterial({ color: 0x222222, metalness: 0.9 });
+        const body = new THREE.Mesh(bodyGeo, bodyMat);
+        body.position.y = 0.2;
+        robotGroup.add(body);
+
+        const pointerGeo = new THREE.BoxGeometry(0.4, 0.05, 0.05);
+        const pointerMat = new THREE.MeshBasicMaterial({ color: 0x00ffff });
+        const pointer = new THREE.Mesh(pointerGeo, pointerMat);
+        pointer.position.set(0.2, 0.2, 0);
+        robotGroup.add(pointer);
+
+        const light = new THREE.PointLight(0x00ffff, 1.5, 3);
+        light.position.set(0, 0.5, 0);
+        robotGroup.add(light);
+        scene.add(robotGroup);
+
+        resetGameScene();
+    }
+
+    function resetGameScene() {
+        actionQueue = [];
+        currentAnim = null;
+        logicalPos = [...START_POS];
+        logicalDir = START_DIR;
+
+        robotGroup.position.set(START_POS[0], 0, START_POS[1]);
+        robotGroup.rotation.y = -logicalDir * (Math.PI / 2);
+
+        interactiveObj.buttons.forEach(b => scene.remove(b.mesh));
+        interactiveObj.doors.forEach(d => scene.remove(d.mesh));
+        if (interactiveObj.goalMesh) scene.remove(interactiveObj.goalMesh);
+
+        interactiveObj.buttons = [];
+        interactiveObj.doors = [];
+
+        const btnGeo = new THREE.BoxGeometry(0.6, 0.05, 0.6);
+        const btnOffMat = new THREE.MeshBasicMaterial({ color: 0xff0055 });
+        (MAP_DATA.buttons || []).forEach(b => {
+            const mesh = new THREE.Mesh(btnGeo, btnOffMat);
+            mesh.position.set(b.pos[0], 0, b.pos[1]);
+            scene.add(mesh);
+            interactiveObj.buttons.push({ pos: b.pos, link: b.link, mesh: mesh, active: false });
+        });
+
+        const doorGeo = new THREE.BoxGeometry(1.0, 1.2, 0.2);
+        const doorMat = new THREE.MeshBasicMaterial({ color: 0xff0055, transparent: true, opacity: 0.6 });
+        (MAP_DATA.doors || []).forEach(d => {
+            const mesh = new THREE.Mesh(doorGeo, doorMat);
+            mesh.position.set(d.pos[0], 0.6, d.pos[1]);
+            scene.add(mesh);
+            interactiveObj.doors.push({ pos: d.pos, id: d.id, mesh: mesh, open: false });
+        });
+
+        const goalGeo = new THREE.TorusGeometry(0.3, 0.05, 8, 24);
+        const goalMat = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+        const goalMesh = new THREE.Mesh(goalGeo, goalMat);
+        goalMesh.rotation.x = Math.PI / 2;
+        goalMesh.position.set(MAP_DATA.goal[0], 0.1, MAP_DATA.goal[1]);
+        scene.add(goalMesh);
+        interactiveObj.goalMesh = goalMesh;
+
+        document.getElementById('win-overlay').classList.add('d-none');
+    }
+
+    // --- ОТНОСИТЕЛЬНЫЕ ПЕРЕМЕЩЕНИЯ ---
+    function isWalkable(nx, nz) {
+        if (nx < 0 || nx >= MAP_DATA.width || nz < 0 || nz >= MAP_DATA.height) return false;
+        if (MAP_DATA.walls.some(w => w[0] === nx && w[1] === nz)) return false;
+        const door = interactiveObj.doors.find(d => d.pos[0] === nx && d.pos[1] === nz);
+        if (door && !door.open) return false;
+        return true;
+    }
+
+    window.game_move_forward = () => {
+        const dx = MATH_DIRS[logicalDir].x;
+        const dz = MATH_DIRS[logicalDir].z;
+        const nx = logicalPos[0] + dx;
+        const nz = logicalPos[1] + dz;
+
+        if (isWalkable(nx, nz)) {
+            logicalPos = [nx, nz];
+            actionQueue.push({ type: 'move', tx: nx, tz: nz });
+            printOutput(`> {{ _t('game_lvl_move_fwd') }} -> (${nx}, ${nz})`);
+        } else {
+            actionQueue.push({ type: 'bump' });
+            printOutput(`{{ _t('game_lvl_bump') }}`, 'warning');
+        }
+    };
+
+    window.game_move_backward = () => {
+        const dx = -MATH_DIRS[logicalDir].x;
+        const dz = -MATH_DIRS[logicalDir].z;
+        const nx = logicalPos[0] + dx;
+        const nz = logicalPos[1] + dz;
+
+        if (isWalkable(nx, nz)) {
+            logicalPos = [nx, nz];
+            actionQueue.push({ type: 'move', tx: nx, tz: nz });
+            printOutput(`> {{ _t('game_lvl_move_back') }} -> (${nx}, ${nz})`);
+        } else {
+            actionQueue.push({ type: 'bump' });
+            printOutput(`{{ _t('game_lvl_bump_back') }}`, 'warning');
+        }
+    };
+
+    window.game_turn_left = () => {
+        logicalDir = (logicalDir - 1 + 4) % 4;
+        actionQueue.push({ type: 'turn', tdir: logicalDir });
+        printOutput(`> {{ _t('game_lvl_turn_left') }}`);
+    };
+
+    window.game_turn_right = () => {
+        logicalDir = (logicalDir + 1) % 4;
+        actionQueue.push({ type: 'turn', tdir: logicalDir });
+        printOutput(`> {{ _t('game_lvl_turn_right') }}`);
+    };
+
+    window.game_interact = () => {
+        const btn = interactiveObj.buttons.find(b => b.pos[0] === logicalPos[0] && b.pos[1] === logicalPos[1]);
+        if (btn) {
+            btn.active = !btn.active;
+            actionQueue.push({ type: 'interact', isBtn: true, btnId: btn.link, state: btn.active });
+
+            const door = interactiveObj.doors.find(d => d.id === btn.link);
+            if (door) {
+                door.open = btn.active;
+                let status = door.open ? "{{ _t('game_lvl_open') }}" : "{{ _t('game_lvl_closed') }}";
+                printOutput(`> {{ _t('game_lvl_door_signal') }} ${status}.`, 'success');
+            }
+        } else {
+            printOutput(`{{ _t('game_lvl_no_interact') }}`, 'warning');
+        }
+    };
+
+    // --- ОЧЕРЕДЬ АНИМАЦИЙ В THREE.JS ---
+    let currentAnim = null;
+    function processAnimations(dt) {
+        if (!currentAnim && actionQueue.length > 0) {
+            currentAnim = actionQueue.shift();
+            currentAnim.progress = 0;
+            currentAnim.startPos = robotGroup.position.clone();
+            currentAnim.startRot = robotGroup.rotation.y;
+
+            if (currentAnim.type === 'turn') {
+                let tr = -currentAnim.tdir * (Math.PI / 2);
+                let sr = currentAnim.startRot;
+                while (tr - sr > Math.PI) tr -= Math.PI * 2;
+                while (tr - sr < -Math.PI) tr += Math.PI * 2;
+                currentAnim.targetRot = tr;
+            }
+        }
+
+        if (currentAnim) {
+            const SPEED = 5;
+            currentAnim.progress = Math.min(currentAnim.progress + dt * SPEED, 1);
+            const p = currentAnim.progress;
+            const t = p * (2 - p);
+
+            if (currentAnim.type === 'move') {
+                robotGroup.position.lerpVectors(currentAnim.startPos, new THREE.Vector3(currentAnim.tx, 0, currentAnim.tz), t);
+            } else if (currentAnim.type === 'turn') {
+                robotGroup.rotation.y = THREE.MathUtils.lerp(currentAnim.startRot, currentAnim.targetRot, t);
+            } else if (currentAnim.type === 'bump') {
+                robotGroup.position.x = currentAnim.startPos.x + Math.sin(p * Math.PI * 10) * 0.05;
+                robotGroup.position.z = currentAnim.startPos.z + Math.cos(p * Math.PI * 10) * 0.05;
+            } else if (currentAnim.type === 'interact') {
+                if (p === 1 && currentAnim.isBtn) {
+                    // Анимация кнопки (пропущена)
+                }
+            }
+
+            if (p >= 1) {
+                currentAnim = null;
+                if (actionQueue.length === 0 && !isExecuting) {
+                    evaluateWinCondition();
+                }
+            }
+        }
+    }
+
+    function evaluateWinCondition() {
+        if (logicalPos[0] === MAP_DATA.goal[0] && logicalPos[1] === MAP_DATA.goal[1]) {
+            document.getElementById('win-overlay').classList.remove('d-none');
+            printOutput("{{ _t('game_lvl_win_msg') }}", 'success');
+        } else {
+            printOutput("{{ _t('game_lvl_lose_msg') }}", 'warning');
+        }
+    }
+
+    // --- УПРАВЛЕНИЕ UI И ВЫПОЛНЕНИЕ ---
+    function checkReadyState() {
+        if (editor && pyodide && scene) {
+            document.getElementById('loading-overlay').classList.add('d-none');
+            const run = document.getElementById('runBtn');
+            run.disabled = false;
+        }
+    }
+
+    document.getElementById('runBtn').addEventListener('click', async () => {
+        if (isExecuting) return;
+        isExecuting = true;
+
+        clearOutput();
+        resetGameScene();
+        printOutput("{{ _t('game_lvl_init_prog') }}");
+
+        const userCode = editor.getValue();
+        const indentedCode = userCode.split('\n').map(line => '    ' + line).join('\n');
+        const functionName = FUNC_NAME;
+
+        // Wrapper code with relative commands - Properly escaped string literals for Python
+        const pyScript = [
+            "import sys",
+            "from io import StringIO",
+            "import js",
+            "",
+            "class RobotDrone:",
+            "    def move_forward(self): js.game_move_forward()",
+            "    def move_backward(self): js.game_move_backward()",
+            "    def turn_left(self): js.game_turn_left()",
+            "    def turn_right(self): js.game_turn_right()",
+            "    def interact(self): js.game_interact()",
+            "",
+            "old_stdout = sys.stdout",
+            "sys.stdout = mystdout = StringIO()",
+            "",
+            "try:",
+            indentedCode,
+            "    bot = RobotDrone()",
+            "    " + functionName + "(bot)",
+            "except Exception as e:",
+            "    js.printOutput(str(e), 'error')",
+            "finally:",
+            "    sys.stdout = old_stdout",
+            "    out_val = mystdout.getvalue()",
+            "    if out_val:",
+            "        js.printOutput(out_val)"
+        ].join('\n');
+
+        try {
+            await pyodide.runPythonAsync(pyScript);
+        } catch (err) {
+            printOutput("{{ _t('game_lvl_syntax_err') }}", "error");
+            printOutput(err, "error");
+        } finally {
+            isExecuting = false;
+            if (actionQueue.length === 0) evaluateWinCondition();
+        }
+    });
+
+    document.getElementById('checkBtn').addEventListener('click', async function () {
+        this.disabled = true;
+        this.innerHTML = "{{ _t('game_lvl_sending') }}";
+
+        try {
+            const res = await fetch('/api/complete-level', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ level_id: LEVEL_ID, xp: LEVEL_XP })
+            });
+            const data = await res.json();
+            if (data.success) {
+                window.location.href = "{{ url_for('game_index') }}?t=" + new Date().getTime();
+            } else {
+                alert("{{ _t('game_lvl_send_fail') }} " + data.message);
+                this.disabled = false;
+                this.innerText = "{{ _t('game_lvl_retry') }}";
+            }
+        } catch (e) {
+            alert("{{ _t('game_lvl_no_net') }}");
+            this.disabled = false;
+            this.innerText = "{{ _t('game_lvl_retry') }}";
+        }
+    });
+
+    window.addEventListener('DOMContentLoaded', () => {
+        init3DGame();
+        initEditor();
+        initPyodideEnv();
+    });
+</script>
+{% endblock %}

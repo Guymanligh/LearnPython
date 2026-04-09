@@ -1,0 +1,146 @@
+{% extends "base.html" %}
+
+{% block title %}
+LearnPython
+{% endblock %}
+
+{% block link1 %}
+{{ url_for('home') }}
+{% endblock %}
+
+{% block link2 %}
+{{ url_for('lessons') }}
+{% endblock %}
+
+{% block link3 %}
+{{ url_for('interpreter') }}
+{% endblock %}
+
+{% block link4 %}
+{{ url_for('account') }}
+{% endblock %}
+
+{% block tillink1 %}
+Главная страница
+{% endblock %}
+
+{% block tillink2 %}
+Уроки
+{% endblock %}
+
+{% block tillink3 %}
+Интерпретатор
+{% endblock %}
+
+{% block tillink4 %}
+Аккаунт
+{% endblock %}
+
+{% block h1 %}
+13 урок
+{% endblock %}
+
+{% block p %}
+Ввод и вывод в Python
+{% endblock %}
+
+{% block main %}
+<div class="container my-4">
+    {% if completed %}
+    <div class="alert alert-success" role="alert">
+        ✅ Вы уже завершили этот урок! Результат: {{ score }}/{{ total }} ({{ (score/total*100)|round(1) }}%)
+    </div>
+    {% endif %}
+
+    <p class="lead">
+        Взаимодействие с пользователем в Python осуществляется через ввод данных с клавиатуры и вывод информации на экран.
+    </p>
+
+    <!-- Карточка с вводом -->
+    <div class="card mb-4 border-primary">
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">⌨️ Ввод данных (input)</h5>
+        </div>
+        <div class="card-body">
+            <p>Функция <code>input()</code> позволяет получить данные от пользователя. Она всегда возвращает строку.</p>
+            <pre class="bg-body-tertiary p-2 rounded"><code>name = input("Как тебя зовут? ")
+print("Привет, " + name)</code></pre>
+            <p class="mt-2">Для получения числа используйте преобразование типа:</p>
+            <pre class="bg-body-tertiary p-2 rounded"><code>age = int(input("Сколько тебе лет? "))
+print("Через год тебе будет", age + 1)</code></pre>
+        </div>
+    </div>
+
+    <!-- Карточка с выводом -->
+    <div class="card mb-4 border-success">
+        <div class="card-header bg-success text-white">
+            <h5 class="mb-0">🖨️ Вывод данных (print)</h5>
+        </div>
+        <div class="card-body">
+            <p>Функция <code>print()</code> выводит данные на экран. Можно выводить несколько значений через запятую.</p>
+            <pre class="bg-body-tertiary p-2 rounded"><code>print("Результат:", 42)
+print("Первая строка")
+print("Вторая строка")</code></pre>
+            <p class="mt-2">Параметры <code>sep</code> и <code>end</code> позволяют управлять разделителями и окончанием строки:</p>
+            <pre class="bg-body-tertiary p-2 rounded"><code>print("a", "b", "c", sep="-")  # a-b-c
+print("Hello", end=" ")
+print("World")  # Hello World</code></pre>
+        </div>
+    </div>
+
+    <!-- Карточка с форматированием -->
+    <div class="card mb-4 border-warning">
+        <div class="card-header bg-warning text-dark">
+            <h5 class="mb-0">🎨 Форматирование строк (f-строки)</h5>
+        </div>
+        <div class="card-body">
+            <p>f-строки позволяют вставлять значения переменных прямо в строку.</p>
+            <pre class="bg-body-tertiary p-2 rounded"><code>name = "Alice"
+age = 25
+print(f"Меня зовут {name}, мне {age} лет.")</code></pre>
+        </div>
+    </div>
+
+    <!-- Квиз -->
+    <div class="my-5">
+        <h3 class="mb-4">🎮 Проверь свои знания о вводе и выводе!</h3>
+        <div id="quiz-root"></div>
+    </div>
+
+    <!-- ✅ Обновлённая кнопка: button с onclick -->
+    <div class="d-flex justify-content-end mt-4">
+        <button type="button"
+                class="btn btn-success btn-lg"
+                id="complete-lesson"
+                style="display: none;"
+                onclick="completeLesson()">
+            🎓 Завершить урок
+        </button>
+    </div>
+</div>
+
+<!-- React and ReactDOM -->
+<script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+
+<style>
+/* ✨ Стили для спиннера загрузки */
+.spinner-border {
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    animation: spinner-border 0.75s linear infinite;
+    vertical-align: text-bottom;
+}
+@keyframes spinner-border {
+    to { transform: rotate(360deg); }
+}
+</style>
+<script>
+  const LESSON_ID = {{ lesson_id }}; // Теперь это глобальная переменная для JS
+</script>
+<script src="{{ url_for('static',filename='js/quizinit.js') }}"></script>
+{% endblock %}

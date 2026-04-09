@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block title %}Привязка к учителю — LearnPython{% endblock %}
+
+{% block link1 %}{{ url_for('home') }}{% endblock %}
+{% block link2 %}{{ url_for('lessons') }}{% endblock %}
+{% block link3 %}{{ url_for('interpreter') }}{% endblock %}
+{% block link4 %}{{ url_for('account') }}{% endblock %}
+
+{% block tillink1 %}{{ _t('nav_home') }}{% endblock %}
+{% block tillink2 %}{{ _t('nav_lessons') }}{% endblock %}
+{% block tillink3 %}{{ _t('nav_interpreter') }}{% endblock %}
+{% block tillink4 %}{{ _t('nav_account') }}{% endblock %}
+
+{% block main %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <div class="card shadow-sm border-0">
+                <div class="card-body p-4 p-md-5">
+                    <div class="text-center mb-4">
+                        <div class="bg-info text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
+                            style="width: 64px; height: 64px;">
+                            <i class="bi bi-person-plus fs-2"></i>
+                        </div>
+                        <h2 class="fw-bold text-body">{{ _t('teacher_join_title') }}</h2>
+                        <p class="text-secondary">
+                            {{ _t('teacher_label') }} <strong>{{ teacher_name }}</strong><br>
+                            {{ _t('teacher_school_label') }} <strong>{{ teacher_school }}</strong>
+                        </p>
+                    </div>
+
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                    {% for category, message in messages %}
+                    <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+                    {% endwith %}
+
+                    <form method="POST" action="{{ url_for('teacher_join', token=token) }}">
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">{{ _t('teacher_region') }}</label>
+                            <input type="text" name="region" class="form-control" placeholder="{{ _t('teacher_region') }}"
+                                required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">{{ _t('teacher_city') }}</label>
+                            <input type="text" name="city" class="form-control" placeholder="{{ _t('teacher_city') }}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">{{ _t('teacher_school') }}</label>
+                            <input type="text" name="school" class="form-control" placeholder="{{ _t('teacher_school') }}"
+                                required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">{{ _t('teacher_class') }}</label>
+                            <input type="text" name="class_name" class="form-control" placeholder="{{ _t('teacher_class') }}"
+                                required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">{{ _t('teacher_student_name') }}</label>
+                            <input type="text" name="full_name" class="form-control" placeholder="{{ _t('teacher_student_name') }}"
+                                required>
+                        </div>
+                        <button type="submit" class="btn btn-info w-100 fw-bold py-2 text-white">
+                            <i class="bi bi-link-45deg me-2"></i>{{ _t('teacher_join_btn') }}
+                        </button>
+                    </form>
+
+                    <div class="mt-3 text-center">
+                        <a href="{{ url_for('account') }}" class="text-secondary text-decoration-none">
+                            <i class="bi bi-arrow-left me-1"></i>{{ _t('teacher_back_acc') }}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

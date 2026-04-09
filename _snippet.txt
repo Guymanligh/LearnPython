@@ -1,0 +1,2 @@
+l3_li_fix_text": { "ru": "Ð Ð¾ÐºÐ½Ðµ Ð¿ÑÐ¾Ð³ÑÐ°Ð¼Ð¼Ñ Ð²ÑÐ´ÐµÐ»ÐµÐ½Ð° ÑÑÑÐ¾ÐºÐ° Ñ Ð¾ÑÐ¸Ð±ÐºÐ¾Ð¹. ÐÑÑÐµÐ´Ð°ÐºÑÐ  "l5_concept_5": { "ru": "<strong>ÐÐµÑÐµÐ¼ÐµÐ½Ð½ÑÐµ</strong> - ÑÑÐ°Ð½ÑÑ Ð´Ð°Ð½Ð½ÑÐµ (score, feeling_brave, door_num)", "kk": "<strong>ÐÐ¹Ð½ÑÐ¼Ð°Ð»ÑÐ»Ð°Ñ</strong> - Ð´ÐµÑÐµÐºÑÐµÑÐ´Ñ ÑÐ°ÒÑÐ°Ð¹Ð´Ñ (score, feeling_brave, door_num)", "en": "<strong>Variables</strong> - store data (score, feeling_brave, door_num)" },
+  "l6_h1": { "ru": "6 ÑÑÐ¾Ðº", "kk": "6 Ñ

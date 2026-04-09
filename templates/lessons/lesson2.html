@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ _t('app_name') }}
+{% endblock %}
+
+{% block link1 %}{{ url_for('home') }}{% endblock %}
+{% block link2 %}{{ url_for('lessons') }}{% endblock %}
+{% block link3 %}{{ url_for('interpreter') }}{% endblock %}
+{% block link4 %}{{ url_for('account') }}{% endblock %}
+
+{% block tillink1 %}{{ _t('nav_home') }}{% endblock %}
+{% block tillink2 %}{{ _t('nav_lessons') }}{% endblock %}
+{% block tillink3 %}{{ _t('nav_interpreter') }}{% endblock %}
+{% block tillink4 %}{{ _t('nav_account') }}{% endblock %}
+
+{% block h1 %}{{ _t('l2_h1') }}{% endblock %}
+{% block p %}{{ _t('l2_p') }}{% endblock %}
+
+{% block main %}
+<div class="container my-4">
+    {% if completed %}
+    <div class="alert alert-success" role="alert">
+        {{ _t('l1_already_done') }} {{ score }}/{{ total }} ({{ (score/total*100)|round(1) }}%)
+    </div>
+    {% endif %}
+
+    <p class="lead">
+        {{ _t('l2_intro') | safe }}
+    </p>
+
+    <div class="alert alert-info">
+        {{ _t('l2_note') | safe }}
+    </div>
+
+    <!-- Карточка о PyCharm -->
+    <div class="card mb-4 shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">{{ _t('l2_pycharm_title') }}</h5>
+        </div>
+        <div class="card-body">
+            <p class="card-text">
+                {{ _t('l2_pycharm_text') }}
+            </p>
+        </div>
+    </div>
+
+    <!-- Карточки установки по ОС -->
+    <h3 class="h4 mb-3">{{ _t('l2_install_title') }}</h3>
+    <div class="row mb-4">
+        {% set os_list = [
+            ('Windows', 'windows', 'primary'),
+            ('Mac OS', 'mac', 'info'),
+            ('Linux', 'linux', 'secondary')
+        ] %}
+        {% for os_name, os_slug, color in os_list %}
+        <div class="col-md-4 mb-3">
+            <div class="card h-100 border-{{ color }}">
+                <div class="card-header bg-{{ color }} text-white">
+                    <h6 class="mb-0">{{ os_name }}</h6>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">
+                        {{ _t('l2_install_text', os=os_name, slug=os_slug) | safe }}
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Квиз -->
+    <div class="my-5">
+        <h3 class="mb-4">{{ _t('l1_quiz_title') }}</h3>
+        <div id="quiz-root"></div>
+    </div>
+
+    <!-- Кнопка завершения -->
+    <div class="d-flex justify-content-end mt-4">
+        <a href="{{ url_for('lessons') }}" class="btn btn-success btn-lg" onclick="completeLesson()" id="complete-lesson" style="display: none;">{{ _t('l1_finish_btn') }}</a>
+    </div>
+</div>
+
+<!-- React and ReactDOM -->
+<script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+<script>
+  const LESSON_ID = {{ lesson_id }};
+</script>
+<script src="{{ url_for('static',filename='js/quizinit.js') }}"></script>
+{% endblock %}

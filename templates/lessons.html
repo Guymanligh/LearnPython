@@ -1,0 +1,235 @@
+{% extends "base.html" %}
+
+{% block head %}
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<script>
+// Принудительное добавление параметра для обхода кеша
+(function() {
+    // Если в URL нет параметра 't' (и нет других параметров)
+    if (window.location.search.indexOf('t=') === -1) {
+        var newUrl = window.location.pathname + '?t=' + Date.now();
+        window.location.replace(newUrl);
+    }
+})();
+</script>
+{% endblock %}
+
+{% block title %}
+LearnPython
+{% endblock %}
+
+{% block link1 %}
+{{ url_for('home') }}
+{% endblock %}
+
+{% block link2 %}
+#
+{% endblock %}
+
+{% block link3 %}
+{{ url_for('interpreter') }}
+{% endblock %}
+
+{% block link4 %}
+{{ url_for('account') }}
+{% endblock %}
+
+{% block tillink1 %}{{ _t('nav_home') }}{% endblock %}
+{% block tillink2 %}{{ _t('nav_lessons') }}{% endblock %}
+{% block tillink3 %}{{ _t('nav_interpreter') }}{% endblock %}
+{% block tillink4 %}{{ _t('nav_account') }}{% endblock %}
+
+{% block h1 %}{{ _t('lessons_h1') }}{% endblock %}
+{% block p %}{{ _t('lessons_p') }}{% endblock %}
+
+{% block main %}
+{% set lessons_info = [
+    {'id': 1, 'title': 'Что такое Python ?'},
+    {'id': 2, 'title': 'Выполнение Python кода'},
+    {'id': 3, 'title': 'Ошибки в Python'},
+    {'id': 4, 'title': 'Первая игра на Python'},
+    {'id': 5, 'title': 'Разбор первой игры на Python'},
+    {'id': 6, 'title': 'Выполнение программ на Python'},
+    {'id': 7, 'title': 'Простые команды в Python'},
+    {'id': 8, 'title': 'Сложные команды в Python'},
+    {'id': 9, 'title': 'Переменные в Python'},
+    {'id': 10, 'title': 'Типы данных в Python'},
+    {'id': 11, 'title': 'Вычисления в Python'},
+    {'id': 12, 'title': 'Строки в Python'},
+    {'id': 13, 'title': 'Ввод и вывод в Python'},
+    {'id': 14, 'title': 'Принятие решений в Python'},
+    {'id': 15, 'title': 'Ветвление в Python'},
+    {'id': 16, 'title': 'Циклы в Python'},
+    {'id': 17, 'title': 'Цикл while'},
+    {'id': 18, 'title': 'Цикл for'},
+    {'id': 19, 'title': 'Выход с цикла в Python'},
+    {'id': 20, 'title': 'Списки в Python'},
+    {'id': 21, 'title': 'Функции в Python'},
+    {'id': 22, 'title': 'Словари и кортежи в Python'},
+    {'id': 23, 'title': 'Списки в переменных в Python'},
+    {'id': 24, 'title': 'Переменные и функции в Python'},
+    {'id': 25, 'title': 'Ошибки и откладка в Python'},
+    {'id': 26, 'title': 'Алгоритмы в Python'}
+] %}
+
+{% set total_lessons = lessons_info|length %}
+{% set ns = namespace(completed=0) %}
+{% for lesson in lessons_info %}
+    {% if progress.get('lesson' ~ lesson.id, {}).get('completed') %}
+        {% set ns.completed = ns.completed + 1 %}
+    {% endif %}
+{% endfor %}
+{% set completed_lessons = ns.completed %}
+{% set progress_percentage = (completed_lessons / total_lessons * 100)|round(1) %}
+
+<div class="mb-4">
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <div>
+                    <h5 class="mb-0">{{ _t('lessons_progress') }}</h5>
+                    <small class="text-muted">{{ completed_lessons }} {{ _t('lessons_of') }} {{ total_lessons }} {{ _t('lessons_passed') }}</small>
+                </div>
+                <div class="text-end">
+                    <h5 class="mb-0 text-primary">⭐ {{ experience }} XP</h5>
+                    <small class="text-muted">{{ _t('lessons_total_xp') }}</small>
+                </div>
+            </div>
+            <div class="progress" style="height: 25px;">
+                <div class="progress-bar progress-bar-striped progress-bar-animated bg-success"
+                     role="progressbar"
+                     style="width: {{ progress_percentage }}%;"
+                     aria-valuenow="{{ progress_percentage }}"
+                     aria-valuemin="0"
+                     aria-valuemax="100">
+                    <strong>{{ progress_percentage }}%</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% for lesson in lessons_info %}
+{% set is_unlocked = lesson.id in unlocked_lessons %}
+{% set lesson_key = 'lesson' ~ lesson.id %}
+{% set lesson_data = progress.get(lesson_key, {}) %}
+{% set is_completed = lesson_data.get('completed', False) %}
+{% set lesson_score = lesson_data.get('score', 0) %}
+{% set lesson_total = lesson_data.get('total', 0) %}
+{% set lesson_percentage = lesson_data.get('percentage', 0) %}
+{% set lesson_xp = lesson_data.get('xp_earned', 0) %}
+
+<div class="card mb-3 shadow-sm {% if not is_unlocked %}opacity-75{% endif %}">
+    <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+            <h5 class="card-title mb-0 d-flex align-items-center">
+                <span style="font-size: 1.5rem; margin-right: 10px;">
+                    {% if is_completed %}
+                        ✅
+                    {% elif is_unlocked %}
+                        📖
+                    {% else %}
+                        🔒
+                    {% endif %}
+                </span>
+                <span>{{ _t('lessons_lesson') }} {{ lesson.id }}</span>
+                {% if not is_unlocked %}
+                    <span class="badge bg-secondary ms-2">{{ _t('lessons_locked') }}</span>
+                {% elif is_completed %}
+                    <span class="badge bg-success ms-2">{{ _t('lessons_passed_badge') }}</span>
+                {% endif %}
+            </h5>
+        </div>
+
+        <p class="card-text mb-2" style="padding-left: 42px;">{{ lesson_card_title(lesson.id) }}</p>
+
+        {% if is_completed %}
+        <div style="padding-left: 42px;">
+            <div class="d-flex align-items-center gap-2 mb-2">
+                <small class="text-muted">
+                    {{ _t('lessons_result') }} <strong>{{ lesson_score }}/{{ lesson_total }}</strong>
+                    ({{ lesson_percentage }}%)
+                </small>
+                {% if lesson_xp > 0 %}
+                <span class="badge bg-warning text-dark">+{{ lesson_xp }} XP</span>
+                {% endif %}
+            </div>
+            <div class="progress" style="height: 8px;">
+                <div class="progress-bar bg-success"
+                     role="progressbar"
+                     style="width: {{ lesson_percentage }}%;"
+                     aria-valuenow="{{ lesson_percentage }}"
+                     aria-valuemin="0"
+                     aria-valuemax="100">
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        <div style="padding-left: 42px;" class="mt-3">
+                {% if is_unlocked %}
+                <a href="{{ url_for('lesson', id=lesson.id) }}" class="btn btn-primary">
+                    {% if is_completed %}
+                        {{ _t('lessons_redo') }}
+                    {% else %}
+                        {{ _t('lessons_go') }}
+                    {% endif %}
+                </a>
+                {% else %}
+                <button class="btn btn-secondary" disabled>
+                    {{ _t('lessons_finish_prev') }}
+                </button>
+                {% endif %}
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% if is_authenticated() and progress.get('lesson26', {}).get('completed') %}
+<hr class="my-5">
+<div class="mb-4">
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <div>
+                    <h5 class="mb-0">{{ _t('lessons_secret') }}</h5>
+                    <small class="text-muted">{{ _t('lessons_secret_sub') }}</small>
+                </div>
+            </div>
+            <a class="btn btn-success" href="{{ url_for('game_index') }}">{{ _t('lessons_secret_go') }}</a>
+        </div>
+    </div>
+</div>
+{% elif not is_authenticated() and progress.get('lesson26', {}).get('completed') %}
+<hr class="my-5">
+<div class="mb-4">
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <div>
+                    <h5 class="mb-0">{{ _t('lessons_secret') }}</h5>
+                    <small class="text-muted">{{ _t('lessons_secret_sub') }}</small>
+                </div>
+            </div>
+            <a class="btn btn-success" href="{{ url_for('login') }}">{{ _t('lessons_secret_register') }}</a>
+        </div>
+    </div>
+</div>
+{% else %}
+<hr class="my-5">
+<div class="mb-4">
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <div>
+                    <h5 class="mb-0">{{ _t('lessons_secret') }}</h5>
+                    <small class="text-muted">{{ _t('lessons_secret_sub') }}</small>
+                </div>
+            </div>
+            <a class="btn btn-secondary btn-disabled" href="#">{{ _t('lessons_secret_after26') }}</a>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

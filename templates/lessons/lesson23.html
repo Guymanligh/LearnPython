@@ -1,0 +1,204 @@
+{% extends "base.html" %}
+
+{% block title %}
+LearnPython
+{% endblock %}
+
+{% block link1 %}
+{{ url_for('home') }}
+{% endblock %}
+
+{% block link2 %}
+{{ url_for('lessons') }}
+{% endblock %}
+
+{% block link3 %}
+{{ url_for('interpreter') }}
+{% endblock %}
+
+{% block link4 %}
+{{ url_for('account') }}
+{% endblock %}
+
+{% block tillink1 %}
+Главная страница
+{% endblock %}
+
+{% block tillink2 %}
+Уроки
+{% endblock %}
+
+{% block tillink3 %}
+Интерпретатор
+{% endblock %}
+
+{% block tillink4 %}
+Аккаунт
+{% endblock %}
+
+{% block h1 %}
+23 урок
+{% endblock %}
+
+{% block p %}
+Списки в переменных в Python
+{% endblock %}
+
+{% block main %}
+<div class="container my-4">
+    {% if completed %}
+    <div class="alert alert-success" role="alert">
+        ✅ Вы уже завершили этот урок! Результат: {{ score }}/{{ total }} ({{ (score/total*100)|round(1) }}%)
+    </div>
+    {% endif %}
+
+    <p class="lead">
+        В Python переменные хранят не сам список, а ссылку на него. Это важное отличие влияет на то, как списки ведут себя при присваивании, копировании и передаче в функции.
+    </p>
+
+    <!-- Карточка: переменная как ссылка -->
+    <div class="card mb-4 border-primary shadow-sm">
+        <div class="card-header bg-primary text-white d-flex align-items-center">
+            <span class="fs-4 me-2">🔗</span>
+            <h5 class="mb-0">Переменная — это ссылка</h5>
+        </div>
+        <div class="card-body">
+            <p>Когда мы создаём список, Python выделяет память для хранения его элементов. Переменная лишь хранит адрес этой области памяти (ссылку).</p>
+            <pre class="bg-body-tertiary p-3 rounded"><code>a = [1, 2, 3]  # a ссылается на список
+b = a           # b ссылается на тот же список</code></pre>
+            <p>Переменные <code>a</code> и <code>b</code> указывают на один и тот же объект в памяти.</p>
+        </div>
+    </div>
+
+    <!-- Карточка: изменение списка через разные переменные -->
+    <div class="card mb-4 border-success shadow-sm">
+        <div class="card-header bg-success text-white d-flex align-items-center">
+            <span class="fs-4 me-2">🔄</span>
+            <h5 class="mb-0">Изменения видны через все ссылки</h5>
+        </div>
+        <div class="card-body">
+            <pre class="bg-body-tertiary p-3 rounded"><code>a = [1, 2, 3]
+b = a
+b.append(4)
+print(a)  # [1, 2, 3, 4]  — изменилось и в a!</code></pre>
+            <p class="mb-0">Это происходит потому, что <code>a</code> и <code>b</code> указывают на один объект. Модификация через любую переменную меняет сам список.</p>
+        </div>
+    </div>
+
+    <!-- Карточка: как проверить, что переменные ссылаются на один объект -->
+    <div class="card mb-4 border-warning shadow-sm">
+        <div class="card-header bg-warning text-dark d-flex align-items-center">
+            <span class="fs-4 me-2">🔍</span>
+            <h5 class="mb-0">Оператор is и id()</h5>
+        </div>
+        <div class="card-body">
+            <p>Можно проверить, ссылаются ли переменные на один объект, с помощью <code>is</code> или <code>id()</code>.</p>
+            <pre class="bg-body-tertiary p-3 rounded"><code>a = [1, 2, 3]
+b = a
+print(a is b)   # True
+print(id(a) == id(b))  # True (адреса совпадают)
+
+c = [1, 2, 3]
+print(a is c)   # False — разные объекты</code></pre>
+        </div>
+    </div>
+
+    <!-- Карточка: создание копии списка -->
+    <div class="card mb-4 border-info shadow-sm">
+        <div class="card-header bg-info text-white d-flex align-items-center">
+            <span class="fs-4 me-2">📋</span>
+            <h5 class="mb-0">Как создать независимую копию</h5>
+        </div>
+        <div class="card-body">
+            <p>Чтобы создать новый список с теми же элементами, используют:</p>
+            <ul>
+                <li>Срез <code>[:]</code></li>
+                <li>Функцию <code>list()</code></li>
+                <li>Метод <code>.copy()</code></li>
+            </ul>
+            <pre class="bg-body-tertiary p-3 rounded"><code>a = [1, 2, 3]
+b = a[:]      # копия через срез
+c = list(a)   # копия через list()
+d = a.copy()  # копия через метод
+
+b.append(4)
+print(a)  # [1, 2, 3] — оригинал не изменился</code></pre>
+        </div>
+    </div>
+
+    <!-- Карточка: поверхностное копирование -->
+    <div class="card mb-4 border-secondary shadow-sm">
+        <div class="card-header bg-secondary text-white d-flex align-items-center">
+            <span class="fs-4 me-2">⚠️</span>
+            <h5 class="mb-0">Поверхностное копирование</h5>
+        </div>
+        <div class="card-body">
+            <p>Срез, <code>list()</code> и <code>.copy()</code> создают <strong>поверхностную</strong> копию. Если список содержит изменяемые объекты (например, вложенные списки), копируются только ссылки на них.</p>
+            <pre class="bg-body-tertiary p-3 rounded"><code>a = [[1, 2], [3, 4]]
+b = a.copy()
+b[0].append(99)
+print(a)  # [[1, 2, 99], [3, 4]] — внутренний список изменился!</code></pre>
+            <p>Для полной независимости нужно глубокое копирование (<code>copy.deepcopy</code>).</p>
+        </div>
+    </div>
+
+    <!-- Карточка: передача списка в функцию -->
+    <div class="card mb-4 border-dark shadow-sm">
+        <div class="card-header bg-dark text-white d-flex align-items-center">
+            <span class="fs-4 me-2">📦</span>
+            <h5 class="mb-0">Списки в функциях</h5>
+        </div>
+        <div class="card-body">
+            <p>При передаче списка в функцию передаётся ссылка, поэтому функция может изменить оригинал.</p>
+            <pre class="bg-body-tertiary p-3 rounded"><code>def add_element(lst, value):
+    lst.append(value)
+
+my_list = [1, 2]
+add_element(my_list, 3)
+print(my_list)  # [1, 2, 3]</code></pre>
+            <p>Чтобы защитить список от изменений, можно передать копию.</p>
+        </div>
+    </div>
+
+    <!-- Квиз -->
+    <div class="my-5">
+        <h3 class="mb-4">🎮 Проверь свои знания</h3>
+        <div id="quiz-root"></div>
+    </div>
+
+    <!-- Кнопка завершения урока -->
+    <div class="d-flex justify-content-end mt-4">
+        <button type="button"
+                class="btn btn-success btn-lg"
+                id="complete-lesson"
+                style="display: none;"
+                onclick="completeLesson()">
+            🎓 Завершить урок
+        </button>
+    </div>
+</div>
+
+<!-- React and ReactDOM (production) -->
+<script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+
+<style>
+.spinner-border {
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    animation: spinner-border 0.75s linear infinite;
+    vertical-align: text-bottom;
+}
+@keyframes spinner-border {
+    to { transform: rotate(360deg); }
+}
+</style>
+<script>
+  const LESSON_ID = {{ lesson_id }}; // Теперь это глобальная переменная для JS
+</script>
+<script src="{{ url_for('static',filename='js/quizinit.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,702 @@
+{% extends "base.html" %}
+
+{% block title %}
+LearnPython
+{% endblock %}
+
+{% block link1 %}
+{{ url_for('home') }}
+{% endblock %}
+
+{% block link2 %}
+{{ url_for('lessons') }}
+{% endblock %}
+
+{% block link3 %}
+{{ url_for('interpreter') }}
+{% endblock %}
+
+{% block link4 %}
+{{ url_for('account') }}
+{% endblock %}
+
+{% block tillink1 %}
+Главная страница
+{% endblock %}
+
+{% block tillink2 %}
+Уроки
+{% endblock %}
+
+{% block tillink3 %}
+Интерпретатор
+{% endblock %}
+
+{% block tillink4 %}
+Аккаунт
+{% endblock %}
+
+{% block h1 %}
+9 урок
+{% endblock %}
+
+{% block p %}
+Переменные в Python
+{% endblock %}
+
+{% block main %}
+{% if completed %}
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+    <i class="bi bi-check-circle-fill me-2"></i>
+    ✅ Вы уже завершили этот урок! Результат: {{ score }}/{{ total }} ({{ (score/total*100)|round(1) }}%)
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+</div>
+{% endif %}
+
+<div class="row g-4">
+    <div class="col-lg-8">
+        <div class="card shadow-sm mb-4">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0"><i class="bi bi-box-seam me-2"></i>Создание переменной</h5>
+            </div>
+            <div class="card-body">
+                <p class="lead">С помощью знака <code>=</code> число или строку можно поместить в переменную - это называется заданием значения переменной.</p>
+
+                <div class="bg-body p-3 rounded mb-3 border">
+                    <code class="d-block">bones = 3</code>
+                </div>
+
+                <p><strong>bones</strong> - имя переменной, <strong>3</strong> - значение переменной</p>
+            </div>
+        </div>
+
+        <div class="card shadow-sm mb-4">
+            <div class="card-header bg-success text-white">
+                <h5 class="mb-0"><i class="bi bi-123 me-2"></i>Числовое и строковое значение</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <h6><i class="bi bi-hash me-1"></i>Числовое значение</h6>
+                        <p>Чтобы задать переменной числовое значение, введите имя переменной, знак <code>=</code> и затем число.</p>
+                        <div class="bg-body p-3 rounded border">
+                            <code>age = 25</code>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <h6><i class="bi bi-quote me-1"></i>Строковое значение</h6>
+                        <p>Чтобы задать переменной строковое значение, введите имя переменной, знак <code>=</code> и затем строку в кавычках.</p>
+                        <div class="bg-body p-3 rounded border">
+                            <code>dogs_name = 'Bruno'</code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card shadow-sm mb-4">
+            <div class="card-header bg-info text-white">
+                <h5 class="mb-0"><i class="bi bi-printer me-2"></i>Печать переменной</h5>
+            </div>
+            <div class="card-body">
+                <p class="lead">Команда <code>print</code> нужна, чтобы печатать текст на экране. С помощью этой команды можно узнать значение переменной.</p>
+
+                <div class="bg-dark text-white p-3 rounded mb-3 border">
+                    <code>print(bones)</code><br>
+                    <code class="text-muted"> 3</code><br><br>
+                    <code>print(dogs_name)</code><br>
+                    <code class="text-muted"> Bruno</code>
+                </div>
+            </div>
+        </div>
+
+        <div class="card shadow-sm mb-4">
+            <div class="card-header bg-warning text-dark">
+                <h5 class="mb-0"><i class="bi bi-arrow-clockwise me-2"></i>Изменение значения переменной</h5>
+            </div>
+            <div class="card-body">
+                <p class="lead">Чтобы изменить значение переменной, просто задай ей новое значение.</p>
+
+                <div class="bg-body p-3 rounded mb-3 border">
+                    <code>gifts = 2</code><br>
+                    <code>print(gifts)</code><br>
+                    <code class="text-muted"> 2</code><br><br>
+                    <code>gifts = 3</code><br>
+                    <code>print(gifts)</code><br>
+                    <code class="text-muted"> 3</code>
+                </div>
+            </div>
+        </div>
+
+        <div class="card shadow-sm mb-4">
+            <div class="card-header bg-danger text-white">
+                <h5 class="mb-0"><i class="bi bi-diagram-3 me-2"></i>Использование переменных</h5>
+            </div>
+            <div class="card-body">
+                <p class="lead">С помощью знака <code>=</code> можно присвоить одной переменной значение другой.</p>
+
+                <ol class="ps-3">
+                    <li class="mb-3">
+                        <strong>Задаем значения</strong><br>
+                        <p>Эти команды дают переменной <code>rabbits</code> значение 5, затем дают это же значение переменной <code>hats</code>.</p>
+                        <div class="bg-body p-3 rounded border">
+                            <code>rabbits = 5</code><br>
+                            <code>hats = rabbits</code>
+                        </div>
+                    </li>
+                    <li class="mb-3">
+                        <strong>Печатаем значения</strong><br>
+                        <p>Чтобы вывести на экран значение двух переменных, укажи их в скобках после команды <code>print</code>, поставив между ними запятую.</p>
+                        <div class="bg-dark text-white p-3 rounded border">
+                            <code>print(rabbits, hats)</code><br>
+                            <code class="text-muted">5 5</code>
+                        </div>
+                    </li>
+                    <li>
+                        <strong>Изменяем значение rabbits</strong><br>
+                        <p>Если изменить значение <code>rabbits</code>, значение <code>hats</code> останется прежним.</p>
+                        <div class="bg-dark text-white p-3 rounded border">
+                            <code>rabbits = 10</code><br>
+                            <code>print(rabbits, hats)</code><br>
+                            <code class="text-muted"> 10 5</code>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="card shadow-sm mb-4">
+            <div class="card-header bg-dark text-white">
+                <h5 class="mb-0"><i class="bi bi-lightbulb me-2"></i>Ключевые концепции</h5>
+            </div>
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item d-flex align-items-start">
+                        <i class="bi bi-check-circle-fill text-success me-2 mt-1"></i>
+                        <span>Переменная - это контейнер для хранения данных</span>
+                    </li>
+                    <li class="list-group-item d-flex align-items-start">
+                        <i class="bi bi-check-circle-fill text-success me-2 mt-1"></i>
+                        <span>Имена переменных должны начинаться с буквы</span>
+                    </li>
+                    <li class="list-group-item d-flex align-items-start">
+                        <i class="bi bi-check-circle-fill text-success me-2 mt-1"></i>
+                        <span>Значения могут быть числами или строками</span>
+                    </li>
+                    <li class="list-group-item d-flex align-items-start">
+                        <i class="bi bi-check-circle-fill text-success me-2 mt-1"></i>
+                        <span>Одна переменная может использоваться в другой</span>
+                    </li>
+                    <li class="list-group-item d-flex align-items-start">
+                        <i class="bi bi-check-circle-fill text-success me-2 mt-1"></i>
+                        <span>Значение переменной можно изменить в любой момент</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="card shadow-sm mb-4">
+            <div class="card-header bg-secondary text-white">
+                <h5 class="mb-0"><i class="bi bi-terminal me-2"></i>Попробуй в интерпретаторе</h5>
+            </div>
+            <div class="card-body">
+                <p>Открой <a href="{{ url_for('interpreter') }}" class="text-decoration-underline" target="_blank">онлайн-интерпретатор</a> и попробуй эти примеры:</p>
+                <ul class="mb-0 ps-3" marker="none">
+                    <li><code>name = "Алиса"</code></li>
+                    <li><code>age = 12</code></li>
+                    <li><code>print(name, "сейчас", age, "лет")</code></li>
+                    <li><code>age = age + 1</code></li>
+                    <li><code>print("Через год", name, "будет", age, "лет")</code></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="card shadow-sm">
+            <div class="card-header bg-dark text-white">
+                <h5 class="mb-0"><i class="bi bi-controller me-2"></i>Интерактивная игра</h5>
+            </div>
+            <div class="card-body text-center">
+                <h6 class="card-title mb-3">🎮 Переменные в коробках</h6>
+                <p class="card-text mb-3">Помоги роботу правильно разложить значения по переменным!</p>
+                <button class="btn btn-primary btn-lg w-100" data-bs-toggle="modal" data-bs-target="#variableGameModal">
+                    <i class="bi bi-boxes me-2"></i>Начать игру
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Game Modal -->
+<div class="modal fade" id="variableGameModal" tabindex="-1" aria-labelledby="variableGameModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-dark text-white">
+                <h5 class="modal-title" id="variableGameModalLabel">
+                    <i class="bi bi-box-seam me-2"></i>Переменные в коробках
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
+                                <span id="scoreDisplay" class="fs-4">0</span>
+                            </div>
+                            <div>
+                                <h6 class="mb-0">Правильных ответов</h6>
+                                <small class="text-muted">Нужно 3 правильных ответа</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 text-md-end">
+                        <div class="mb-3">
+                            <span class="fw-bold me-2">Задание:</span>
+                            <span id="currentTask" class="badge bg-info text-dark fs-6">Выбери правильное значение</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center mb-4">
+                    <div class="card bg-body p-4 mb-4">
+                        <h4 id="questionText" class="mb-0">Какой код правильно присваивает значение переменной?</h4>
+                    </div>
+
+                    <div class="card bg-primary text-white p-3 mb-4">
+                        <h3 id="variableName" class="mb-0">bones</h3>
+                        <small>Имя переменной</small>
+                    </div>
+
+                    <h5 class="mb-3">Выбери правильное значение:</h5>
+                </div>
+
+                <div class="row g-3 mb-4" id="optionsContainer">
+                    <!-- Варианты ответов будут здесь -->
+                </div>
+
+                <div class="text-center">
+                    <div id="feedbackMessage" class="mb-3" style="min-height: 60px;"></div>
+
+                    <button id="nextBtn" class="btn btn-primary btn-lg" style="display: none;">
+                        <i class="bi bi-arrow-right-circle me-1"></i>Следующий вопрос
+                    </button>
+
+                    <button id="restartBtn" class="btn btn-danger btn-lg ms-2">
+                        <i class="bi bi-arrow-counterclockwise me-1"></i>Начать заново
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ✅ Обновлённая кнопка: button с onclick -->
+<button type="button"
+        class="btn btn-success btn-lg mt-4"
+        id="complete-lesson"
+        style="display: none;"
+        onclick="completeLesson()">
+    🎓 Завершить урок
+</button>
+
+<script>
+const LESSON_ID = {{ lesson_id }};
+
+// 🔔 Показ уведомления
+function showNotification(message, type = 'success') {
+    const notification = document.createElement('div');
+    notification.className = `alert alert-${type} position-fixed top-0 start-50 translate-middle-x mt-3 shadow`;
+    notification.style.zIndex = '9999';
+    notification.textContent = message;
+    document.body.appendChild(notification);
+    setTimeout(() => notification.remove(), 3000);
+}
+
+// 💾 Сохранение прогресса на сервер
+async function saveProgress(score, total, xp) {
+    try {
+        const response = await fetch('/api/save-progress', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ lesson_id: LESSON_ID, score, total, xp })
+        });
+        const data = await response.json();
+
+        if (!data.success) {
+            console.error('Ошибка сохранения:', data.message);
+            showNotification('❌ ' + data.message, 'danger');
+            return null;
+        }
+        return data;
+    } catch (error) {
+        console.error('Ошибка сети:', error);
+        showNotification('❌ Ошибка соединения с сервером', 'danger');
+        return null;
+    }
+}
+
+// ✅ Функция завершения урока (вызывается по onclick)
+async function completeLesson() {
+    const button = document.getElementById('complete-lesson');
+    const originalText = button.innerHTML;
+
+    // Блокируем кнопку и показываем загрузку
+    button.disabled = true;
+    button.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Сохранение...';
+
+    // Для урока 9: прогресс уже сохранён в игре, но делаем повторный запрос для надёжности
+    const result = await saveProgress(5, 5, 100); // 100 XP за прохождение
+
+    if (result) {
+        showNotification(`✅ Прогресс обновлён! Всего: ${result.total_xp} XP`);
+
+        if (result.next_lesson_unlocked) {
+            setTimeout(() => showNotification('🎉 Следующий урок разблокирован!', 'success'), 1000);
+        }
+
+        // 🔥 Перенаправление с cache-busting параметром
+        setTimeout(() => {
+            window.location.href = `/lessons?t=${Date.now()}`;
+        }, 1200);
+    } else {
+        // Восстанавливаем кнопку при ошибке
+        button.disabled = false;
+        button.innerHTML = originalText;
+    }
+}
+
+// Game data - пары переменная-значение
+const variablePairs = [
+    { variable: "bones", correctValue: "3", type: "number", wrongValues: ["5", "10"] },
+    { variable: "dogs_name", correctValue: "'Bruno'", type: "string", wrongValues: ["'Max'", "'Rex'"] },
+    { variable: "age", correctValue: "12", type: "number", wrongValues: ["7", "15"] },
+    { variable: "name", correctValue: "'Alice'", type: "string", wrongValues: ["'Bob'", "'Anna'"] },
+    { variable: "score", correctValue: "100", type: "number", wrongValues: ["50", "200"] }
+];
+
+let currentQuestion = 0;
+let score = 0;
+let gameCompleted = false;
+
+// Initialize game when modal is shown
+document.addEventListener('DOMContentLoaded', function() {
+    const modal = document.getElementById('variableGameModal');
+    if (modal) {
+        modal.addEventListener('shown.bs.modal', initializeGame);
+    }
+
+    // Setup button event listeners
+    document.getElementById('nextBtn').addEventListener('click', nextQuestion);
+    document.getElementById('restartBtn').addEventListener('click', restartGame);
+});
+
+function initializeGame() {
+    console.log('Initializing game...');
+    currentQuestion = 0;
+    score = 0;
+    gameCompleted = false;
+
+    document.getElementById('scoreDisplay').textContent = '0';
+    document.getElementById('nextBtn').style.display = 'none';
+    document.getElementById('complete-lesson').style.display = 'none';
+    document.getElementById('feedbackMessage').innerHTML = '';
+
+    loadQuestion();
+}
+
+function loadQuestion() {
+    if (currentQuestion >= variablePairs.length) {
+        showVictory();
+        return;
+    }
+
+    const pair = variablePairs[currentQuestion];
+
+    // Update display
+    document.getElementById('variableName').textContent = pair.variable;
+    document.getElementById('currentTask').textContent = `Вопрос ${currentQuestion + 1} из ${variablePairs.length}`;
+
+    // Clear previous options
+    const optionsContainer = document.getElementById('optionsContainer');
+    optionsContainer.innerHTML = '';
+
+    // Create all options (correct + wrong)
+    const allOptions = [
+        { value: pair.correctValue, isCorrect: true },
+        ...pair.wrongValues.map(value => ({ value, isCorrect: false }))
+    ];
+
+    // Shuffle options
+    const shuffledOptions = shuffleArray([...allOptions]);
+
+    // Create option buttons
+    shuffledOptions.forEach((option, index) => {
+        const col = document.createElement('div');
+        col.className = 'col-md-6';
+
+        const optionDiv = document.createElement('div');
+        optionDiv.className = 'option-card card h-100';
+        optionDiv.style.cursor = 'pointer';
+        optionDiv.style.transition = 'all 0.3s';
+
+        // Different colors for number vs string
+        const bgColor = pair.type === 'number' ? '#3498db' : '#2ecc71';
+
+        optionDiv.innerHTML = `
+            <div class="card-body text-center d-flex flex-column justify-content-center"
+                 style="background-color: ${bgColor}; color: white; border-radius: 10px;">
+                <h3 class="mb-2">${option.value}</h3>
+                <small>${pair.type === 'number' ? 'Число' : 'Строка'}</small>
+            </div>
+        `;
+
+        // Add click event
+        optionDiv.addEventListener('click', () => checkAnswer(option.isCorrect, optionDiv));
+
+        col.appendChild(optionDiv);
+        optionsContainer.appendChild(col);
+    });
+
+    // Reset feedback
+    document.getElementById('feedbackMessage').innerHTML = `
+        <div class="alert alert-info">
+            <i class="bi bi-question-circle me-2"></i>
+            Выбери правильное значение для переменной <strong>${pair.variable}</strong>
+        </div>
+    `;
+
+    document.getElementById('nextBtn').style.display = 'none';
+}
+
+function checkAnswer(isCorrect, clickedElement) {
+    if (gameCompleted) return;
+
+    const pair = variablePairs[currentQuestion];
+    const feedbackMessage = document.getElementById('feedbackMessage');
+
+    // Disable all options
+    document.querySelectorAll('.option-card').forEach(card => {
+        card.style.pointerEvents = 'none';
+    });
+
+    if (isCorrect) {
+        // Correct answer
+        score++;
+        document.getElementById('scoreDisplay').textContent = score;
+
+        clickedElement.style.boxShadow = '0 0 20px rgba(46, 204, 113, 0.8)';
+        clickedElement.style.transform = 'scale(1.05)';
+
+        feedbackMessage.innerHTML = `
+            <div class="alert alert-success">
+                <i class="bi bi-check-circle me-2"></i>
+                <strong>Правильно!</strong> ${pair.variable} = ${pair.correctValue}
+                <br>
+                <small>Верно! Для переменной <code>${pair.variable}</code> нужно использовать значение ${pair.correctValue}</small>
+            </div>
+        `;
+    } else {
+        // Wrong answer
+        clickedElement.style.boxShadow = '0 0 20px rgba(231, 76, 60, 0.8)';
+        clickedElement.style.transform = 'scale(1.05)';
+
+        // Highlight correct option
+        document.querySelectorAll('.option-card').forEach(card => {
+            if (card.textContent.includes(pair.correctValue)) {
+                card.style.boxShadow = '0 0 20px rgba(46, 204, 113, 0.8)';
+                card.style.transform = 'scale(1.05)';
+            }
+        });
+
+        feedbackMessage.innerHTML = `
+            <div class="alert alert-danger">
+                <i class="bi bi-x-circle me-2"></i>
+                <strong>Неправильно!</strong> Правильный ответ: ${pair.variable} = ${pair.correctValue}
+                <br>
+                <small>Запомни: переменной <code>${pair.variable}</code> присваивается значение ${pair.correctValue}</small>
+            </div>
+        `;
+    }
+
+    // Show next button
+    document.getElementById('nextBtn').style.display = 'inline-block';
+}
+
+function nextQuestion() {
+    currentQuestion++;
+
+    if (currentQuestion >= variablePairs.length) {
+        showVictory();
+    } else {
+        loadQuestion();
+    }
+}
+
+// ✅ Обновлённая showVictory() — использует await saveProgress()
+async function showVictory() {
+    gameCompleted = true;
+
+    const optionsContainer = document.getElementById('optionsContainer');
+    optionsContainer.innerHTML = '';
+
+    const feedbackMessage = document.getElementById('feedbackMessage');
+    const percentage = Math.round((score / variablePairs.length) * 100);
+
+    let message = '';
+    if (score === variablePairs.length) {
+        message = `
+            <div class="alert alert-success">
+                <div style="font-size: 3rem;">🏆</div>
+                <h3>Идеально! ${score}/${variablePairs.length} правильных ответов!</h3>
+                <p>Ты отлично разобрался с переменными в Python!</p>
+                <button class="btn btn-success btn-lg mt-2" id="completeGameBtn">
+                    <i class="bi bi-check-circle me-2"></i>Завершить игру
+                </button>
+            </div>
+        `;
+    } else if (percentage >= 70) {
+        message = `
+            <div class="alert alert-success">
+                <div style="font-size: 2.5rem;">🎉</div>
+                <h3>Отлично! ${score}/${variablePairs.length} правильных ответов!</h3>
+                <p>Ты хорошо понял тему переменных!</p>
+                <button class="btn btn-success btn-lg mt-2" id="completeGameBtn">
+                    <i class="bi bi-check-circle me-2"></i>Завершить урок
+                </button>
+            </div>
+        `;
+    } else {
+        message = `
+            <div class="alert alert-warning">
+                <div style="font-size: 2rem;">📚</div>
+                <h3>${score}/${variablePairs.length} правильных ответов</h3>
+                <p>Повтори материал и попробуй еще раз!</p>
+                <button class="btn btn-primary btn-lg mt-2" onclick="restartGame()">
+                    <i class="bi bi-arrow-counterclockwise me-2"></i>Попробовать снова
+                </button>
+            </div>
+        `;
+    }
+
+    feedbackMessage.innerHTML = message;
+
+    // Add event listener to complete button if it exists
+    setTimeout(() => {
+        const completeBtn = document.getElementById('completeGameBtn');
+        if (completeBtn) {
+            completeBtn.onclick = async function() {
+                // 🔥 Ждём сохранения перед закрытием модалки!
+                const result = await saveProgress(score, variablePairs.length, 100);
+
+                if (result) {
+                    if (result.is_improvement && result.xp_added > 0) {
+                        showNotification(`✅ +${result.xp_added} XP! Всего: ${result.total_xp} XP`);
+                    } else {
+                        showNotification(`✅ Прогресс сохранён! Всего: ${result.total_xp} XP`);
+                    }
+
+                    if (result.next_lesson_unlocked) {
+                        setTimeout(() => showNotification('🎉 Следующий урок разблокирован!', 'success'), 1000);
+                    }
+                }
+
+                // Закрываем модалку и показываем кнопку завершения урока
+                const gameModal = bootstrap.Modal.getInstance(document.getElementById('variableGameModal'));
+                if (gameModal) gameModal.hide();
+
+                setTimeout(() => {
+                    document.getElementById('complete-lesson').style.display = 'inline-block';
+                    document.getElementById('complete-lesson').scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 300);
+            };
+        }
+    }, 100);
+}
+
+function restartGame() {
+    initializeGame();
+}
+
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
+
+// Resize handler for canvas if needed
+window.addEventListener('resize', () => {
+    // No canvas in this lesson, but kept for consistency
+});
+</script>
+
+<style>
+/* ✨ Стили для спиннера загрузки */
+.spinner-border {
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    animation: spinner-border 0.75s linear infinite;
+    vertical-align: text-bottom;
+}
+@keyframes spinner-border {
+    to { transform: rotate(360deg); }
+}
+
+/* Game styles */
+.option-card {
+    transition: all 0.3s ease !important;
+    border: none !important;
+}
+
+.option-card:hover {
+    transform: translateY(-5px) !important;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2) !important;
+}
+
+.card-body {
+    border-radius: 10px !important;
+}
+
+/* Prevent text selection */
+.option-card, .modal-body * {
+    user-select: none !important;
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+}
+
+/* Toast animation */
+.toast {
+    animation: slideInRight 0.3s ease;
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Pulse animation for correct answers */
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(46, 204, 113, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0); }
+}
+
+.pulse-animation {
+    animation: pulse 1s;
+}
+</style>
+{% endblock %}

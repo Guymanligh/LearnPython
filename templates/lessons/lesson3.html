@@ -1,0 +1,649 @@
+{% extends "base.html" %}
+
+{% block title %}
+LearnPython
+{% endblock %}
+
+{% block link1 %}
+{{ url_for('home') }}
+{% endblock %}
+
+{% block link2 %}
+{{ url_for('lessons') }}
+{% endblock %}
+
+{% block link3 %}
+{{ url_for('interpreter') }}
+{% endblock %}
+
+{% block link4 %}
+{{ url_for('account') }}
+{% endblock %}
+
+{% block tillink1 %}{{ _t('nav_home') }}{% endblock %}
+{% block tillink2 %}{{ _t('nav_lessons') }}{% endblock %}
+{% block tillink3 %}{{ _t('nav_interpreter') }}{% endblock %}
+{% block tillink4 %}{{ _t('nav_account') }}{% endblock %}
+
+{% block h1 %}{{ _t('l3_h1') }}{% endblock %}
+{% block p %}{{ _t('l3_p') }}{% endblock %}
+
+{% block main %}
+<div class="container my-4">
+    {% if completed %}
+    <div class="alert alert-success" role="alert">
+        {{ _t('l1_already_done') }} {{ score }}/{{ total }} ({{ (score/total*100)|round(1) }}%)
+    </div>
+    {% endif %}
+
+    <p class="lead">{{ _t('l3_intro') }}</p>
+
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <div class="card h-100">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">{{ _t('l3_card_prog_title') }}</h5>
+                </div>
+                <div class="card-body">
+                    <p>{{ _t('l3_card_prog_text') }}</p>
+                    <ol>
+                        <li><b>{{ _t('l3_li_syntax') }}</b><br>{{ _t('l3_li_syntax_text') }}</li>
+                        <li><b>{{ _t('l3_li_highlight') }}</b><br>{{ _t('l3_li_highlight_text') }}</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card h-100">
+                <div class="card-header bg-warning text-dark">
+                    <h5 class="mb-0">{{ _t('l3_card_console_title') }}</h5>
+                </div>
+                <div class="card-body">
+                    <p>{{ _t('l3_card_console_text') }}</p>
+                    <ol>
+                        <li><b>{{ _t('l3_li_name') }}</b><br>{{ _t('l3_li_name_text') }}</li>
+                        <li><b>{{ _t('l3_li_fix') }}</b><br>{{ _t('l3_li_fix_text') }}</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h3 class="h4 mb-3">{{ _t('l3_types_subtitle') }}</h3>
+    <div class="row mb-4">
+        {% set error_list = [
+        ('SyntaxError', 'синтаксические ошибки'),
+        ('NameError', 'неопределенные переменные'),
+        ('TypeError', 'несовместимые типы данных'),
+        ('IndexError', 'выход за пределы списка'),
+        ('ZeroDivisionError', 'деление на ноль'),
+        ('KeyError', 'отсутствующий ключ в словаре')
+        ] %}
+        {% for err, desc in error_list %}
+        <div class="col-md-4 col-sm-6 mb-3">
+            <div class="card h-100 border-secondary">
+                <div class="card-body">
+                    <h6 class="card-subtitle mb-2 text-danger">{{ err }}</h6>
+                    <p class="card-text small">{{ desc }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Игра -->
+    <div class="my-5">
+        <h3 class="mb-3">{{ _t('l3_game_title') }}</h3>
+        <p class="text-muted mb-3">{{ _t('l3_game_desc') }}</p>
+        <button class="btn btn-primary btn-lg" onclick="openGame()">
+            {{ _t('l3_btn_start') }}
+        </button>
+    </div>
+
+    <!-- Кнопка завершения урока -->
+    <div class="d-flex justify-content-end mt-4">
+        <a href="{{ url_for('lessons') }}" class="btn btn-success btn-lg" onclick="completeLesson()"
+            id="complete-lesson" style="display: none;">{{ _t('l1_finish_btn') }}</a>
+    </div>
+</div>
+
+<!-- Модальное окно игры (полноэкранный overlay) -->
+<div id="game-modal"
+    style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 9999;"
+    class="bg-dark bg-opacity-75">
+    <!-- Кнопка закрытия -->
+    <button onclick="closeGame()" class="btn btn-light position-absolute top-0 end-0 m-3 rounded-circle"
+        style="z-index: 10001; width: 40px; height: 40px; font-size: 24px; line-height: 1;">×</button>
+
+    <!-- Контейнер для Three.js -->
+    <div id="canvas-container" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 10000;">
+    </div>
+
+    <!-- Интерфейс игры (поверх canvas) -->
+    <div id="game-ui"
+        style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 10001; pointer-events: none;">
+        <!-- Стартовый экран -->
+        <div id="start-screen" class="position-absolute top-50 start-50 translate-middle p-4 rounded-4 shadow-lg"
+            style="width: 90%; max-width: 500px; pointer-events: auto; background-color: var(--bs-body-bg); color: var(--bs-body-color);">
+            <h1 class="text-center mb-4" style="color: var(--bs-primary);">{{ _t('g3_title') }}</h1>
+            <p class="text-center">{{ _t('g3_start_text')|safe }}</p>
+            <div class="alert alert-info">
+                <strong>{{ _t('g3_reward') }}</strong><br>
+                100 очков = 100 XP<br>
+                80 очков = 80 XP<br>
+                50 очков = 50 XP<br>
+                Меньше 50 = 30 XP
+            </div>
+            <div class="d-grid">
+                <button class="btn btn-primary btn-lg" onclick="startErrorGame()">{{ _t('g3_start_btn') }}</button>
+            </div>
+        </div>
+
+        <!-- Панель счета (скрыта сначала) -->
+        <div id="score-panel" class="position-absolute top-0 start-50 translate-middle-x mt-3 p-3 rounded-3 shadow-lg"
+            style="display: none; pointer-events: auto; background-color: var(--bs-body-bg); color: var(--bs-body-color);">
+            <div class="d-flex gap-4 align-items-center">
+                <div><span class="text-secondary">{{ _t('g3_score') }}</span> <span class="fs-4 fw-bold text-primary"
+                        id="game-score">0</span><span class="text-secondary">/100</span></div>
+                <div><span class="text-secondary">{{ _t('g3_errors') }}</span> <span class="fs-4 fw-bold text-success"
+                        id="errors-found">0</span><span class="text-secondary">/10</span></div>
+                <div><span class="text-secondary">{{ _t('g3_timer') }}</span> <span class="fs-4 fw-bold text-primary"
+                        id="game-timer">60</span></div>
+            </div>
+        </div>
+
+        <!-- Панель вопроса (скрыта сначала) -->
+        <div id="question-panel"
+            class="position-absolute bottom-0 start-50 translate-middle-x mb-4 p-4 rounded-4 shadow-lg"
+            style="display: none; width: 90%; max-width: 800px; pointer-events: auto; background-color: var(--bs-body-bg); color: var(--bs-body-color);">
+            <h5 class="text-center mb-3">{{ _t('g3_q_title') }}</h5>
+            <pre id="code-display" class="bg-dark text-light p-3 rounded-3"
+                style="font-family: 'Courier New', monospace; overflow-x: auto;"></pre>
+            <div id="answer-buttons" class="row g-3 mt-2"></div>
+        </div>
+
+        <!-- Экран завершения (скрыт сначала) -->
+        <div id="end-screen"
+            class="position-absolute top-50 start-50 translate-middle p-4 rounded-4 shadow-lg text-center"
+            style="display: none; width: 90%; max-width: 500px; pointer-events: auto; background-color: var(--bs-body-bg); color: var(--bs-body-color);">
+            <h2 class="mb-4" style="color: var(--bs-primary);">{{ _t('g3_end_win') }}</h2>
+            <div class="display-1 fw-bold text-primary mb-3" id="final-game-score">0</div>
+            <div class="fs-3 fw-bold text-success mb-2" id="xp-earned"></div>
+            <p class="lead mb-4" id="end-message"></p>
+            <div id="end-buttons" class="d-flex justify-content-center gap-3"></div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+<style>
+    .error-line {
+        background: rgba(255, 0, 0, 0.3);
+        display: block;
+    }
+
+    .answer-btn {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        font-weight: 600;
+        transition: all 0.2s;
+    }
+
+    .answer-btn.correct {
+        background-color: var(--bs-success) !important;
+        border-color: var(--bs-success) !important;
+        color: white !important;
+        animation: pulse 0.5s;
+    }
+
+    .answer-btn.wrong {
+        background-color: var(--bs-danger) !important;
+        border-color: var(--bs-danger) !important;
+        color: white !important;
+        animation: shake 0.5s;
+    }
+
+    @keyframes pulse {
+
+        0%,
+        100% {
+            transform: scale(1);
+        }
+
+        50% {
+            transform: scale(1.05);
+        }
+    }
+
+    @keyframes shake {
+
+        0%,
+        100% {
+            transform: translateX(0);
+        }
+
+        25% {
+            transform: translateX(-10px);
+        }
+
+        75% {
+            transform: translateX(10px);
+        }
+    }
+</style>
+
+<script>const LESSON_ID = parseInt("{{ lesson_id }}", 10);
+
+    // 🔔 Показ уведомления
+    function showNotification(message, type = 'success') {
+        const notification = document.createElement('div');
+        notification.className = `alert alert-${type} position-fixed top-0 start-50 translate-middle-x mt-3 shadow`;
+        notification.style.zIndex = '10002';
+        notification.textContent = message;
+        document.body.appendChild(notification);
+        setTimeout(() => notification.remove(), 3000);
+    }
+
+    // 💾 Сохранение прогресса на сервер
+    async function saveProgress(score, total, xp) {
+        try {
+            const response = await fetch('/api/save-progress', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ lesson_id: LESSON_ID, score, total, xp })
+            });
+            const data = await response.json();
+
+            if (!data.success) {
+                console.error('Ошибка сохранения:', data.message);
+                showNotification('❌ ' + data.message, 'danger');
+                return null;
+            }
+            return data;
+        } catch (error) {
+            console.error('Ошибка сети:', error);
+            showNotification('❌ Ошибка соединения с сервером', 'danger');
+            return null;
+        }
+    }
+
+    // ✅ Функция завершения урока (вызывается по onclick)
+    async function completeLesson() {
+        const button = document.getElementById('complete-lesson');
+        const originalText = button.innerHTML;
+
+        // Блокируем кнопку и показываем загрузку
+        button.disabled = true;
+        button.innerHTML = `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> ${"{{ _t('g3_saving') }}"}`;
+
+        // Для урока 3: прогресс уже сохранён в endErrorGame(), но делаем повторный запрос для надёжности
+        // Используем фиксированные значения: 5 вопросов, XP уже рассчитан в игре
+        const result = await saveProgress(5, 5, 30); // Минимум 30 XP гарантирован
+
+        if (result) {
+            showNotification(`✅ Прогресс обновлён! Всего: ${result.total_xp} XP`);
+
+            if (result.next_lesson_unlocked) {
+                setTimeout(() => showNotification('🎉 Следующий урок разблокирован!', 'success'), 1000);
+            }
+
+            // 🔥 Перенаправление с cache-busting параметром
+            setTimeout(() => {
+                window.location.href = `/lessons?t=${Date.now()}`;
+            }, 1200);
+        } else {
+            // Восстанавливаем кнопку при ошибке
+            button.disabled = false;
+            button.innerHTML = originalText;
+        }
+    }
+
+    // ==========================================
+    // GAME LOGIC: SPOT THE ERROR
+    // ==========================================
+
+    const errorQuestions = [
+        {
+            code: `print("Hello World)`,
+            correctError: 'SyntaxError',
+            options: ['SyntaxError', 'NameError', 'TypeError', 'IndexError'],
+            explanation: { "ru": 'Отсутствует закрывающая кавычка."', "kk": 'Жабылатын тырнақша жоқ."', "en": 'Closing quote missing."' }
+        },
+        {
+            code: `message = "Hello"\nprint(mesage)`,
+            correctError: 'NameError',
+            options: ['SyntaxError', 'NameError', 'TypeError', 'IndexError'],
+            explanation: { "ru": 'Переменная mesage не определена (опечатка).', "kk": 'mesage айнымалысы анықталмаған (қате жазылған).', "en": 'Variable mesage is not defined (typo).' }
+        },
+        {
+            code: `age = 15\nprint("Мне " + age + " лет")`,
+            correctError: 'TypeError',
+            options: ['SyntaxError', 'NameError', 'TypeError', 'IndexError'],
+            explanation: { "ru": 'Нельзя складывать строку и число без преобразования str(age).', "kk": 'Жол мен санды str(age) түрін ауыстырмай біріктіруге болмайды.', "en": 'Cannot concatenate string and number without str(age) conversion.' }
+        },
+        {
+            code: `colors = ["red", "blue"]\nprint(colors[2])`,
+            correctError: 'IndexError',
+            options: ['SyntaxError', 'NameError', 'TypeError', 'IndexError'],
+            explanation: { "ru": 'Индексы начинаются с 0, поэтому 2 выходит за пределы списка.', "kk": 'Индекстер 0-ден басталады, сондықтан 2 тізімнен тыс қалады.', "en": 'Indices start at 0, so 2 is out of range.' }
+        },
+        {
+            code: `result = 10 / 0`,
+            correctError: 'ZeroDivisionError',
+            options: ['SyntaxError', 'ZeroDivisionError', 'TypeError', 'IndexError'],
+            explanation: { "ru": 'Деление на ноль математически невозможно.', "kk": 'Нөлге бөлу математикалық тұрғыдан мүмкін емес.', "en": 'Division by zero is mathematically impossible.' }
+        },
+        {
+            code: `user = {"name": "Ivan"}\nprint(user["age"])`,
+            correctError: 'KeyError',
+            options: ['SyntaxError', 'NameError', 'TypeError', 'KeyError'],
+            explanation: { "ru": 'Ключа "age" нет в словаре.', "kk": 'Сөздікте "age" кілті жоқ.', "en": '"age" key is missing in the dictionary.' }
+        },
+        {
+            code: `if True\n    print("Yes")`,
+            correctError: 'SyntaxError',
+            options: ['SyntaxError', 'NameError', 'TypeError', 'IndexError'],
+            explanation: { "ru": 'Отсутствует двоеточие после условия if.', "kk": 'if шартынан кейін қос нүкте жоқ.', "en": 'Missing colon after if condition.' }
+        },
+        {
+            code: `print(len(5))`,
+            correctError: 'TypeError',
+            options: ['SyntaxError', 'NameError', 'TypeError', 'IndexError'],
+            explanation: { "ru": 'Функция len() не применяется к числам.', "kk": 'len() функциясы сандарға қолданылмайды.', "en": 'len() function is not applicable to numbers.' }
+        },
+        {
+            code: `for i in range(5):\nprint(i)`,
+            correctError: 'IndentationError',
+            options: ['IndentationError', 'NameError', 'TypeError', 'IndexError'],
+            explanation: { "ru": 'Тело цикла должно иметь отступ (обычно 4 пробела).', "kk": 'Цикл денесінде шегініс (әдетте 4 бос орын) болуы керек.', "en": 'Loop body must have an indentation (usually 4 spaces).' }
+        },
+        {
+            code: `import math\nprint(math.pii)`,
+            correctError: 'AttributeError',
+            options: ['SyntaxError', 'NameError', 'AttributeError', 'IndexError'],
+            explanation: { "ru": 'У модуля math нет атрибута pii, есть pi.', "kk": 'math модулінде pii атрибуты жоқ, pi бар.', "en": 'math module has no attribute pii, it has pi.' }
+        }
+    ];
+
+    let currentGameQuestions = [];
+    let currentQuestionIndex = 0;
+    let gameScore = 0;
+    let errorsFound = 0;
+    let timerInterval;
+    let gameTimeLeft = 60;
+
+    // Three.js variables
+    let scene, camera, renderer, particles;
+    let animationId;
+
+    function initThreeJS() {
+        const container = document.getElementById('canvas-container');
+        scene = new THREE.Scene();
+        scene.fog = new THREE.FogExp2(0x000000, 0.002);
+
+        camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.z = 50;
+
+        renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setClearColor(0x000000, 0.8);
+        container.innerHTML = '';
+        container.appendChild(renderer.domElement);
+
+        // Create particles (matrix-like bugs/code flying)
+        const geometry = new THREE.BufferGeometry();
+        const vertices = [];
+        for (let i = 0; i < 2000; i++) {
+            vertices.push(
+                (Math.random() - 0.5) * 500,
+                (Math.random() - 0.5) * 500,
+                (Math.random() - 0.5) * 500
+            );
+        }
+        geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
+
+        // Custom shader material to make them look like glowing red/green sparks
+        const material = new THREE.PointsMaterial({
+            color: 0x00ff00,
+            size: 2,
+            transparent: true,
+            opacity: 0.8,
+            blending: THREE.AdditiveBlending
+        });
+
+        particles = new THREE.Points(geometry, material);
+        scene.add(particles);
+
+        // Add some red "error" particles
+        const errGeometry = new THREE.BufferGeometry();
+        const errVertices = [];
+        for (let i = 0; i < 500; i++) {
+            errVertices.push(
+                (Math.random() - 0.5) * 300,
+                (Math.random() - 0.5) * 300,
+                (Math.random() - 0.5) * 300
+            );
+        }
+        errGeometry.setAttribute('position', new THREE.Float32BufferAttribute(errVertices, 3));
+        const errMaterial = new THREE.PointsMaterial({
+            color: 0xff0000,
+            size: 3,
+            transparent: true,
+            opacity: 0.9,
+            blending: THREE.AdditiveBlending
+        });
+        const errParticles = new THREE.Points(errGeometry, errMaterial);
+        scene.add(errParticles);
+
+        function animate() {
+            animationId = requestAnimationFrame(animate);
+            particles.rotation.y += 0.001;
+            particles.rotation.x += 0.0005;
+            errParticles.rotation.y -= 0.002;
+            errParticles.rotation.z += 0.001;
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        window.addEventListener('resize', onWindowResize, false);
+    }
+
+    function onWindowResize() {
+        if (camera && renderer) {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+    }
+
+    // Shuffle array
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+    }
+
+    function openGame() {
+        document.getElementById('game-modal').style.display = 'block';
+
+        // Reset UI visibility
+        document.getElementById('start-screen').style.display = 'block';
+        document.getElementById('score-panel').style.display = 'none';
+        document.getElementById('question-panel').style.display = 'none';
+        document.getElementById('end-screen').style.display = 'none';
+
+        initThreeJS();
+    }
+
+    function closeGame() {
+        document.getElementById('game-modal').style.display = 'none';
+        clearInterval(timerInterval);
+        if (animationId) cancelAnimationFrame(animationId);
+        window.removeEventListener('resize', onWindowResize);
+    }
+
+    function startErrorGame() {
+        document.getElementById('start-screen').style.display = 'none';
+        document.getElementById('score-panel').style.display = 'block';
+        document.getElementById('question-panel').style.display = 'block';
+
+        // Reset game state
+        gameScore = 0;
+        errorsFound = 0;
+        gameTimeLeft = 60;
+        currentQuestionIndex = 0;
+
+        // Select and shuffle exactly 10 questions (or all if < 10)
+        let shuffled = shuffleArray([...errorQuestions]);
+        currentGameQuestions = shuffled.slice(0, 10);
+
+        updateScoreUI();
+        startTimer();
+        showCodeQuestion();
+    }
+
+    function startTimer() {
+        document.getElementById('game-timer').textContent = gameTimeLeft;
+        clearInterval(timerInterval);
+        timerInterval = setInterval(() => {
+            gameTimeLeft--;
+            document.getElementById('game-timer').textContent = gameTimeLeft;
+
+            if (gameTimeLeft <= 10) {
+                document.getElementById('game-timer').classList.remove('text-primary');
+                document.getElementById('game-timer').classList.add('text-danger');
+                document.getElementById('game-timer').style.animation = 'pulse 1s infinite border-color';
+            }
+
+            if (gameTimeLeft <= 0) {
+                clearInterval(timerInterval);
+                endErrorGame("{{ _t('g3_time_up') }}");
+            }
+        }, 1000);
+    }
+
+    function updateScoreUI() {
+        document.getElementById('game-score').textContent = gameScore;
+        document.getElementById('errors-found').textContent = errorsFound;
+    }
+
+    function showCodeQuestion() {
+        if (currentQuestionIndex >= currentGameQuestions.length) {
+            clearInterval(timerInterval);
+            endErrorGame("{{ _t('g3_all_done') }}");
+            return;
+        }
+
+        const q = currentGameQuestions[currentQuestionIndex];
+        document.getElementById('code-display').textContent = q.code;
+
+        const buttonsContainer = document.getElementById('answer-buttons');
+        buttonsContainer.innerHTML = '';
+
+        // Shuffle options
+        let opts = shuffleArray([...q.options]);
+
+        opts.forEach(opt => {
+            const col = document.createElement('div');
+            col.className = 'col-md-6';
+
+            const btn = document.createElement('button');
+            btn.className = 'btn btn-outline-light answer-btn text-start';
+            btn.textContent = opt;
+            btn.onclick = () => checkAnswer(btn, opt, q.correctError, q.explanation);
+
+            col.appendChild(btn);
+            buttonsContainer.appendChild(col);
+        });
+    }
+
+    function checkAnswer(btn, selected, correct, explanation) {
+        // Disable all buttons to prevent multiple clicks
+        const allBtns = document.getElementById('answer-buttons').querySelectorAll('button');
+        allBtns.forEach(b => b.disabled = true);
+
+        if (selected === correct) {
+            btn.classList.add('correct');
+            gameScore += 10;
+            errorsFound++;
+
+            // Visual feedback (flash particles color)
+            if (particles) particles.material.color.setHex(0x00ff00);
+
+        } else {
+            btn.classList.add('wrong');
+
+            // Highlight correct answer
+            allBtns.forEach(b => {
+                if (b.textContent === correct) {
+                    b.classList.add('correct');
+                    b.classList.remove('btn-outline-light');
+                }
+            });
+
+            // Time penalty for wrong answer
+            gameTimeLeft = Math.max(0, gameTimeLeft - 5);
+            document.getElementById('game-timer').textContent = gameTimeLeft;
+
+            if (particles) particles.material.color.setHex(0xff0000);
+        }
+
+        updateScoreUI();
+
+        // Add explanation
+        const lang = "{{ session.get('lang', 'ru') }}";
+        const currentExp = (typeof explanation === 'object') ? (explanation[lang] || explanation['ru']) : explanation;
+        const expDiv = document.createElement('div');
+        expDiv.className = `alert ${selected === correct ? 'alert-success' : 'alert-danger'} mt-3 mb-0`;
+        expDiv.innerHTML = `<strong>${selected === correct ? "{{ _t('g3_correct') }}" : "{{ _t('g3_wrong') }}"}</strong> ${currentExp}`;
+        document.getElementById('question-panel').appendChild(expDiv);
+
+        setTimeout(() => {
+            expDiv.remove();
+            currentQuestionIndex++;
+            showCodeQuestion();
+            if (particles) particles.material.color.setHex(0x00ff00); // reset color
+        }, 2000);
+    }
+
+    async function endErrorGame(message) {
+        document.getElementById('score-panel').style.display = 'none';
+        document.getElementById('question-panel').style.display = 'none';
+
+        const endScreen = document.getElementById('end-screen');
+        endScreen.style.display = 'block';
+
+        document.getElementById('final-game-score').textContent = gameScore;
+        document.getElementById('end-message').textContent = message;
+
+        // Calculate XP
+        let xp = 30; // Min XP
+        if (gameScore === 100) xp = 100;
+        else if (gameScore >= 80) xp = 80;
+        else if (gameScore >= 50) xp = 50;
+
+        document.getElementById('xp-earned').textContent = `+${xp} XP`;
+
+        document.getElementById('end-buttons').innerHTML = `
+        <button class="btn btn-outline-light" onclick="startErrorGame()">{{ _t('g3_play_again') }}</button>
+        <button class="btn btn-primary" id="save-game-btn" onclick="saveGameProgressAndClose(${xp})">{{ _t('g3_save_exit') }}</button>
+    `;
+
+        // Show complete lesson button on main page
+        document.getElementById('complete-lesson').style.display = 'block';
+    }
+
+    async function saveGameProgressAndClose(xp) {
+        const btn = document.getElementById('save-game-btn');
+        btn.disabled = true;
+        btn.textContent = "{{ _t('g3_saving') }}";
+
+        // Send 10/10 questions total implicitly for this game type
+        await saveProgress(gameScore / 10, 10, xp);
+        closeGame();
+    }
+</script>
+{% endblock %}

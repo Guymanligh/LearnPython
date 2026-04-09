@@ -1,0 +1,220 @@
+{% extends "base.html" %}
+
+{% block title %}
+LearnPython
+{% endblock %}
+
+{% block link1 %}
+{{ url_for('home') }}
+{% endblock %}
+
+{% block link2 %}
+{{ url_for('lessons') }}
+{% endblock %}
+
+{% block link3 %}
+{{ url_for('interpreter') }}
+{% endblock %}
+
+{% block link4 %}
+{{ url_for('account') }}
+{% endblock %}
+
+{% block tillink1 %}
+Главная страница
+{% endblock %}
+
+{% block tillink2 %}
+Уроки
+{% endblock %}
+
+{% block tillink3 %}
+Интерпретатор
+{% endblock %}
+
+{% block tillink4 %}
+Аккаунт
+{% endblock %}
+
+{% block h1 %}
+20 урок
+{% endblock %}
+
+{% block p %}
+Списки в Python
+{% endblock %}
+
+{% block main %}
+<div class="container my-4">
+    {% if completed %}
+    <div class="alert alert-success" role="alert">
+        ✅ Вы уже завершили этот урок! Результат: {{ score }}/{{ total }} ({{ (score/total*100)|round(1) }}%)
+    </div>
+    {% endif %}
+
+    <p class="lead">
+        Список (list) — это упорядоченная коллекция элементов, которая может содержать объекты любых типов. 
+        Списки изменяемы, их можно расширять, сокращать и модифицировать.
+    </p>
+
+    <!-- Карточка: создание списка -->
+    <div class="card mb-4 border-primary shadow-sm">
+        <div class="card-header bg-primary text-white d-flex align-items-center">
+            <span class="fs-4 me-2">📋</span>
+            <h5 class="mb-0">Создание списка</h5>
+        </div>
+        <div class="card-body">
+            <p>Список создаётся с помощью квадратных скобок <code>[]</code>, элементы перечисляются через запятую.</p>
+            <pre class="bg-body-tertiary p-3 rounded"><code># Пустой список
+empty = []
+
+# Список чисел
+numbers = [1, 2, 3, 4, 5]
+
+# Смешанный список
+mixed = [10, "hello", True, 3.14]
+
+# Список списков (вложенный)
+matrix = [[1, 2], [3, 4], [5, 6]]</code></pre>
+        </div>
+    </div>
+
+    <!-- Карточка: доступ по индексу -->
+    <div class="card mb-4 border-success shadow-sm">
+        <div class="card-header bg-success text-white d-flex align-items-center">
+            <span class="fs-4 me-2">🔢</span>
+            <h5 class="mb-0">Доступ по индексу</h5>
+        </div>
+        <div class="card-body">
+            <p>Элементы списка нумеруются с нуля. Можно использовать отрицательные индексы для доступа с конца.</p>
+            <pre class="bg-body-tertiary p-3 rounded"><code>fruits = ["яблоко", "банан", "апельсин"]
+print(fruits[0])    # яблоко
+print(fruits[2])    # апельсин
+print(fruits[-1])   # апельсин (последний)
+print(fruits[-2])   # банан</code></pre>
+        </div>
+    </div>
+
+    <!-- Карточка: изменение элементов -->
+    <div class="card mb-4 border-warning shadow-sm">
+        <div class="card-header bg-warning text-dark d-flex align-items-center">
+            <span class="fs-4 me-2">✏️</span>
+            <h5 class="mb-0">Изменение элементов</h5>
+        </div>
+        <div class="card-body">
+            <p>Списки изменяемы, поэтому можно присваивать новое значение по индексу.</p>
+            <pre class="bg-body-tertiary p-3 rounded"><code>colors = ["red", "green", "blue"]
+colors[1] = "yellow"
+print(colors)   # ["red", "yellow", "blue"]</code></pre>
+        </div>
+    </div>
+
+    <!-- Карточка: основные методы списков -->
+    <div class="card mb-4 border-info shadow-sm">
+        <div class="card-header bg-info text-white d-flex align-items-center">
+            <span class="fs-4 me-2">🛠️</span>
+            <h5 class="mb-0">Основные методы</h5>
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered">
+                <thead>
+                    <tr><th>Метод</th><th>Описание</th><th>Пример</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><code>append(x)</code></td><td>Добавляет элемент в конец</td><td><code>list.append(4)</code></td></tr>
+                    <tr><td><code>extend([...])</code></td><td>Добавляет несколько элементов</td><td><code>list.extend([5,6])</code></td></tr>
+                    <tr><td><code>insert(i, x)</code></td><td>Вставляет элемент в позицию i</td><td><code>list.insert(1, 'new')</code></td></tr>
+                    <tr><td><code>remove(x)</code></td><td>Удаляет первое вхождение x</td><td><code>list.remove('apple')</code></td></tr>
+                    <tr><td><code>pop(i)</code></td><td>Удаляет и возвращает элемент i (по умолчанию последний)</td><td><code>last = list.pop()</code></td></tr>
+                    <tr><td><code>index(x)</code></td><td>Возвращает индекс первого вхождения x</td><td><code>pos = list.index('banana')</code></td></tr>
+                    <tr><td><code>count(x)</code></td><td>Считает количество вхождений x</td><td><code>cnt = list.count(2)</code></td></tr>
+                    <tr><td><code>sort()</code></td><td>Сортирует список</td><td><code>list.sort()</code></td></tr>
+                    <tr><td><code>reverse()</code></td><td>Разворачивает список</td><td><code>list.reverse()</code></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Карточка: срезы (slicing) -->
+    <div class="card mb-4 border-secondary shadow-sm">
+        <div class="card-header bg-secondary text-white d-flex align-items-center">
+            <span class="fs-4 me-2">🔪</span>
+            <h5 class="mb-0">Срезы (slicing)</h5>
+        </div>
+        <div class="card-body">
+            <p>Срезы позволяют получить подсписок.</p>
+            <pre class="bg-body-tertiary p-3 rounded"><code>nums = [0, 1, 2, 3, 4, 5]
+print(nums[1:4])   # [1, 2, 3]  (от индекса 1 до 3 включительно)
+print(nums[:3])    # [0, 1, 2]  (от начала до 2)
+print(nums[3:])    # [3, 4, 5]  (от 3 до конца)
+print(nums[::2])   # [0, 2, 4]  (каждый второй)
+print(nums[::-1])  # [5, 4, 3, 2, 1, 0] (разворот)</code></pre>
+        </div>
+    </div>
+
+    <!-- Карточка: операции со списками -->
+    <div class="card mb-4 border-dark shadow-sm">
+        <div class="card-header bg-dark text-white d-flex align-items-center">
+            <span class="fs-4 me-2">➕</span>
+            <h5 class="mb-0">Операции со списками</h5>
+        </div>
+        <div class="card-body">
+            <pre class="bg-body-tertiary p-3 rounded"><code># Конкатенация (+)
+a = [1, 2]
+b = [3, 4]
+c = a + b        # [1, 2, 3, 4]
+
+# Повторение (*)
+d = [0] * 3      # [0, 0, 0]
+
+# Проверка вхождения (in)
+if 2 in a:
+    print("2 есть в списке")
+
+# Длина списка
+print(len(a))    # 2</code></pre>
+        </div>
+    </div>
+
+    <!-- Квиз -->
+    <div class="my-5">
+        <h3 class="mb-4">🎮 Проверь свои знания о списках</h3>
+        <div id="quiz-root"></div>
+    </div>
+
+    <!-- Кнопка завершения урока -->
+    <div class="d-flex justify-content-end mt-4">
+        <button type="button"
+                class="btn btn-success btn-lg"
+                id="complete-lesson"
+                style="display: none;"
+                onclick="completeLesson()">
+            🎓 Завершить урок
+        </button>
+    </div>
+</div>
+
+<!-- React and ReactDOM (production) -->
+<script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+
+<style>
+.spinner-border {
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    animation: spinner-border 0.75s linear infinite;
+    vertical-align: text-bottom;
+}
+@keyframes spinner-border {
+    to { transform: rotate(360deg); }
+}
+</style>
+<script>
+  const LESSON_ID = {{ lesson_id }}; // Теперь это глобальная переменная для JS
+</script>
+<script src="{{ url_for('static',filename='js/quizinit.js') }}"></script>
+{% endblock %}

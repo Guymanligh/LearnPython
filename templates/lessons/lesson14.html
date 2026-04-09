@@ -1,0 +1,223 @@
+{% extends "base.html" %}
+
+{% block title %}
+LearnPython
+{% endblock %}
+
+{% block link1 %}
+{{ url_for('home') }}
+{% endblock %}
+
+{% block link2 %}
+{{ url_for('lessons') }}
+{% endblock %}
+
+{% block link3 %}
+{{ url_for('interpreter') }}
+{% endblock %}
+
+{% block link4 %}
+{{ url_for('account') }}
+{% endblock %}
+
+{% block tillink1 %}
+Главная страница
+{% endblock %}
+
+{% block tillink2 %}
+Уроки
+{% endblock %}
+
+{% block tillink3 %}
+Интерпретатор
+{% endblock %}
+
+{% block tillink4 %}
+Аккаунт
+{% endblock %}
+
+{% block h1 %}
+14 урок
+{% endblock %}
+
+{% block p %}
+Принятие решений в Python
+{% endblock %}
+
+{% block main %}
+<div class="container my-4">
+    {% if completed %}
+    <div class="alert alert-success" role="alert">
+        ✅ Вы уже завершили этот урок! Результат: {{ score }}/{{ total }} ({{ (score/total*100)|round(1) }}%)
+    </div>
+    {% endif %}
+
+    <p class="lead">
+        В программировании часто нужно принимать решения в зависимости от условий. В Python для этого используются операторы <code>if</code>, <code>elif</code>, <code>else</code>, а также логические операции.
+    </p>
+
+    <!-- Карточка с условным оператором -->
+    <div class="card mb-4 border-primary">
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">🤔 Условный оператор if</h5>
+        </div>
+        <div class="card-body">
+            <p>Оператор <code>if</code> выполняет блок кода, только если условие истинно.</p>
+            <pre class="bg-body-tertiary p-2 rounded"><code>age = 18
+if age >= 18:
+    print("Вы совершеннолетний")</code></pre>
+            <p class="mt-2">Можно добавить <code>else</code> для альтернативного действия:</p>
+            <pre class="bg-body-tertiary p-2 rounded"><code>if age >= 18:
+    print("Вход разрешён")
+else:
+    print("Вход запрещён")</code></pre>
+            <p class="mt-2">Несколько условий проверяются с помощью <code>elif</code>:</p>
+            <pre class="bg-body-tertiary p-2 rounded"><code>score = 85
+if score >= 90:
+    grade = "A"
+elif score >= 75:
+    grade = "B"
+else:
+    grade = "C"</code></pre>
+        </div>
+    </div>
+
+    <!-- Логические операции -->
+    <div class="card mb-4 border-success">
+        <div class="card-header bg-success text-white">
+            <h5 class="mb-0">🧠 Логические операции</h5>
+        </div>
+        <div class="card-body">
+            <p>Логические операции позволяют комбинировать условия.</p>
+            <table class="table table-bordered">
+                <thead>
+                    <tr><th>Оператор</th><th>Описание</th><th>Пример</th><th>Результат</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><code>and</code></td><td>Истинно, если оба операнда истинны</td><td><code>(5 > 3) and (2 < 4)</code></td><td><code>True</code></td></tr>
+                    <tr><td><code>or</code></td><td>Истинно, если хотя бы один операнд истинен</td><td><code>(5 > 3) or (2 > 4)</code></td><td><code>True</code></td></tr>
+                    <tr><td><code>not</code></td><td>Отрицание</td><td><code>not (5 > 3)</code></td><td><code>False</code></td></tr>
+                </tbody>
+            </table>
+            <pre class="bg-body-tertiary p-2 rounded"><code># Пример с and
+age = 25
+has_license = True
+if age >= 18 and has_license:
+    print("Можно водить машину")
+
+# Пример с or
+day = "Saturday"
+if day == "Saturday" or day == "Sunday":
+    print("Выходной!")</code></pre>
+        </div>
+    </div>
+
+    <!-- Операции сравнения -->
+    <div class="card mb-4 border-warning">
+        <div class="card-header bg-warning text-dark">
+            <h5 class="mb-0">⚖️ Операции сравнения</h5>
+        </div>
+        <div class="card-body">
+            <p>Операторы сравнения возвращают <code>True</code> или <code>False</code>.</p>
+            <table class="table table-bordered">
+                <thead>
+                    <tr><th>Оператор</th><th>Значение</th><th>Пример</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><code>==</code></td><td>равно</td><td><code>5 == 5</code> → <code>True</code></td></tr>
+                    <tr><td><code>!=</code></td><td>не равно</td><td><code>5 != 3</code> → <code>True</code></td></tr>
+                    <tr><td><code>&lt;</code></td><td>меньше</td><td><code>3 &lt; 5</code> → <code>True</code></td></tr>
+                    <tr><td><code>&gt;</code></td><td>больше</td><td><code>5 &gt; 3</code> → <code>True</code></td></tr>
+                    <tr><td><code>&lt;=</code></td><td>меньше или равно</td><td><code>5 &lt;= 5</code> → <code>True</code></td></tr>
+                    <tr><td><code>&gt;=</code></td><td>больше или равно</td><td><code>5 &gt;= 3</code> → <code>True</code></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Проверка вхождения (in) -->
+    <div class="card mb-4 border-info">
+        <div class="card-header bg-info text-white">
+            <h5 class="mb-0">🔍 Проверка вхождения (оператор in)</h5>
+        </div>
+        <div class="card-body">
+            <p>Оператор <code>in</code> проверяет, содержится ли элемент в последовательности (строке, списке, кортеже).</p>
+            <pre class="bg-body-tertiary p-2 rounded"><code># Проверка в строке
+text = "Hello world"
+print('H' in text)   # True
+print('x' in text)   # False
+
+# Проверка в списке
+fruits = ['apple', 'banana', 'orange']
+print('banana' in fruits)  # True
+print('grape' in fruits)    # False
+
+# Проверка в словаре (по ключам)
+person = {'name': 'Alice', 'age': 30}
+print('name' in person)   # True
+print('city' in person)    # False</code></pre>
+        </div>
+    </div>
+
+    <!-- Примеры совпадений и комбинаций -->
+    <div class="card mb-4 border-secondary">
+        <div class="card-header bg-secondary text-white">
+            <h5 class="mb-0">🧪 Примеры совпадений</h5>
+        </div>
+        <div class="card-body">
+            <p>Часто используется комбинация <code>in</code> с условными операторами:</p>
+            <pre class="bg-body-tertiary p-2 rounded"><code># Проверка наличия подстроки
+message = "Ваш заказ подтверждён"
+if "подтверждён" in message:
+    print("Заказ успешно оформлен!")
+
+# Проверка нескольких вариантов
+color = "red"
+if color in ["red", "green", "blue"]:
+    print("Это основной цвет")</code></pre>
+        </div>
+    </div>
+
+    <!-- Квиз -->
+    <div class="my-5">
+        <h3 class="mb-4">🎮 Проверь свои знания!</h3>
+        <div id="quiz-root"></div>
+    </div>
+
+    <!-- ✅ Обновлённая кнопка: button с onclick -->
+    <div class="d-flex justify-content-end mt-4">
+        <button type="button"
+                class="btn btn-success btn-lg"
+                id="complete-lesson"
+                style="display: none;"
+                onclick="completeLesson()">
+            🎓 Завершить урок
+        </button>
+    </div>
+</div>
+
+<!-- React and ReactDOM -->
+<script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+
+<style>
+/* ✨ Стили для спиннера загрузки */
+.spinner-border {
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    animation: spinner-border 0.75s linear infinite;
+    vertical-align: text-bottom;
+}
+@keyframes spinner-border {
+    to { transform: rotate(360deg); }
+}
+</style>
+<script>
+  const LESSON_ID = {{ lesson_id }}; // Теперь это глобальная переменная для JS
+</script>
+<script src="{{ url_for('static',filename='js/quizinit.js') }}"></script>
+{% endblock %}

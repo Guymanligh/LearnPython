@@ -1,0 +1,202 @@
+{% extends "base.html" %}
+
+{% block title %}
+LearnPython
+{% endblock %}
+
+{% block link1 %}
+{{ url_for('home') }}
+{% endblock %}
+
+{% block link2 %}
+{{ url_for('lessons') }}
+{% endblock %}
+
+{% block link3 %}
+{{ url_for('interpreter') }}
+{% endblock %}
+
+{% block link4 %}
+{{ url_for('account') }}
+{% endblock %}
+
+{% block tillink1 %}
+Главная страница
+{% endblock %}
+
+{% block tillink2 %}
+Уроки
+{% endblock %}
+
+{% block tillink3 %}
+Интерпретатор
+{% endblock %}
+
+{% block tillink4 %}
+Аккаунт
+{% endblock %}
+
+{% block h1 %}
+25 урок
+{% endblock %}
+
+{% block p %}
+Ошибки и отладка в Python
+{% endblock %}
+
+{% block main %}
+<div class="container my-4">
+    {% if completed %}
+    <div class="alert alert-success" role="alert">
+        ✅ Вы уже завершили этот урок! Результат: {{ score }}/{{ total }} ({{ (score/total*100)|round(1) }}%)
+    </div>
+    {% endif %}
+
+    <p class="lead">
+        Ошибки (исключения) — неизбежная часть программирования. Python предоставляет мощные инструменты для их обработки и отладки кода.
+    </p>
+
+    <!-- Карточка: типы ошибок -->
+    <div class="card mb-4 border-primary shadow-sm">
+        <div class="card-header bg-primary text-white d-flex align-items-center">
+            <span class="fs-4 me-2">🐞</span>
+            <h5 class="mb-0">Типы ошибок</h5>
+        </div>
+        <div class="card-body">
+            <ul>
+                <li><strong>Синтаксические ошибки</strong> — возникают, когда код не соответствует правилам языка (например, забыто двоеточие).</li>
+                <li><strong>Исключения (ошибки времени выполнения)</strong> — возникают во время выполнения программы при корректном синтаксисе (например, деление на ноль).</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Карточка: try / except -->
+    <div class="card mb-4 border-success shadow-sm">
+        <div class="card-header bg-success text-white d-flex align-items-center">
+            <span class="fs-4 me-2">🛡️</span>
+            <h5 class="mb-0">Обработка исключений: try / except</h5>
+        </div>
+        <div class="card-body">
+            <pre class="bg-body-tertiary p-3 rounded"><code>try:
+    number = int(input("Введите число: "))
+    result = 10 / number
+    print("Результат:", result)
+except ZeroDivisionError:
+    print("Ошибка: деление на ноль!")
+except ValueError:
+    print("Ошибка: введено не число")</code></pre>
+            <p>Блок <code>try</code> содержит код, который может вызвать исключение. Если исключение возникает, выполнение переходит в соответствующий блок <code>except</code>.</p>
+        </div>
+    </div>
+
+    <!-- Карточка: else и finally -->
+    <div class="card mb-4 border-warning shadow-sm">
+        <div class="card-header bg-warning text-dark d-flex align-items-center">
+            <span class="fs-4 me-2">⚙️</span>
+            <h5 class="mb-0">Блоки else и finally</h5>
+        </div>
+        <div class="card-body">
+            <p><code>else</code> выполняется, если исключений не возникло.<br>
+            <code>finally</code> выполняется всегда, независимо от того, было исключение или нет (например, для закрытия файлов).</p>
+            <pre class="bg-body-tertiary p-3 rounded"><code>try:
+    f = open("file.txt")
+    data = f.read()
+except FileNotFoundError:
+    print("Файл не найден")
+else:
+    print("Файл прочитан успешно")
+finally:
+    f.close()  # выполнится в любом случае</code></pre>
+        </div>
+    </div>
+
+    <!-- Карточка: raise — поднятие исключений -->
+    <div class="card mb-4 border-info shadow-sm">
+        <div class="card-header bg-info text-white d-flex align-items-center">
+            <span class="fs-4 me-2">🚨</span>
+            <h5 class="mb-0">Поднятие исключений с raise</h5>
+        </div>
+        <div class="card-body">
+            <p>Можно самостоятельно вызвать исключение с помощью <code>raise</code>.</p>
+            <pre class="bg-body-tertiary p-3 rounded"><code>def withdraw(amount, balance):
+    if amount > balance:
+        raise ValueError("Недостаточно средств")
+    return balance - amount</code></pre>
+        </div>
+    </div>
+
+    <!-- Карточка: assert — проверка утверждений -->
+    <div class="card mb-4 border-secondary shadow-sm">
+        <div class="card-header bg-secondary text-white d-flex align-items-center">
+            <span class="fs-4 me-2">✅</span>
+            <h5 class="mb-0">Отладка с assert</h5>
+        </div>
+        <div class="card-body">
+            <p><code>assert</code> проверяет условие и, если оно ложно, вызывает исключение <code>AssertionError</code>. Удобно для отладки.</p>
+            <pre class="bg-body-tertiary p-3 rounded"><code>def divide(a, b):
+    assert b != 0, "Делитель не может быть нулём"
+    return a / b</code></pre>
+            <p>Можно отключить все assert, запустив Python с ключом <code>-O</code>.</p>
+        </div>
+    </div>
+
+    <!-- Карточка: отладка print -->
+    <div class="card mb-4 border-dark shadow-sm">
+        <div class="card-header bg-dark text-white d-flex align-items-center">
+            <span class="fs-4 me-2">🖨️</span>
+            <h5 class="mb-0">Отладка с помощью print</h5>
+        </div>
+        <div class="card-body">
+            <p>Самый простой способ отладки — выводить значения переменных в ключевых точках.</p>
+            <pre class="bg-body-tertiary p-3 rounded"><code>def factorial(n):
+    print(f"Вызов factorial с n={n}")
+    if n == 0:
+        return 1
+    result = n * factorial(n-1)
+    print(f"Возврат {result} для n={n}")
+    return result</code></pre>
+        </div>
+    </div>
+
+    <!-- Квиз -->
+    <div class="my-5">
+        <h3 class="mb-4">🎮 Проверь свои знания</h3>
+        <div id="quiz-root"></div>
+    </div>
+
+    <!-- Кнопка завершения урока -->
+    <div class="d-flex justify-content-end mt-4">
+        <button type="button"
+                class="btn btn-success btn-lg"
+                id="complete-lesson"
+                style="display: none;"
+                onclick="completeLesson()">
+            🎓 Завершить урок
+        </button>
+    </div>
+</div>
+
+<!-- React and ReactDOM (production) -->
+<script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+
+<style>
+.spinner-border {
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    animation: spinner-border 0.75s linear infinite;
+    vertical-align: text-bottom;
+}
+@keyframes spinner-border {
+    to { transform: rotate(360deg); }
+}
+</style>
+<script>
+  const LESSON_ID = {{ lesson_id }}; // Теперь это глобальная переменная для JS
+</script>
+<script src="{{ url_for('static',filename='js/quizinit.js') }}"></script>
+{% endblock %}

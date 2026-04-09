@@ -1,0 +1,131 @@
+{% extends "admin/base_admin.html" %}
+
+{% block admin_content %}
+<div class="card shadow-sm border-0">
+    <div class="card-header bg-body border-0 py-3">
+        <div class="d-flex justify-content-between align-items-center">
+            <div>
+                <h3 class="mb-0 fw-bold text-primary">Системные логи</h3>
+                <p class="mb-0 text-body opacity-75">Журнал событий и ошибок системы</p>
+            </div>
+            <div class="d-flex gap-2">
+                <div class="dropdown">
+                    <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                        <i class="fas fa-filter me-1"></i>Фильтр
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item active" href="#">Все уровни</a></li>
+                        <li><a class="dropdown-item" href="#">Только ошибки</a></li>
+                        <li><a class="dropdown-item" href="#">Только предупреждения</a></li>
+                        <li><a class="dropdown-item" href="#">Только информационные</a></li>
+                    </ul>
+                </div>
+                <button class="btn btn-sm btn-outline-primary">
+                    <i class="fas fa-redo me-1"></i>Обновить
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle">
+                <thead class="table-body">
+                    <tr>
+                        <th>Время</th>
+                        <th>Уровень</th>
+                        <th>Сообщение</th>
+                        <th>Действия</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for log in logs %}
+                    <tr class="
+                        {% if log.level == 'ERROR' %}table-danger
+                        {% elif log.level == 'WARNING' %}table-warning
+                        {% elif log.level == 'INFO' %}table-body
+                        {% endif %}">
+                        <td class="fw-monospace small">{{ log.time }}</td>
+                        <td>
+                            {% if log.level == 'ERROR' %}
+                            <span class="badge bg-danger">ERROR</span>
+                            {% elif log.level == 'WARNING' %}
+                            <span class="badge bg-warning text-dark">WARNING</span>
+                            {% elif log.level == 'INFO' %}
+                            <span class="badge bg-info text-dark">INFO</span>
+                            {% endif %}
+                        </td>
+                        <td class="fw-monospace">{{ log.message }}</td>
+                        <td>
+                            <button class="btn btn-sm btn-outline-secondary" title="Копировать">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="4" class="text-center py-5">
+                            <i class="fas fa-clipboard-list display-1 text-body opacity-50 mb-3"></i>
+                            <p class="lead text-body opacity-75">Логи отсутствуют</p>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="d-flex justify-content-between align-items-center mt-4">
+            <div class="small text-body opacity-75">
+                Показано 3 последних записи из 127
+            </div>
+            <nav>
+                <ul class="pagination mb-0">
+                    <li class="page-item disabled"><a class="page-link" href="#">Предыдущая</a></li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">Следующая</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="mt-4 p-3 bg-body rounded">
+            <h5 class="mb-3 fw-bold">Инструменты отладки</h5>
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <div class="card border-warning h-100">
+                        <div class="card-body">
+                            <h6 class="fw-bold text-warning mb-2">Ошибки за 24ч</h6>
+                            <div class="display-5 fw-bold">15</div>
+                            <div class="progress mt-2" style="height: 6px;">
+                                <div class="progress-bar bg-warning" role="progressbar" style="width: 65%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card border-info h-100">
+                        <div class="card-body">
+                            <h6 class="fw-bold text-info mb-2">Запросов в минуту</h6>
+                            <div class="display-5 fw-bold">124</div>
+                            <div class="progress mt-2" style="height: 6px;">
+                                <div class="progress-bar bg-info" role="progressbar" style="width: 45%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card border-success h-100">
+                        <div class="card-body">
+                            <h6 class="fw-bold text-success mb-2">Время ответа</h6>
+                            <div class="display-5 fw-bold">234ms</div>
+                            <div class="progress mt-2" style="height: 6px;">
+                                <div class="progress-bar bg-success" role="progressbar" style="width: 85%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

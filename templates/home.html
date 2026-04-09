@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+
+{% block title %}
+LearnPython
+{% endblock %}
+
+{% block link1 %}
+#
+{% endblock %}
+
+{% block link2 %}
+{{ url_for('lessons') }}
+{% endblock %}
+
+{% block link3 %}
+{{ url_for('interpreter') }}
+{% endblock %}
+
+{% block link4 %}
+{{ url_for('account') }}
+{% endblock %}
+
+{% block tillink1 %}
+{{ _t('nav_home') }}
+{% endblock %}
+
+{% block tillink2 %}
+{{ _t('nav_lessons') }}
+{% endblock %}
+
+{% block tillink3 %}
+{{ _t('nav_interpreter') }}
+{% endblock %}
+
+{% block tillink4 %}
+{{ _t('nav_account') }}
+{% endblock %}
+
+{% block h1 %}
+{{ _t('home_h1') }}
+{% endblock %}
+
+{% block p %}
+{{ _t('home_p') }}
+{% endblock %}
+
+{% block main %}
+<div class="container my-5">
+    <div class="row align-items-center">
+        <div class="col-lg-6">
+            <h2 class="display-5 fw-bold mb-4">{{ _t('home_why') }}</h2>
+            <ul class="list-unstyled">
+                <li class="mb-3">
+                    <i class="bi bi-check-circle-fill text-primary me-2"></i>{{ _t('home_li1') }}
+                </li>
+                <li class="mb-3">
+                    <i class="bi bi-check-circle-fill text-primary me-2"></i>
+                    <strong>{{ _t('home_li2') }}</strong> – {{ _t('home_li2p') }}
+                </li>
+                <li class="mb-3">
+                    <i class="bi bi-check-circle-fill text-primary me-2"></i>
+                    <strong>{{ _t('home_li3') }}</strong> – {{ _t('home_li3p') }}
+                </li>
+                <li class="mb-3">
+                    <i class="bi bi-check-circle-fill text-primary me-2"></i>
+                    <strong>{{ _t('home_li4') }}</strong>
+                </li>
+            </ul>
+            <a href="{{ url_for('lessons') }}" class="btn btn-primary btn-lg px-5 mt-3">{{ _t('home_btn_start') }}</a>
+        </div>
+        <div class="col-lg-6 text-center">
+            <img src="{{ url_for('static',filename='svg/logo.svg') }}" alt="LOGO">
+        </div>
+    </div>
+
+    <hr class="my-5">
+
+    <div class="row text-center">
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <div class="display-1">📚</div>
+                    <h4>{{ _t('home_cards_1') }}</h4>
+                    <p>{{ _t('home_cards_1p') }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <div class="display-1">💻</div>
+                    <h4>{{ _t('home_cards_2') }}</h4>
+                    <p>{{ _t('home_cards_2p') }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <div class="display-1">🏆</div>
+                    <h4>{{ _t('home_cards_3') }}</h4>
+                    <p>{{ _t('home_cards_3p') }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center mt-5">
+        <p class="lead">{{ _t('home_join') }}</p>
+        <a href="{{ url_for('lessons') }}" class="btn btn-outline-primary btn-lg">{{ _t('home_btn_lessons') }}</a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block title %}
+LearnPython
+{% endblock %}
+
+{% block link1 %}
+{{ url_for('home') }}
+{% endblock %}
+
+{% block link2 %}
+{{ url_for('lessons') }}
+{% endblock %}
+
+{% block link3 %}
+{{ url_for('interpreter') }}
+{% endblock %}
+
+{% block link4 %}
+{{ url_for('account') }}
+{% endblock %}
+
+{% block tillink1 %}{{ _t('nav_home') }}{% endblock %}
+{% block tillink2 %}{{ _t('nav_lessons') }}{% endblock %}
+{% block tillink3 %}{{ _t('nav_interpreter') }}{% endblock %}
+{% block tillink4 %}{{ _t('nav_account') }}{% endblock %}
+
+{% block main %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+            <div class="card shadow border-0 px-4 py-5">
+                <div class="card-body">
+                    <div class="text-center mb-4">
+                        <h3 class="fw-bold text-body">{{ _t('login_title') }}</h3>
+                        <p class="text-body opacity-75 small">{{ _t('login_sync') }}</p>
+                    </div>
+
+                    <div class="d-grid gap-2 mb-4">
+                        <a href="{{ url_for('login_oauth', name='google') }}" class="btn btn-outline-secondary py-2 d-flex align-items-center justify-content-center">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" width="18" class="me-2">
+                            <span class="text-body">{{ _t('login_google') }}</span>
+                        </a>
+                        <a href="{{ url_for('login_oauth', name='github') }}" class="btn btn-outline-secondary py-2 d-flex align-items-center justify-content-center">
+                            <i class="bi bi-github me-2 text-body"></i>
+                            <span class="text-body">{{ _t('login_github') }}</span>
+                        </a>
+                    </div>
+
+                    <div class="text-center my-3 text-body opacity-50 small">{{ _t('login_or') }}</div>
+
+                    <form action="{{ url_for('login') }}" method="POST" autocomplete="off">
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold text-body">Email</label>
+                            <input type="email" name="email" class="form-control" placeholder="example@mail.com" required autocomplete="off">
+                        </div>
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between">
+                                <label class="form-label small fw-bold text-body">{{ _t('login_password') }}</label>
+                                <a href="{{ url_for('forgot_password') }}" class="small text-decoration-none text-primary">{{ _t('login_forgot') }}</a>
+                            </div>
+                            <input type="password" name="password" id="loginPassword" class="form-control" placeholder="••••••••" required autocomplete="new-password">
+
+                            <div class="form-check mt-2">
+                                <input class="form-check-input" type="checkbox" id="showLoginPass" onclick="togglePassword('loginPassword')">
+                                <label class="form-check-label small text-body opacity-75" for="showLoginPass">
+                                    {{ _t('login_show_pass') }}
+                                </label>
+                            </div>
+                        </div>
+                        <div class="d-grid mt-4">
+                            <button type="submit" class="btn btn-primary py-2 fw-bold shadow-sm">{{ _t('login_btn') }}</button>
+                        </div>
+                    </form>
+
+                    <div class="text-center mt-4">
+                        <span class="text-body opacity-75 small">{{ _t('login_no_account') }}</span>
+                        <a href="{{ url_for('register') }}" class="small fw-bold text-primary text-decoration-none ms-1">{{ _t('login_create') }}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function togglePassword(inputId) {
+    var x = document.getElementById(inputId);
+    x.type = x.type === "password" ? "text" : "password";
+}
+</script>
+{% endblock %}

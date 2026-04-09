@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="{{ session.get('lang', 'ru') }}" data-bs-theme="auto">
+<head>
+    {% block head %}{% endblock %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cross-Origin-Embedder-Policy" content="credentialless">
+    <meta http-equiv="Cross-Origin-Opener-Policy" content="same-origin-allow-popups">
+    <link href="{{ url_for('static', filename='bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="shortcut icon" href="{{ url_for('static',filename='svg/favicon.svg') }}" type="image/x-icon">
+    <style>
+        .btn-outline-theme {
+          --bs-btn-color: var(--bs-body-color);
+          --bs-btn-border-color: var(--bs-body-color);
+          --bs-btn-hover-color: var(--bs-body-bg);
+          --bs-btn-hover-bg: var(--bs-body-color);
+          --bs-btn-hover-border-color: var(--bs-body-color);
+          --bs-btn-active-color: var(--bs-body-bg);
+          --bs-btn-active-bg: var(--bs-body-color);
+        }
+    </style>
+    <script>
+        // Ngrok free: без заголовка ngrok-skip-browser-warning отдаётся HTML-страница-предупреждение.
+        // Важно: нельзя делать { ...options.headers }, если headers — экземпляр Headers() (spread даёт {}).
+        (function () {
+            const originalFetch = window.fetch;
+            const SKIP = 'ngrok-skip-browser-warning';
+            const SKIP_VAL = 'true';
+
+            function injectSkip(init) {
+                if (!init) init = {};
+                var copy = Object.assign({}, init);
+                var h = copy.headers;
+                if (!h) {
+                    copy.headers = {};
+                    copy.headers[SKIP] = SKIP_VAL;
+                    return copy;
+                }
+                if (typeof Headers !== 'undefined' && h instanceof Headers) {
+                    var nh = new Headers(h);
+                    nh.set(SKIP, SKIP_VAL);
+                    copy.headers = nh;
+                    return copy;
+                }
+                copy.headers = Object.assign({}, h);
+                copy.headers[SKIP] = SKIP_VAL;
+                return copy;
+            }
+
+            window.fetch = function (input, init) {
+                if (typeof Request !== 'undefined' && input instanceof Request) {
+                    var hdrs = new Headers(input.headers);
+                    hdrs.set(SKIP, SKIP_VAL);
+                    input = new Request(input, { headers: hdrs });
+                    return originalFetch(input, init);
+                }
+                return originalFetch(input, injectSkip(init));
+            };
+        })();
+
+        document.addEventListener('DOMContentLoaded', function () {
+            fetch(window.location.href, { method: 'HEAD' });
+        });
+    </script>
+    <script>
+        (function () {
+            const theme = localStorage.getItem('theme') || 'dark';
+            document.documentElement.setAttribute('data-bs-theme', theme);
+            if (!localStorage.getItem('theme')) {
+                localStorage.setItem('theme', theme);
+            }
+        })();
+    </script>
+    <script>
+        if ('serviceWorker' in navigator) {
+          // Регистрируем через корень /sw.js, а не через /static/...
+          navigator.serviceWorker.register('/sw.js', { scope: '/' })
+        }
+    </script>
+
+    <style>
+        .brand-logo { font-weight: 400 !important; }
+
+        header {
+            position: relative;
+            z-index: 2000;
+        }
+
+        .nav-container {
+            position: relative;
+        }
+
+        .mobile-menu {
+            display: none;
+            background-color: var(--bs-body-bg);
+            border-bottom: 1px solid var(--bs-border-color);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        .mobile-menu.show {
+            display: block;
+        }
+
+        .mobile-menu a {
+            display: block;
+            padding: 1rem 1.5rem;
+            color: var(--bs-body-color);
+            text-decoration: none;
+            border-bottom: 1px solid var(--bs-border-color);
+            transition: background-color 0.2s;
+        }
+
+        .mobile-menu a:last-child {
+            border-bottom: none;
+        }
+
+        .mobile-menu a:hover {
+            background-color: var(--bs-secondary-bg);
+        }
+
+        .hamburger-btn {
+            background: none;
+            border: none;
+            padding: 0.5rem;
+            cursor: pointer;
+            color: var(--bs-body-color);
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+
+        .hamburger-btn:hover {
+            color: var(--bs-primary);
+        }
+
+        @media (max-width: 767.98px) {
+            .navbar .container-fluid {
+                padding-left: 0;
+                padding-right: 0;
+            }
+
+            .mobile-menu {
+                padding-left: 0;
+                padding-right: 0;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .nav-desktop-links {
+                display: flex !important;
+                align-items: center;
+                gap: 1.5rem;
+            }
+
+            .mobile-menu {
+                display: none !important;
+            }
+        }
+    </style>
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+    <div class="container py-3">
+        <header class="mb-4">
+            <div class="nav-container">
+                <nav class="navbar py-2 border-bottom">
+                    <div class="container-fluid d-flex justify-content-between align-items-center">
+                        <a href="/?t={{ cache_buster }}" class="navbar-brand fs-4 brand-logo m-0 px-2">
+                            LearnPython
+                        </a>
+
+                        <div class="d-flex align-items-center">
+                            <div class="d-none d-md-flex nav-desktop-links me-3">
+                                <a href="{{ self.link1() | add_cache_buster(cache_buster) }}" class="nav-link link-body-emphasis">{% block tillink1 %}{% endblock %}</a>
+                                <a href="{{ self.link2() | add_cache_buster(cache_buster) }}" class="nav-link link-body-emphasis">{% block tillink2 %}{% endblock %}</a>
+                                <a href="{{ self.link3() | add_cache_buster(cache_buster) }}" class="nav-link link-body-emphasis">{% block tillink3 %}{% endblock %}</a>
+                                <a href="{{ self.link4() | add_cache_buster(cache_buster) }}" class="nav-link link-body-emphasis">{% block tillink4 %}{% endblock %}</a>
+                                <div class="lang-switcher">
+                                    <a href="/set_language/ru" class="btn btn-sm btn-outline-theme">RU</a>
+                                    <a href="/set_language/kk" class="btn btn-sm btn-outline-theme">KZ</a>
+                                    <a href="/set_language/en" class="btn btn-sm btn-outline-theme">EN</a>
+                                </div>
+                            </div>
+
+
+                            <div id="theme-btn-container" class="d-none d-md-flex align-items-center">
+                            </div>
+
+                            <button class="hamburger-btn d-md-none ms-3 me-2" id="hamburger-toggle">
+                                <i class="bi bi-list"></i>
+                            </button>
+                        </div>
+                    </div>
+                </nav>
+
+                <div class="mobile-menu" id="mobile-menu">
+                    <a href="{{ self.link1() | add_cache_buster(cache_buster) }}">{{ self.tillink1() }}</a>
+                    <a href="{{ self.link2() | add_cache_buster(cache_buster) }}">{{ self.tillink2() }}</a>
+                    <a href="{{ self.link3() | add_cache_buster(cache_buster) }}">{{ self.tillink3() }}</a>
+                    <a href="{{ self.link4() | add_cache_buster(cache_buster) }}">{{ self.tillink4() }}</a>
+                    <a href="#">{{ _t('choose_lang') }}
+                        <span class="lang-switcher">
+                            <a href="/set_language/ru" class="btn btn-sm btn-outline-theme">RU</a>
+                            <a href="/set_language/kk" class="btn btn-sm btn-outline-theme">KZ</a>
+                            <a href="/set_language/en" class="btn btn-sm btn-outline-theme">EN</a>
+                        </span>
+                    </a>
+                    <a href="#" id="mobile-theme-toggle">{{ _t('change_theme') }}</a>
+                </div>
+            </div>
+
+            <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+                <h1 class="display-4 fw-normal text-body-emphasis">{% block h1 %}{% endblock %}</h1>
+                <p class="fs-5 text-body-secondary">{% block p %}{% endblock %}</p>
+            </div>
+        </header>
+
+        <main>
+            {% block main %}{% endblock %}
+        </main>
+
+        <footer class="pt-4 mt-5 border-top text-center">
+            <p class="text-body-secondary">&copy; {{ _t('app_name') }}. {{ _t('rights_reserved') }}</p>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static',filename='js/theme.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/headinit.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/auto_translator.js') }}?v={{ cache_buster }}"></script>
+</body>
+</html>

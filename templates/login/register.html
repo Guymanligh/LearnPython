@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+
+{% block title %}
+LearnPython
+{% endblock %}
+
+{% block link1 %}
+{{ url_for('home') }}
+{% endblock %}
+
+{% block link2 %}
+{{ url_for('lessons') }}
+{% endblock %}
+
+{% block link3 %}
+{{ url_for('interpreter') }}
+{% endblock %}
+
+{% block link4 %}
+{{ url_for('account') }}
+{% endblock %}
+
+{% block tillink1 %}{{ _t('nav_home') }}{% endblock %}
+{% block tillink2 %}{{ _t('nav_lessons') }}{% endblock %}
+{% block tillink3 %}{{ _t('nav_interpreter') }}{% endblock %}
+{% block tillink4 %}{{ _t('nav_account') }}{% endblock %}
+
+{% block main %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+            <div class="card shadow border-0 px-4 py-5">
+                <div class="card-body">
+                    <div class="text-center mb-4">
+                        <h3 class="fw-bold text-body">{{ _t('reg_title') }}</h3>
+                        <p class="text-body opacity-75 small">{{ _t('reg_subtitle') }}</p>
+                    </div>
+
+                    <!-- 🔔 FLASH-СООБЩЕНИЯ (важно!) -->
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                        {% if messages %}
+                            {% for category, message in messages %}
+                                <div class="alert alert-{{ 'danger' if category == 'error' or category == 'danger' else 'success' if category == 'success' else 'warning' if category == 'warning' else 'info' }} alert-dismissible fade show" role="alert">
+                                    {{ message }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+
+                    <!-- 📝 Форма регистрации -->
+                    <form method="POST">
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold text-body">Email</label>
+                            <input
+                                type="email"
+                                name="email"
+                                class="form-control"
+                                placeholder="example@gmail.com"
+                                required
+                            >
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold text-body">{{ _t('login_password') }}</label>
+                            <input
+                                type="password"
+                                name="password"
+                                class="form-control"
+                                placeholder="{{ _t('reg_min_chars') }}"
+                                required
+                            >
+                        </div>
+
+                        <div class="d-grid mt-4">
+                            <button type="submit" class="btn btn-primary py-2 fw-bold shadow-sm">
+                                {{ _t('reg_btn') }}
+                            </button>
+                        </div>
+                    </form>
+
+                    <div class="text-center mt-3">
+                        <p class="small text-body mb-0">
+                            {{ _t('reg_has_account') }} <a href="{{ url_for('login') }}" class="text-decoration-none">{{ _t('reg_login') }}</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- FontAwesome для иконок -->
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+<!-- Bootstrap JS (для закрытия alert) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+{% endblock %}

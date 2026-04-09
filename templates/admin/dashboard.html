@@ -1,0 +1,101 @@
+{% extends "admin/base_admin.html" %}
+
+{% block admin_content %}
+<div class="card shadow-sm border-0">
+    <div class="card-header bg-body border-0 py-3">
+        <h3 class="mb-0 fw-bold text-primary">Панель управления</h3>
+        <p class="mb-0 text-body opacity-75">Статистика и мониторинг системы</p>
+    </div>
+    <div class="card-body">
+        <div class="row g-4 mb-4">
+            <!-- Активные пользователи -->
+            <div class="col-md-4">
+                <div class="card border-primary h-100">
+                    <div class="card-body text-center p-4">
+                        <div class="display-4 fw-bold text-primary mb-2">{{ stats.active_users }}</div>
+                        <h5 class="mb-0">Активных пользователей</h5>
+                        <p class="text-body opacity-75 mb-0 small mt-1">За последний месяц</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Подтвержденные email -->
+            <div class="col-md-4">
+                <div class="card border-success h-100">
+                    <div class="card-body text-center p-4">
+                        <div class="display-4 fw-bold text-success mb-2">{{ stats.verified_users }}</div>
+                        <h5 class="mb-0">Подтвержденных email</h5>
+                        <p class="text-body opacity-75 mb-0 small mt-1">{{ (stats.verified_users/stats.active_users*100)|round(1) }}% от общего числа</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Завершенные уроки -->
+            <div class="col-md-4">
+                <div class="card border-info h-100">
+                    <div class="card-body text-center p-4">
+                        <div class="display-4 fw-bold text-info mb-2">{{ stats.completed_lessons }}</div>
+                        <h5 class="mb-0">Завершенных уроков</h5>
+                        <p class="text-body opacity-75 mb-0 small mt-1">Всего в системе</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-4 mb-4">
+            <!-- Google авторизация -->
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-header bg-body border-bottom">
+                        <h5 class="mb-0 fw-bold"><i class="fab fa-google text-danger me-2"></i>Авторизация через Google</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="fw-bold">{{ stats.google_users }}</span>
+                            <div class="progress w-50" style="height: 8px;">
+                                <div class="progress-bar bg-danger" role="progressbar" style="width: {{ (stats.google_users/stats.active_users*100)|int }}%"></div>
+                            </div>
+                        </div>
+                        <div class="text-center mt-3">
+                            <button class="btn btn-sm btn-outline-danger">Подробнее</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GitHub авторизация -->
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-header bg-body border-bottom">
+                        <h5 class="mb-0 fw-bold"><i class="fab fa-github text-dark me-2"></i>Авторизация через GitHub</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="fw-bold">{{ stats.github_users }}</span>
+                            <div class="progress w-50" style="height: 8px;">
+                                <div class="progress-bar bg-dark" role="progressbar" style="width: {{ (stats.github_users/stats.active_users*100)|int }}%"></div>
+                            </div>
+                        </div>
+                        <div class="text-center mt-3">
+                            <button class="btn btn-sm btn-outline-dark">Подробнее</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- График активности -->
+        <div class="card">
+            <div class="card-header bg-body border-bottom">
+                <h5 class="mb-0 fw-bold">Активность пользователей</h5>
+            </div>
+            <div class="card-body">
+                <div class="text-center py-5">
+                    <i class="fas fa-chart-line display-1 text-primary opacity-50 mb-3"></i>
+                    <p class="lead text-body opacity-75">График активности будет доступен в следующей версии</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

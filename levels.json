@@ -1,0 +1,202 @@
+{
+  "1": {
+    "name": { "ru": "Миссия 1: Проверка системы", "kk": "1-миссия: Жүйені тексеру", "en": "Mission 1: System Check" },
+    "description": { "ru": "Инициализация протоколов движения. Достижение зоны эвакуации (E). Направление по умолчанию — вправо. Использование `robot.move_forward()`.", "kk": "Қозғалыс хаттамаларының инициализациясы. Эвакуация аймағына (E) жету. Әдепкі бағыт — оң жақ. `robot.move_forward()` пайдалану.", "en": "Initializing movement protocols. Reach the evacuation zone (E). Default direction is right. Use `robot.move_forward()`." },
+    "xp": 100,
+    "map": { "width": 5, "height": 5, "walls": [], "buttons": [], "doors": [], "goal": [4, 0] },
+    "start": [0, 0],
+    "start_dir": 0,
+    "initial_code": "def run_protocol(robot):\n    # Проедьте 4 клетки вперед до выхода\n    pass\n",
+    "func_name": "run_protocol"
+  },
+  "2": {
+    "name": { "ru": "Миссия 2: Матрицы навигации", "kk": "2-миссия: Навигациялық матрицалар", "en": "Mission 2: Navigation Matrices" },
+    "description": { "ru": "Стены блокируют прямой путь. Используйте `robot.turn_left()`, `robot.turn_right()` и `robot.move_forward()` для навигации.", "kk": "Қабырғалар тіке жолды бөгеп тұр. Навигация үшін `robot.turn_left()`, `robot.turn_right()` және `robot.move_forward()` функцияларын қолданыңыз.", "en": "Walls block the direct path. Use `robot.turn_left()`, `robot.turn_right()`, and `robot.move_forward()` to navigate." },
+    "xp": 150,
+    "map": { "width": 5, "height": 5, "walls": [[2, 0], [2, 1], [2, 2]], "buttons": [], "doors": [], "goal": [4, 0] },
+    "start": [0, 0],
+    "start_dir": 0,
+    "initial_code": "def run_protocol(robot):\n    # Обойдите стену и доберитесь до зоны\n    pass\n",
+    "func_name": "run_protocol"
+  },
+  "3": {
+    "name": { "ru": "Миссия 3: Обход мер безопасности", "kk": "3-миссия: Қауіпсіздік шараларын айналып өту", "en": "Mission 3: Bypassing Security Measures" },
+    "description": { "ru": "Зона извлечения заблокирована дверью. Встаньте на кнопку и используйте `robot.interact()`, чтобы открыть ее, а затем доберитесь до зоны.", "kk": "Шығу аймағы есікпен бұғатталған. Түймеге тұрып, оны ашу үшін `robot.interact()` қолданыңыз, содан кейін аймаққа жетіңіз.", "en": "Extraction zone is blocked by a door. Step on the button and use `robot.interact()` to open it, then reach the zone." },
+    "xp": 200,
+    "map": { "width": 6, "height": 5, "walls": [[3, 0], [3, 1], [3, 3], [3, 4]], "buttons": [{ "pos": [1, 3], "link": 0 }], "doors": [{ "pos": [3, 2], "id": 0 }], "goal": [5, 2] },
+    "start": [0, 2],
+    "start_dir": 0,
+    "initial_code": "def run_protocol(robot):\n    # Дойдите до кнопки, нажмите interact(), затем идите к выходу\n    pass\n",
+    "func_name": "run_protocol"
+  },
+  "4": {
+    "name": { "ru": "Миссия 4: Обходной манёвр", "kk": "4-миссия: Айналып өту маневрі", "en": "Mission 4: Outflanking Maneuver" },
+    "description": { "ru": "Стены блокируют прямой путь. Используйте повороты, чтобы обойти их и добраться до выхода.", "kk": "Қабырғалар тіке жолды бөгеп тұр. Оларды айналып өтіп, шығуға жету үшін бұрылыстарды қолданыңыз.", "en": "Walls block the direct path. Use turns to go around them and reach the exit." },
+    "xp": 190,
+    "map": { "width": 7, "height": 7, "walls": [[2, 0], [2, 1], [2, 2], [2, 3], [3, 3], [4, 3], [5, 3]], "buttons": [], "doors": [], "goal": [6, 6] },
+    "start": [0, 0],
+    "start_dir": 0,
+    "initial_code": "def run_protocol(robot):\n    # Проложите маршрут к зоне эвакуации\n    pass\n",
+    "func_name": "run_protocol"
+  },
+  "5": {
+    "name": { "ru": "Миссия 5: Дверной код", "kk": "5-миссия: Есік коды", "en": "Mission 5: Door Code" },
+    "description": { "ru": "Дверь преграждает путь. Найдите кнопку и нажмите её, чтобы открыть дверь.", "kk": "Есік жолды бөгеп тұр. Түймені тауып, есікті ашу үшін оны басыңыз.", "en": "A door blocks the path. Find the button and press it to open the door." },
+    "xp": 200,
+    "map": { "width": 7, "height": 7, "walls": [[1, 3], [2, 3], [4, 3], [5, 3]], "buttons": [{ "pos": [1, 1], "link": 0 }], "doors": [{ "pos": [3, 3], "id": 0 }], "goal": [6, 6] },
+    "start": [0, 2],
+    "start_dir": 0,
+    "initial_code": "def run_protocol(robot):\n    # Проложите маршрут к зоне эвакуации\n    pass\n",
+    "func_name": "run_protocol"
+  },
+  "6": {
+    "name": { "ru": "Миссия 6: Два препятствия", "kk": "6-миссия: Екі кедергі", "en": "Mission 6: Two Obstacles" },
+    "description": { "ru": "Обойдите стены и используйте кнопку для открытия двери.", "kk": "Қабырғаларды айналып өтіп, есікті ашу үшін түймені қолданыңыз.", "en": "Go around the walls and use the button to open the door." },
+    "xp": 210,
+    "map": { "width": 8, "height": 8, "walls": [[2, 2], [2, 3], [3, 2], [3, 3], [5, 5], [5, 6], [6, 5], [6, 6]], "buttons": [{ "pos": [1, 1], "link": 0 }], "doors": [{ "pos": [5, 5], "id": 0 }], "goal": [7, 7] },
+    "start": [0, 0],
+    "start_dir": 0,
+    "initial_code": "def run_protocol(robot):\n    # Проложите маршрут к зоне эвакуации\n    pass\n",
+    "func_name": "run_protocol"
+  },
+  "7": {
+    "name": { "ru": "Миссия 7: Лабиринт", "kk": "7-миссия: Лабиринт", "en": "Mission 7: Labyrinth" },
+    "description": { "ru": "Проберитесь через лабиринт к выходу.", "kk": "Лабиринт арқылы шығуға жол табыңыз.", "en": "Make your way through the labyrinth to the exit." },
+    "xp": 220,
+    "map": { "width": 8, "height": 8, "walls": [[1, 1], [1, 2], [1, 3], [2, 1], [2, 3], [3, 1], [3, 2], [3, 3], [4, 4], [4, 5], [5, 4], [5, 5]], "buttons": [], "doors": [], "goal": [7, 7] },
+    "start": [0, 0],
+    "start_dir": 0,
+    "initial_code": "def run_protocol(robot):\n    # Проложите маршрут к зоне эвакуации\n    pass\n",
+    "func_name": "run_protocol"
+  },
+  "8": {
+    "name": { "ru": "Миссия 8: Секретная кнопка", "kk": "8-миссия: Құпия түйме", "en": "Mission 8: Secret Button" },
+    "description": { "ru": "Найдите скрытую кнопку и откройте дверь к выходу.", "kk": "Жасырын түймені тауып, шығуға апаратын есікті ашыңыз.", "en": "Find the hidden button and open the door to the exit." },
+    "xp": 230,
+    "map": { "width": 8, "height": 8, "walls": [[3, 0], [3, 1], [3, 2], [3, 4], [3, 5], [3, 6], [4, 3], [5, 3], [6, 3]], "buttons": [{ "pos": [6, 6], "link": 0 }], "doors": [{ "pos": [4, 3], "id": 0 }], "goal": [7, 7] },
+    "start": [0, 3],
+    "start_dir": 0,
+    "initial_code": "def run_protocol(robot):\n    # Проложите маршрут к зоне эвакуации\n    pass\n",
+    "func_name": "run_protocol"
+  },
+  "9": {
+    "name": { "ru": "Миссия 9: Тупик и выход", "kk": "9-миссия: Тығырық және шығу", "en": "Mission 9: Dead End and Exit" },
+    "description": { "ru": "Кажется, путь заблокирован, но кнопка где-то рядом.", "kk": "Жол бөгелген сияқты, бірақ түйме жақын жерде.", "en": "It seems the path is blocked, but the button is somewhere nearby." },
+    "xp": 240,
+    "map": { "width": 9, "height": 9, "walls": [[2, 2], [2, 3], [2, 4], [3, 2], [3, 4], [4, 2], [4, 3], [4, 4]], "buttons": [{ "pos": [7, 7], "link": 0 }], "doors": [{ "pos": [3, 3], "id": 0 }], "goal": [8, 8] },
+    "start": [0, 0],
+    "start_dir": 0,
+    "initial_code": "def run_protocol(robot):\n    # Проложите маршрут к зоне эвакуации\n    pass\n",
+    "func_name": "run_protocol"
+  },
+  "10": {
+    "name": { "ru": "Миссия 10: Две двери", "kk": "10-миссия: Екі есік", "en": "Mission 10: Two Doors" },
+    "description": { "ru": "Две двери нужно открыть двумя разными кнопками.", "kk": "Екі есікті екі түрлі түймемен ашу керек.", "en": "Two doors need to be opened with two different buttons." },
+    "xp": 250,
+    "map": { "width": 9, "height": 9, "walls": [[2, 2], [2, 3], [3, 2], [3, 3], [5, 5], [5, 6], [6, 5], [6, 6]], "buttons": [{ "pos": [0, 8], "link": 0 }, { "pos": [8, 0], "link": 1 }], "doors": [{ "pos": [2, 2], "id": 0 }, { "pos": [5, 5], "id": 1 }], "goal": [8, 8] },
+    "start": [0, 0],
+    "start_dir": 0,
+    "initial_code": "def run_protocol(robot):\n    # Проложите маршрут к зоне эвакуации\n    pass\n",
+    "func_name": "run_protocol"
+  },
+  "11": {
+    "name": { "ru": "Миссия 11: Перекрёсток", "kk": "11-миссия: Жол торабы", "en": "Mission 11: Crossroad" },
+    "description": { "ru": "Выберите правильный путь среди стен.", "kk": "Қабырғалар арасындағы дұрыс жолды таңдаңыз.", "en": "Choose the correct path among the walls." },
+    "xp": 260,
+    "map": { "width": 9, "height": 9, "walls": [[1, 4], [2, 4], [3, 4], [4, 1], [4, 2], [4, 3], [4, 5], [4, 6], [4, 7], [5, 4], [6, 4], [7, 4]], "buttons": [], "doors": [], "goal": [8, 8] },
+    "start": [0, 0],
+    "start_dir": 0,
+    "initial_code": "def run_protocol(robot):\n    # Проложите маршрут к зоне эвакуации\n    pass\n",
+    "func_name": "run_protocol"
+  },
+  "12": {
+    "name": { "ru": "Миссия 12: Ключ от всех дверей", "kk": "12-миссия: Барлық есіктердің кілті", "en": "Mission 12: Key to All Doors" },
+    "description": { "ru": "Одна кнопка открывает сразу две двери.", "kk": "Бір түйме бірден екі есікті ашады.", "en": "One button opens two doors at once." },
+    "xp": 270,
+    "map": { "width": 10, "height": 10, "walls": [[2, 2], [2, 3], [3, 2], [3, 3], [6, 6], [6, 7], [7, 6], [7, 7]], "buttons": [{ "pos": [0, 9], "link": 0 }], "doors": [{ "pos": [2, 2], "id": 0 }, { "pos": [6, 6], "id": 0 }], "goal": [9, 9] },
+    "start": [0, 0],
+    "start_dir": 0,
+    "initial_code": "def run_protocol(robot):\n    # Проложите маршрут к зоне эвакуации\n    pass\n",
+    "func_name": "run_protocol"
+  },
+  "13": {
+    "name": { "ru": "Миссия 13: Зигзаг", "kk": "13-миссия: Зигзаг", "en": "Mission 13: Zigzag" },
+    "description": { "ru": "Стены заставляют делать множество поворотов.", "kk": "Қабырғалар көптеген бұрылыстар жасауға мәжбүрлейді.", "en": "Walls force you to make many turns." },
+    "xp": 280,
+    "map": { "width": 10, "height": 10, "walls": [[1, 1], [1, 2], [2, 1], [2, 2], [3, 3], [3, 4], [4, 3], [4, 4], [5, 5], [5, 6], [6, 5], [6, 6], [7, 7], [7, 8], [8, 7], [8, 8]], "buttons": [], "doors": [], "goal": [9, 9] },
+    "start": [0, 0],
+    "start_dir": 0,
+    "initial_code": "def run_protocol(robot):\n    # Проложите маршрут к зоне эвакуации\n    pass\n",
+    "func_name": "run_protocol"
+  },
+  "14": {
+    "name": { "ru": "Миссия 14: Запертая комната", "kk": "14-миссия: Құлыпталған бөлме", "en": "Mission 14: Locked Room" },
+    "description": { "ru": "Откройте дверь кнопкой снаружи и войдите в комнату за целью.", "kk": "Сырттағы түймемен есікті ашып, мақсатқа жету үшін бөлмеге кіріңіз.", "en": "Open the door with a button from the outside and enter the room for the goal." },
+    "xp": 290,
+    "map": { "width": 10, "height": 10, "walls": [[2, 2], [3, 2], [5, 2], [2, 3], [2, 4], [2, 5], [3, 5], [4, 5], [5, 5], [5, 3], [5, 4]], "buttons": [{ "pos": [1, 1], "link": 0 }], "doors": [{ "pos": [4, 2], "id": 0 }], "goal": [3, 3] },
+    "start": [0, 0],
+    "start_dir": 0,
+    "initial_code": "def run_protocol(robot):\n    # Проложите маршрут к зоне эвакуации\n    pass\n",
+    "func_name": "run_protocol"
+  },
+  "15": {
+    "name": { "ru": "Миссия 15: Множественные кнопки", "kk": "15-миссия: Бірнеше түймелер", "en": "Mission 15: Multiple Buttons" },
+    "description": { "ru": "Три двери, три кнопки. Откройте все, чтобы добраться до цели.", "kk": "Үш есік, үш түйме. Мақсатқа жету үшін бәрін ашыңыз.", "en": "Three doors, three buttons. Open them all to reach the goal." },
+    "xp": 300,
+    "map": { "width": 11, "height": 11, "walls": [[1, 3], [2, 3], [3, 3], [4, 3], [6, 3], [7, 3], [8, 3], [9, 3], [1, 7], [2, 7], [3, 7], [4, 7], [6, 7], [7, 7], [8, 7], [9, 7], [9, 1], [9, 2], [9, 3], [9, 4], [9, 6], [9, 7], [9, 8], [9, 9]], "buttons": [{ "pos": [1, 1], "link": 0 }, { "pos": [10, 1], "link": 1 }, { "pos": [1, 10], "link": 2 }], "doors": [{ "pos": [5, 3], "id": 0 }, { "pos": [5, 7], "id": 1 }, { "pos": [9, 5], "id": 2 }], "goal": [10, 10] },
+    "start": [0, 0],
+    "start_dir": 0,
+    "initial_code": "def run_protocol(robot):\n    # Проложите маршрут к зоне эвакуации\n    pass\n",
+    "func_name": "run_protocol"
+  },
+  "16": {
+    "name": { "ru": "Миссия 16: Два замка", "kk": "16-миссия: Екі құлып", "en": "Mission 16: Two Locks" },
+    "description": { "ru": "Две двери, две кнопки. Найдите обе.", "kk": "Екі есік, екі түйме. Екеуін де табыңыз.", "en": "Two doors, two buttons. Find both." },
+    "xp": 310,
+    "map": { "width": 11, "height": 11, "walls": [[1, 3], [2, 3], [3, 3], [4, 3], [6, 3], [7, 3], [8, 3], [9, 3], [8, 4], [8, 5], [8, 7], [8, 8]], "buttons": [{ "pos": [1, 1], "link": 0 }, { "pos": [10, 10], "link": 1 }], "doors": [{ "pos": [5, 3], "id": 0 }, { "pos": [8, 6], "id": 1 }], "goal": [10, 9] },
+    "start": [0, 0],
+    "start_dir": 0,
+    "initial_code": "def run_protocol(robot):\n    # Проложите маршрут к зоне эвакуации\n    pass\n",
+    "func_name": "run_protocol"
+  },
+  "17": {
+    "name": { "ru": "Миссия 17: Коридоры", "kk": "17-миссия: Коридорлар", "en": "Mission 17: Corridors" },
+    "description": { "ru": "Извилистый путь через коридоры.", "kk": "Коридорлар арқылы ирелең жол.", "en": "A winding path through corridors." },
+    "xp": 320,
+    "map": { "width": 11, "height": 11, "walls": [[2, 2], [2, 3], [3, 2], [3, 3], [4, 4], [4, 5], [5, 4], [5, 5], [6, 6], [6, 7], [7, 6], [7, 7], [8, 8], [8, 9], [9, 8], [9, 9]], "buttons": [], "doors": [], "goal": [10, 10] },
+    "start": [0, 0],
+    "start_dir": 0,
+    "initial_code": "def run_protocol(robot):\n    # Проложите маршрут к зоне эвакуации\n    pass\n",
+    "func_name": "run_protocol"
+  },
+  "18": {
+    "name": { "ru": "Миссия 18: Замкнутое пространство", "kk": "18-миссия: Тұйықталған кеңістік", "en": "Mission 18: Enclosed Space" },
+    "description": { "ru": "Проникните в центр через дверь, нажав кнопку.", "kk": "Түймені басып, есік арқылы орталыққа өтіңіз.", "en": "Penetrate the center through the door by pressing the button." },
+    "xp": 330,
+    "map": { "width": 12, "height": 12, "walls": [[2, 2], [3, 2], [4, 2], [6, 2], [7, 2], [8, 2], [9, 2], [2, 3], [9, 3], [2, 4], [9, 4], [2, 5], [9, 5], [2, 6], [9, 6], [2, 7], [9, 7], [2, 8], [9, 8], [2, 9], [3, 9], [4, 9], [5, 9], [6, 9], [7, 9], [8, 9], [9, 9]], "buttons": [{ "pos": [1, 1], "link": 0 }], "doors": [{ "pos": [5, 2], "id": 0 }], "goal": [6, 6] },
+    "start": [0, 0],
+    "start_dir": 0,
+    "initial_code": "def run_protocol(robot):\n    # Проложите маршрут к зоне эвакуации\n    pass\n",
+    "func_name": "run_protocol"
+  },
+  "19": {
+    "name": { "ru": "Миссия 19: Перепутье", "kk": "19-миссия: Жол айырығы", "en": "Mission 19: Crossroads" },
+    "description": { "ru": "Выберите правильную последовательность кнопок.", "kk": "Түймелердің дұрыс ретін таңдаңыз.", "en": "Choose the correct sequence of buttons." },
+    "xp": 340,
+    "map": { "width": 12, "height": 12, "walls": [[1, 3], [2, 3], [3, 3], [4, 3], [6, 3], [7, 3], [8, 3], [9, 3], [10, 3], [1, 6], [2, 6], [3, 6], [4, 6], [6, 6], [7, 6], [8, 6], [9, 6], [10, 6], [1, 9], [2, 9], [3, 9], [4, 9], [6, 9], [7, 9], [8, 9], [9, 9], [10, 9]], "buttons": [{ "pos": [1, 1], "link": 0 }], "doors": [{ "pos": [5, 3], "id": 0 }, { "pos": [5, 6], "id": 0 }, { "pos": [5, 9], "id": 0 }], "goal": [11, 11] },
+    "start": [0, 0],
+    "start_dir": 0,
+    "initial_code": "def run_protocol(robot):\n    # Проложите маршрут к зоне эвакуации\n    pass\n",
+    "func_name": "run_protocol"
+  },
+  "20": {
+    "name": { "ru": "Миссия 20: Финальное испытание", "kk": "20-миссия: Финалдық сынақ", "en": "Mission 20: Final Challenge" },
+    "description": { "ru": "Самая сложная миссия: множество препятствий, дверей и кнопок.", "kk": "Ең қиын миссия: көптеген кедергілер, есіктер мен түймелер.", "en": "The most difficult mission: many obstacles, doors, and buttons." },
+    "xp": 350,
+    "map": { "width": 12, "height": 12, "walls": [[1, 2], [2, 2], [3, 2], [4, 2], [5, 2], [7, 2], [8, 2], [9, 2], [10, 2], [1, 5], [2, 5], [3, 5], [5, 5], [6, 5], [7, 5], [8, 5], [9, 5], [10, 5], [1, 8], [2, 8], [3, 8], [4, 8], [5, 8], [6, 8], [8, 8], [9, 8], [10, 8], [3, 3], [3, 4], [7, 6], [7, 7]], "buttons": [{ "pos": [1, 1], "link": 0 }, { "pos": [11, 11], "link": 1 }], "doors": [{ "pos": [6, 2], "id": 0 }, { "pos": [8, 8], "id": 1 }], "goal": [11, 10] },
+    "start": [0, 0],
+    "start_dir": 0,
+    "initial_code": "def run_protocol(robot):\n    # Проложите маршрут к зоне эвакуации\n    pass\n",
+    "func_name": "run_protocol"
+  }
+}

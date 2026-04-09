@@ -1,0 +1,190 @@
+{% extends "base.html" %}
+
+{% block link1 %}{{ url_for('home') }}{% endblock %}
+{% block link2 %}{{ url_for('lessons') }}{% endblock %}
+{% block link3 %}{{ url_for('interpreter') }}{% endblock %}
+{% block link4 %}{{ url_for('account') }}{% endblock %}
+
+{% block tillink1 %}{{ _t('nav_home') }}{% endblock %}
+{% block tillink2 %}{{ _t('nav_lessons') }}{% endblock %}
+{% block tillink3 %}{{ _t('nav_interpreter') }}{% endblock %}
+{% block tillink4 %}{{ _t('nav_account') }}{% endblock %}
+
+{% block title %}LearnPython{% endblock %}
+
+{% block main %}
+<style>
+    body {
+        background-color: #050508 !important;
+        background-image:
+            radial-gradient(circle at 15% 50%, rgba(0, 255, 255, 0.05), transparent 25%),
+            radial-gradient(circle at 85% 30%, rgba(255, 0, 255, 0.05), transparent 25%);
+        color: #e0e0e0;
+    }
+
+    /* Скрыть переключатель темы, так как игра только темная */
+    #theme-btn-container,
+    #mobile-theme-toggle {
+        display: none !important;
+    }
+
+    .glass-card {
+        background: rgba(15, 20, 30, 0.6);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(0, 255, 255, 0.15);
+        border-radius: 16px;
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+        transition: all 0.3s ease;
+    }
+
+    .glass-card:hover {
+        border-color: rgba(0, 255, 255, 0.5);
+        box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+        transform: translateY(-5px);
+    }
+
+    .neon-text-cyan {
+        color: #00ffff;
+        text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+    }
+
+    .neon-text-magenta {
+        color: #e94560;
+        text-shadow: 0 0 10px rgba(233, 69, 96, 0.5);
+    }
+
+    .terminal-btn {
+        background: transparent;
+        border: 1px solid #00ffff;
+        color: #00ffff;
+        border-radius: 4px;
+        position: relative;
+        overflow: hidden;
+        transition: 0.3s;
+    }
+
+    .terminal-btn:hover {
+        background: rgba(0, 255, 255, 0.1);
+        color: #fff;
+        box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
+    }
+
+    .terminal-btn-success {
+        border-color: #28a745;
+        color: #28a745;
+    }
+
+    .terminal-btn-success:hover {
+        background: rgba(40, 167, 69, 0.1);
+        color: #fff;
+        box-shadow: 0 0 15px rgba(40, 167, 69, 0.4);
+    }
+
+    .completed-badge {
+        background: rgba(40, 167, 69, 0.2);
+        color: #28a745;
+        border: 1px solid #28a745;
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 0.8rem;
+        letter-spacing: 1px;
+    }
+</style>
+
+<div class="container-fluid bg-transparent min-vh-100 py-5">
+    <div class="container">
+        <!-- Заголовок -->
+        <div class="text-center mb-5">
+            <h1 class="display-3 fw-bold neon-text-cyan mb-3">
+                <i class="bi bi-cpu me-3"></i>{{ _t('game_system') }}
+            </h1>
+            <p class="lead text-secondary mx-auto" style="max-width: 600px;">
+                {{ _t('game_subtitle') }}
+            </p>
+            <div class="d-inline-flex flex-column align-items-center gap-3 mt-4 glass-card p-4">
+                <div class="d-flex align-items-center gap-3">
+                    <i class="bi bi-lightning-charge-fill neon-text-cyan fs-3"></i>
+                    <span class="fs-4 fw-bold">{{ _t('game_uptime') }} <span class="neon-text-magenta">{{ total_xp }}</span></span>
+                </div>
+
+                <!-- Форма полного сброса прогресса -->
+                <form action="{{ url_for('game_reset') }}" method="POST" class="m-0 w-100 js-confirm-form"
+                    data-confirm="{{ _t('game_reset_confirm') }}">
+                    <button type="submit" class="btn btn-outline-danger btn-sm w-100"><i
+                            class="bi bi-exclamation-triangle-fill me-1"></i> {{ _t('game_reset_btn') }}</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Сетка миссий -->
+        <div class="row g-4 justify-content-center">
+            {% for level in levels %}
+            <div class="col-md-6 col-lg-4">
+                <div class="glass-card h-100 p-4 d-flex flex-column position-relative overflow-hidden">
+                    <!-- Декоративные уголки -->
+                    <div class="position-absolute top-0 start-0 border-top border-start border-info opacity-50"
+                        style="width: 20px; height: 20px;"></div>
+                    <div class="position-absolute bottom-0 end-0 border-bottom border-end border-info opacity-50"
+                        style="width: 20px; height: 20px;"></div>
+
+                    <div class="d-flex justify-content-between align-items-start mb-3">
+                        <div class="d-flex align-items-center gap-2">
+                            <i
+                                class="bi bi-hdd-network fs-3 {% if level.completed %}text-success{% else %}neon-text-cyan{% endif %}"></i>
+                            <h5 class="mb-0 fw-bold text-light">{{ level.name }}</h5>
+                        </div>
+                        {% if level.completed %}
+                        <span class="completed-badge"><i class="bi bi-check2-all me-1"></i>{{ _t('game_hacked') }}</span>
+                        {% endif %}
+                    </div>
+
+                    <p class="text-secondary small mb-4 flex-grow-1">{{ level.description }}</p>
+
+                    <div class="d-flex justify-content-between align-items-end mt-4">
+                        <span class="text-secondary fw-bold small">
+                            <i class="bi bi-chevron-right neon-text-magenta"></i> +{{ level.xp }} XP
+                        </span>
+
+                        {% if level.completed %}
+                        <a href="{{ url_for('game_level', level_id=level.id) }}"
+                            class="btn terminal-btn terminal-btn-success px-4 py-2 fw-medium text-uppercase small">
+                            {{ _t('game_repeat') }}
+                        </a>
+                        {% elif level.locked %}
+                        <button class="btn btn-outline-secondary px-4 py-2 fw-medium text-uppercase small" disabled>
+                            {{ _t('game_blocked') }}
+                        </button>
+                        {% else %}
+                        <a href="{{ url_for('game_level', level_id=level.id) }}"
+                            class="btn terminal-btn px-4 py-2 fw-medium text-uppercase small">
+                            {{ _t('game_connect') }}
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Подсказка для незарегистрированных -->
+        {% if not is_authenticated() %}
+        <div class="glass-card mt-5 text-center p-4 mx-auto border-danger" style="max-width: 800px;">
+            <i class="bi bi-shield-lock-fill fs-3 text-danger d-block mb-2"></i>
+            <span class="text-light">{{ _t('game_guest_warn') }}</span><br>
+            <a href="{{ url_for('login') }}" class="btn btn-outline-danger mt-3 px-4">{{ _t('game_identify') }}</a>
+        </div>
+        {% endif %}
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.js-confirm-form').forEach(function(form) {
+                form.addEventListener('submit', function(e) {
+                    if (!confirm(this.getAttribute('data-confirm'))) {
+                        e.preventDefault();
+                    }
+                });
+            });
+        });
+    </script>
+{% endblock %}

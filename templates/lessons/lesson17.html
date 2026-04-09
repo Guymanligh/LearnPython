@@ -1,0 +1,170 @@
+{% extends "base.html" %}
+
+{% block title %}
+LearnPython
+{% endblock %}
+
+{% block link1 %}
+{{ url_for('home') }}
+{% endblock %}
+
+{% block link2 %}
+{{ url_for('lessons') }}
+{% endblock %}
+
+{% block link3 %}
+{{ url_for('interpreter') }}
+{% endblock %}
+
+{% block link4 %}
+{{ url_for('account') }}
+{% endblock %}
+
+{% block tillink1 %}
+Главная страница
+{% endblock %}
+
+{% block tillink2 %}
+Уроки
+{% endblock %}
+
+{% block tillink3 %}
+Интерпретатор
+{% endblock %}
+
+{% block tillink4 %}
+Аккаунт
+{% endblock %}
+
+{% block h1 %}
+17 урок
+{% endblock %}
+
+{% block p %}
+Цикл while
+{% endblock %}
+
+{% block main %}
+<div class="container my-4">
+    {% if completed %}
+    <div class="alert alert-success" role="alert">
+        ✅ Вы уже завершили этот урок! Результат: {{ score }}/{{ total }} ({{ (score/total*100)|round(1) }}%)
+    </div>
+    {% endif %}
+
+    <p class="lead">
+        Цикл <code>while</code> — самый универсальный цикл в Python. Он выполняет блок кода снова и снова, пока условие остаётся истинным.
+    </p>
+
+    <!-- Карточка: синтаксис while -->
+    <div class="card mb-4 border-primary shadow-sm">
+        <div class="card-header bg-primary text-white d-flex align-items-center">
+            <span class="fs-4 me-2">⚙️</span>
+            <h5 class="mb-0">Синтаксис while</h5>
+        </div>
+        <div class="card-body">
+            <pre class="bg-body-tertiary p-3 rounded"><code>while условие:
+    # тело цикла
+    # изменяем переменные, влияющие на условие</code></pre>
+            <p>Условие проверяется перед каждой итерацией. Как только оно становится ложным, цикл завершается.</p>
+        </div>
+    </div>
+
+    <!-- Карточка: простой счётчик -->
+    <div class="card mb-4 border-success shadow-sm">
+        <div class="card-header bg-success text-white d-flex align-items-center">
+            <span class="fs-4 me-2">🔢</span>
+            <h5 class="mb-0">Пример: счётчик</h5>
+        </div>
+        <div class="card-body">
+            <pre class="bg-body-tertiary p-3 rounded"><code>count = 1
+while count <= 5:
+    print(f"Итерация {count}")
+    count += 1   # обязательно увеличиваем счётчик</code></pre>
+            <p>Вывод:</p>
+            <pre class="bg-body-tertiary p-3 rounded"><code>Итерация 1
+Итерация 2
+Итерация 3
+Итерация 4
+Итерация 5</code></pre>
+            <p class="text-muted small">Если забыть изменить count, цикл станет бесконечным.</p>
+        </div>
+    </div>
+
+    <!-- Карточка: while с условием ввода -->
+    <div class="card mb-4 border-warning shadow-sm">
+        <div class="card-header bg-warning text-dark d-flex align-items-center">
+            <span class="fs-4 me-2">⌨️</span>
+            <h5 class="mb-0">Пример: пока пользователь не введёт 'стоп'</h5>
+        </div>
+        <div class="card-body">
+            <pre class="bg-body-tertiary p-3 rounded"><code>ответ = ''
+while ответ != 'стоп':
+    ответ = input("Скажи что-нибудь (или 'стоп' для выхода): ")
+    if ответ != 'стоп':
+        print(f"Ты сказал: {ответ}")</code></pre>
+            <p>Цикл продолжается, пока пользователь не введёт "стоп".</p>
+        </div>
+    </div>
+
+    <!-- Карточка: вложенные while -->
+    <div class="card mb-4 border-info shadow-sm">
+        <div class="card-header bg-info text-white d-flex align-items-center">
+            <span class="fs-4 me-2">🔀</span>
+            <h5 class="mb-0">Вложенные циклы while</h5>
+        </div>
+        <div class="card-body">
+            <pre class="bg-body-tertiary p-3 rounded"><code>i = 1
+while i <= 3:
+    j = 1
+    while j <= 3:
+        print(f"{i} * {j} = {i*j}")
+        j += 1
+    i += 1
+    print("---")</code></pre>
+            <p>Такой код выводит таблицу умножения для чисел 1–3.</p>
+        </div>
+    </div>
+
+    <!-- Квиз -->
+    <div class="my-5">
+        <h3 class="mb-4">🎮 Проверь свои знания о while</h3>
+        <div id="quiz-root"></div>
+    </div>
+
+    <!-- Кнопка завершения урока -->
+    <div class="d-flex justify-content-end mt-4">
+        <button type="button"
+                class="btn btn-success btn-lg"
+                id="complete-lesson"
+                style="display: none;"
+                onclick="completeLesson()">
+            🎓 Завершить урок
+        </button>
+    </div>
+</div>
+
+<!-- React and ReactDOM (production) -->
+<script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+
+<style>
+.spinner-border {
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    animation: spinner-border 0.75s linear infinite;
+    vertical-align: text-bottom;
+}
+@keyframes spinner-border {
+    to { transform: rotate(360deg); }
+}
+</style>
+<script>
+  const LESSON_ID = {{ lesson_id }}; // Теперь это глобальная переменная для JS
+</script>
+<script src="{{ url_for('static',filename='js/quizinit.js') }}"></script>
+{% endblock %}

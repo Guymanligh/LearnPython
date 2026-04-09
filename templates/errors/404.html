@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+
+{% block title %}
+LearnPython
+{% endblock %}
+
+{% block link1 %}
+{{ url_for('home') }}
+{% endblock %}
+
+{% block link2 %}
+{{ url_for('lessons') }}
+{% endblock %}
+
+{% block link3 %}
+{{ url_for('interpreter') }}
+{% endblock %}
+
+{% block link4 %}
+{{ url_for('account') }}
+{% endblock %}
+
+{% block tillink1 %}{{ _t('nav_home') }}{% endblock %}
+{% block tillink2 %}{{ _t('nav_lessons') }}{% endblock %}
+{% block tillink3 %}{{ _t('nav_interpreter') }}{% endblock %}
+{% block tillink4 %}{{ _t('nav_account') }}{% endblock %}
+
+{% block main %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 text-center">
+            <div class="display-1 text-primary fw-bold mb-4">404</div>
+            <h1 class="display-5 fw-bold mb-4">{{ _t('err_404_title') }}</h1>
+            <p class="lead text-body opacity-75 mb-5">
+                {{ _t('err_404_text') }}<br>
+                {{ _t('err_404_text2') }}
+            </p>
+            
+            <div class="d-flex flex-column flex-md-row justify-content-center gap-3 mb-5">
+                <a href="{{ url_for('home') }}" class="btn btn-primary px-4 py-2">
+                    <i class="fas fa-home me-2"></i>{{ _t('err_to_home') }}
+                </a>
+                <a href="{{ url_for('lessons') }}" class="btn btn-outline-primary px-4 py-2">
+                    <i class="fas fa-book me-2"></i>{{ _t('err_to_lessons') }}
+                </a>
+                <a href="{{ url_for('account') if session.user_id else url_for('login') }}" class="btn btn-outline-secondary px-4 py-2">
+                    <i class="fas fa-user me-2"></i>{{ _t('err_cabinet') if session.user_id else _t('err_login_btn') }}
+                </a>
+            </div>
+            
+            <div class="mt-5 p-4 bg-body rounded">
+                <h5 class="mb-3"><i class="fas fa-lightbulb text-warning me-2"></i>{{ _t('err_tips_title') }}</h5>
+                <ul class="text-start mx-auto" style="max-width: 500px;">
+                    <li>{{ _t('err_tip1') }}</li>
+                    <li>{{ _t('err_tip2') }}</li>
+                    <li>{{ _t('err_tip3') }}</li>
+                    <li>{{ _t('err_tip4') }}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-6">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body text-center">
+                    <div class="mb-3">
+                        <i class="fas fa-robot display-4 text-primary opacity-75"></i>
+                    </div>
+                    <p class="mb-0 text-body opacity-75">
+                        {{ _t('err_progress_saved') }}
+                    </p>
+                    <div class="mt-2">
+                        <span class="badge bg-primary">XP: {{ experience }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .btn {
+        border-radius: 50px !important;
+        font-weight: 500;
+        padding: 0.75rem 1.5rem !important;
+        transition: all 0.3s ease;
+    }
+    .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(74, 107, 255, 0.3);
+    }
+    .card {
+        border-radius: 15px !important;
+        transition: transform 0.3s ease;
+    }
+    .card:hover {
+        transform: translateY(-3px);
+    }
+    .display-1 {
+        font-size: 6rem;
+        line-height: 1;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    }
+    @media (max-width: 768px) {
+        .display-1 {
+            font-size: 4rem;
+        }
+    }
+</style>
+
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+{% endblock %}

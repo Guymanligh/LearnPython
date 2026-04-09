@@ -1,0 +1,199 @@
+{% extends "base.html" %}
+
+{% block title %}
+LearnPython
+{% endblock %}
+
+{% block link1 %}
+{{ url_for('home') }}
+{% endblock %}
+
+{% block link2 %}
+{{ url_for('lessons') }}
+{% endblock %}
+
+{% block link3 %}
+{{ url_for('interpreter') }}
+{% endblock %}
+
+{% block link4 %}
+{{ url_for('account') }}
+{% endblock %}
+
+{% block tillink1 %}
+Главная страница
+{% endblock %}
+
+{% block tillink2 %}
+Уроки
+{% endblock %}
+
+{% block tillink3 %}
+Интерпретатор
+{% endblock %}
+
+{% block tillink4 %}
+Аккаунт
+{% endblock %}
+
+{% block h1 %}
+21 урок
+{% endblock %}
+
+{% block p %}
+Функции в Python
+{% endblock %}
+
+{% block main %}
+<div class="container my-4">
+    {% if completed %}
+    <div class="alert alert-success" role="alert">
+        ✅ Вы уже завершили этот урок! Результат: {{ score }}/{{ total }} ({{ (score/total*100)|round(1) }}%)
+    </div>
+    {% endif %}
+
+    <p class="lead">
+        Функции — это многократно используемые блоки кода, которые выполняют определённую задачу. 
+        Они помогают избежать повторений, упрощают чтение и поддержку программы.
+    </p>
+
+    <!-- Карточка: что такое функция -->
+    <div class="card mb-4 border-primary shadow-sm">
+        <div class="card-header bg-primary text-white d-flex align-items-center">
+            <span class="fs-4 me-2">🔧</span>
+            <h5 class="mb-0">Что такое функция?</h5>
+        </div>
+        <div class="card-body">
+            <p>Функция — это именованный блок кода, который можно вызывать по имени. Она может принимать входные данные (параметры) и возвращать результат.</p>
+            <p><strong>Зачем нужны функции?</strong></p>
+            <ul>
+                <li>Избегают повторения кода (DRY — Don't Repeat Yourself).</li>
+                <li>Упрощают отладку и тестирование.</li>
+                <li>Делают код более структурированным и читаемым.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Карточка: определение функции -->
+    <div class="card mb-4 border-success shadow-sm">
+        <div class="card-header bg-success text-white d-flex align-items-center">
+            <span class="fs-4 me-2">📝</span>
+            <h5 class="mb-0">Определение функции (def)</h5>
+        </div>
+        <div class="card-body">
+            <p>Функция определяется с помощью ключевого слова <code>def</code>, затем идёт имя функции, круглые скобки с параметрами и двоеточие. Тело функции пишется с отступом.</p>
+            <pre class="bg-body-tertiary p-3 rounded"><code>def greet():
+    print("Привет, мир!")
+
+# Вызов функции
+greet()  # Выведет: Привет, мир!</code></pre>
+        </div>
+    </div>
+
+    <!-- Карточка: параметры и аргументы -->
+    <div class="card mb-4 border-warning shadow-sm">
+        <div class="card-header bg-warning text-dark d-flex align-items-center">
+            <span class="fs-4 me-2">📥</span>
+            <h5 class="mb-0">Параметры и аргументы</h5>
+        </div>
+        <div class="card-body">
+            <p>Функция может принимать параметры — переменные, которые получают значения при вызове. Эти значения называются аргументами.</p>
+            <pre class="bg-body-tertiary p-3 rounded"><code>def greet_user(name):
+    print(f"Привет, {name}!")
+
+greet_user("Анна")  # Привет, Анна!</code></pre>
+        </div>
+    </div>
+
+    <!-- Карточка: возврат значения -->
+    <div class="card mb-4 border-info shadow-sm">
+        <div class="card-header bg-info text-white d-flex align-items-center">
+            <span class="fs-4 me-2">📤</span>
+            <h5 class="mb-0">Возврат значения (return)</h5>
+        </div>
+        <div class="card-body">
+            <p>Функция может возвращать результат с помощью <code>return</code>. После <code>return</code> выполнение функции прекращается.</p>
+            <pre class="bg-body-tertiary p-3 rounded"><code>def add(a, b):
+    return a + b
+
+result = add(5, 3)
+print(result)  # 8</code></pre>
+            <p class="mb-0 text-muted small">Если <code>return</code> не указан, функция возвращает <code>None</code>.</p>
+        </div>
+    </div>
+
+    <!-- Карточка: локальные переменные -->
+    <div class="card mb-4 border-secondary shadow-sm">
+        <div class="card-header bg-secondary text-white d-flex align-items-center">
+            <span class="fs-4 me-2">🔒</span>
+            <h5 class="mb-0">Локальные переменные</h5>
+        </div>
+        <div class="card-body">
+            <p>Переменные, определённые внутри функции, называются локальными. Они доступны только внутри этой функции и не видны снаружи.</p>
+            <pre class="bg-body-tertiary p-3 rounded"><code>def my_func():
+    x = 10  # локальная переменная
+    print(x)
+
+my_func()   # 10
+# print(x)  # Ошибка: name 'x' is not defined</code></pre>
+        </div>
+    </div>
+
+    <!-- Карточка: параметры по умолчанию -->
+    <div class="card mb-4 border-dark shadow-sm">
+        <div class="card-header bg-dark text-white d-flex align-items-center">
+            <span class="fs-4 me-2">⚙️</span>
+            <h5 class="mb-0">Параметры по умолчанию</h5>
+        </div>
+        <div class="card-body">
+            <p>Можно задать значение параметра по умолчанию. Если при вызове аргумент не передан, используется значение по умолчанию.</p>
+            <pre class="bg-body-tertiary p-3 rounded"><code>def greet(name="гость"):
+    print(f"Привет, {name}!")
+
+greet("Анна")   # Привет, Анна!
+greet()         # Привет, гость!</code></pre>
+        </div>
+    </div>
+
+    <!-- Квиз -->
+    <div class="my-5">
+        <h3 class="mb-4">🎮 Проверь свои знания о функциях</h3>
+        <div id="quiz-root"></div>
+    </div>
+
+    <!-- Кнопка завершения урока -->
+    <div class="d-flex justify-content-end mt-4">
+        <button type="button"
+                class="btn btn-success btn-lg"
+                id="complete-lesson"
+                style="display: none;"
+                onclick="completeLesson()">
+            🎓 Завершить урок
+        </button>
+    </div>
+</div>
+
+<!-- React and ReactDOM (production) -->
+<script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+
+<style>
+.spinner-border {
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    animation: spinner-border 0.75s linear infinite;
+    vertical-align: text-bottom;
+}
+@keyframes spinner-border {
+    to { transform: rotate(360deg); }
+}
+</style>
+<script>
+  const LESSON_ID = {{ lesson_id }}; // Теперь это глобальная переменная для JS
+</script>
+<script src="{{ url_for('static',filename='js/quizinit.js') }}"></script>
+{% endblock %}

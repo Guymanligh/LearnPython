@@ -1,0 +1,266 @@
+{% extends "base.html" %}
+
+{% block title %}Панель учителя — LearnPython{% endblock %}
+
+{% block link1 %}{{ url_for('home') }}{% endblock %}
+{% block link2 %}{{ url_for('lessons') }}{% endblock %}
+{% block link3 %}{{ url_for('interpreter') }}{% endblock %}
+{% block link4 %}{{ url_for('account') }}{% endblock %}
+
+{% block tillink1 %}{{ _t('nav_home') }}{% endblock %}
+{% block tillink2 %}{{ _t('nav_lessons') }}{% endblock %}
+{% block tillink3 %}{{ _t('nav_interpreter') }}{% endblock %}
+{% block tillink4 %}{{ _t('nav_account') }}{% endblock %}
+
+{% block main %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-12">
+            <div class="card shadow-sm border-0 mb-4">
+                <div class="card-body p-4 p-md-5">
+                    <div class="d-flex align-items-center mb-4">
+                        <div class="flex-shrink-0">
+                            <div class="bg-warning text-dark rounded-circle d-flex align-items-center justify-content-center"
+                                style="width: 64px; height: 64px;">
+                                <i class="bi bi-mortarboard fs-2"></i>
+                            </div>
+                        </div>
+                        <div class="ms-3">
+                            <h2 class="fw-bold mb-1 text-body">{{ _t('teacher_panel_title') }}</h2>
+                            <span class="text-secondary">{{ teacher.full_name }} · {{ teacher.school }}</span>
+                        </div>
+                    </div>
+
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                    {% for category, message in messages %}
+                    <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+                    {% endwith %}
+
+                    <!-- Пригласительная ссылка -->
+                    <div class="p-3 border rounded bg-body-tertiary mb-4">
+                        <label class="text-secondary small text-uppercase d-block mb-2 fw-semibold">{{ _t('teacher_invite_label') }}</label>
+                        <div class="input-group">
+                            <input type="text" id="invite-link" class="form-control" value="{{ invite_url }}" readonly>
+                            <button class="btn btn-outline-primary" onclick="copyLink()">
+                                <i class="bi bi-clipboard me-1"></i>{{ _t('teacher_copy') }}
+                            </button>
+                        </div>
+                        <div class="mt-1 text-secondary small">{{ _t('teacher_invite_hint') }}</div>
+                    </div>
+
+                    <!-- Фильтры -->
+                    <div class="row g-2 mb-3">
+                        <div class="col-md-3">
+                            <select id="filter-class" class="form-select form-select-sm" onchange="applyFilters()">
+                                <option value="">{{ _t('teacher_all_classes') }}</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <select id="filter-status" class="form-select form-select-sm" onchange="applyFilters()">
+                                <option value="">{{ _t('teacher_all_statuses') }}</option>
+                                <option value="all_lessons">{{ _t('teacher_status_all_lessons') }}</option>
+                                <option value="all_missions">{{ _t('teacher_status_all_missions') }}</option>
+                                <option value="active">{{ _t('teacher_status_active') }}</option>
+                                <option value="inactive">{{ _t('teacher_status_inactive') }}</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <select id="filter-sort" class="form-select form-select-sm" onchange="applyFilters()">
+                                <option value="class">{{ _t('teacher_sort_class') }}</option>
+                                <option value="name">{{ _t('teacher_sort_name') }}</option>
+                                <option value="xp_desc">{{ _t('teacher_sort_xp_desc') }}</option>
+                                <option value="xp_asc">{{ _t('teacher_sort_xp_asc') }}</option>
+                                <option value="lessons_desc">{{ _t('teacher_sort_lessons_desc') }}</option>
+                                <option value="missions_desc">{{ _t('teacher_sort_missions_desc') }}</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" id="filter-search" class="form-control form-control-sm"
+                                placeholder="{{ _t('teacher_search') }}" oninput="applyFilters()">
+                        </div>
+                    </div>
+
+                    <!-- Список учеников -->
+                    <h5 class="fw-bold text-body mb-3">
+                        <i class="bi bi-people me-2"></i>{{ _t('teacher_students') }} (<span id="student-count">{{ students|length }}</span>)
+                    </h5>
+
+                    {% if students %}
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle" id="students-table">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>{{ _t('teacher_th_name') }}</th>
+                                    <th>{{ _t('teacher_th_class') }}</th>
+                                    <th>{{ _t('teacher_th_school') }}</th>
+                                    <th>{{ _t('teacher_th_lessons') }}</th>
+                                    <th>{{ _t('teacher_th_missions') }}</th>
+                                    <th>XP</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id="students-tbody">
+                                {% for student in students %}
+                                <tr data-class="{{ student.class_name }}" data-name="{{ student.full_name }}"
+                                    data-xp="{{ student.xp }}" data-lessons="{{ student.completed_lessons }}"
+                                    data-missions="{{ student.completed_missions }}"
+                                    data-lessons-pct="{{ student.lessons_percent }}"
+                                    data-missions-pct="{{ student.missions_percent }}">
+                                    <td>
+                                        <strong>{{ student.full_name }}</strong>
+                                        <div class="text-secondary small">{{ student.city }}</div>
+                                    </td>
+                                    <td><span class="badge bg-primary">{{ student.class_name }}</span></td>
+                                    <td class="small">{{ student.school }}</td>
+                                    <td>
+                                        <div class="progress" style="height: 8px; width: 80px;">
+                                            <div class="progress-bar bg-success"
+                                                style="width: {{ student.lessons_percent }}%"></div>
+                                        </div>
+                                        <span class="small text-secondary">{{ student.completed_lessons }}/{{
+                                            total_lessons }}</span>
+                                    </td>
+                                    <td>
+                                        <div class="progress" style="height: 8px; width: 80px;">
+                                            <div class="progress-bar bg-info"
+                                                style="width: {{ student.missions_percent }}%"></div>
+                                        </div>
+                                        <span class="small text-secondary">{{ student.completed_missions }}/{{
+                                            total_missions }}</span>
+                                    </td>
+                                    <td><span class="fw-bold text-success">{{ student.xp }}</span></td>
+                                    <td>
+                                        <form method="POST" action="{{ url_for('teacher_remove_student') }}"
+                                            onsubmit="return confirm('Удалить ученика {{ student.full_name }}?');"
+                                            class="d-inline">
+                                            <input type="hidden" name="student_uid" value="{{ student.uid }}">
+                                            <button type="submit" class="btn btn-outline-danger btn-sm">
+                                                <i class="bi bi-person-x"></i>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    {% else %}
+                    <div class="text-center py-5 text-secondary" id="empty-state">
+                        <i class="bi bi-people fs-1 d-block mb-2"></i>
+                        <p>{{ _t('teacher_no_students') }}<br>{{ _t('teacher_no_students2') }}</p>
+                    </div>
+                    {% endif %}
+
+                    <div class="d-flex flex-wrap gap-2 mt-3">
+                        <a href="{{ url_for('account') }}" class="btn btn-outline-secondary px-4">
+                            <i class="bi bi-arrow-left me-2"></i>{{ _t('teacher_to_acc') }}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function copyLink() {
+        const input = document.getElementById('invite-link');
+        input.select();
+        navigator.clipboard.writeText(input.value);
+        const btn = input.nextElementSibling;
+        btn.innerHTML = '<i class="bi bi-check2 me-1"></i>' + '{{ _t("teacher_copied") }}';
+        setTimeout(() => { btn.innerHTML = '<i class="bi bi-clipboard me-1"></i>' + '{{ _t("teacher_copy") }}'; }, 2000);
+    }
+
+    // Собираем уникальные классы для фильтра
+    document.addEventListener('DOMContentLoaded', function () {
+        const rows = document.querySelectorAll('#students-tbody tr');
+        const classSet = new Set();
+        rows.forEach(r => {
+            const c = r.dataset.class;
+            if (c) classSet.add(c);
+        });
+        const classFilter = document.getElementById('filter-class');
+        // Сортируем классы
+        const sorted = [...classSet].sort((a, b) => {
+            const numA = parseInt(a), numB = parseInt(b);
+            if (!isNaN(numA) && !isNaN(numB)) return numA - numB;
+            return a.localeCompare(b);
+        });
+        sorted.forEach(c => {
+            const opt = document.createElement('option');
+            opt.value = c;
+            opt.textContent = c;
+            classFilter.appendChild(opt);
+        });
+    });
+
+    function applyFilters() {
+        const classVal = document.getElementById('filter-class').value;
+        const statusVal = document.getElementById('filter-status').value;
+        const sortVal = document.getElementById('filter-sort').value;
+        const search = document.getElementById('filter-search').value.toLowerCase();
+
+        const tbody = document.getElementById('students-tbody');
+        if (!tbody) return;
+        const rows = Array.from(tbody.querySelectorAll('tr'));
+
+        let visible = 0;
+        rows.forEach(row => {
+            let show = true;
+
+            // Фильтр по классу
+            if (classVal && row.dataset.class !== classVal) show = false;
+
+            // Фильтр по статусу
+            if (statusVal === 'all_lessons' && parseInt(row.dataset.lessonsPct) < 100) show = false;
+            if (statusVal === 'all_missions' && parseInt(row.dataset.missionsPct) < 100) show = false;
+            if (statusVal === 'active' && parseInt(row.dataset.xp) === 0) show = false;
+            if (statusVal === 'inactive' && parseInt(row.dataset.xp) > 0) show = false;
+
+            // Поиск по ФИО
+            if (search && !row.dataset.name.toLowerCase().includes(search)) show = false;
+
+            row.style.display = show ? '' : 'none';
+            if (show) visible++;
+        });
+
+        document.getElementById('student-count').textContent = visible;
+
+        // Сортировка
+        const sortedRows = rows.sort((a, b) => {
+            switch (sortVal) {
+                case 'class':
+                    const cA = a.dataset.class, cB = b.dataset.class;
+                    const nA = parseInt(cA), nB = parseInt(cB);
+                    if (!isNaN(nA) && !isNaN(nB) && nA !== nB) return nA - nB;
+                    return cA.localeCompare(cB);
+                case 'name':
+                    return a.dataset.name.localeCompare(b.dataset.name);
+                case 'xp_desc':
+                    return parseInt(b.dataset.xp) - parseInt(a.dataset.xp);
+                case 'xp_asc':
+                    return parseInt(a.dataset.xp) - parseInt(b.dataset.xp);
+                case 'lessons_desc':
+                    return parseInt(b.dataset.lessons) - parseInt(a.dataset.lessons);
+                case 'missions_desc':
+                    return parseInt(b.dataset.missions) - parseInt(a.dataset.missions);
+                default:
+                    return 0;
+            }
+        });
+        sortedRows.forEach(row => tbody.appendChild(row));
+    }
+
+    // Применяем сортировку по классу по умолчанию
+    document.addEventListener('DOMContentLoaded', function () {
+        applyFilters();
+    });
+</script>
+{% endblock %}

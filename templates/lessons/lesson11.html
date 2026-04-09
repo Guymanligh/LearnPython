@@ -1,0 +1,486 @@
+{% extends "base.html" %}
+
+{% block title %}
+LearnPython
+{% endblock %}
+
+{% block link1 %}
+{{ url_for('home') }}
+{% endblock %}
+
+{% block link2 %}
+{{ url_for('lessons') }}
+{% endblock %}
+
+{% block link3 %}
+{{ url_for('interpreter') }}
+{% endblock %}
+
+{% block link4 %}
+{{ url_for('account') }}
+{% endblock %}
+
+{% block tillink1 %}
+Главная страница
+{% endblock %}
+
+{% block tillink2 %}
+Уроки
+{% endblock %}
+
+{% block tillink3 %}
+Интерпретатор
+{% endblock %}
+
+{% block tillink4 %}
+Аккаунт
+{% endblock %}
+
+{% block h1 %}
+11 урок
+{% endblock %}
+
+{% block p %}
+Вычисления в Python
+{% endblock %}
+
+{% block main %}
+<div class="container my-4">
+    {% if completed %}
+    <div class="alert alert-success" role="alert">
+        ✅ Вы уже завершили этот урок! Результат: {{ score }}/{{ total }} ({{ (score/total*100)|round(1) }}%)
+    </div>
+    {% endif %}
+
+    <p class="lead">
+        В Python можно выполнять разные математические операции, например складывать, вычитать, умножать и делить.
+        В вычислениях часто используют переменные.
+    </p>
+
+    <!-- Операции в карточках -->
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="card h-100 border-primary">
+                <div class="card-header bg-primary text-white">➕ Сложение</div>
+                <div class="card-body">
+                    <pre class="bg-body-tertiary p-2 rounded"><code>12 + 4
+16</code></pre>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card h-100 border-success">
+                <div class="card-header bg-success text-white">➖ Вычитание</div>
+                <div class="card-body">
+                    <pre class="bg-body-tertiary p-2 rounded"><code>12 - 4
+8</code></pre>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card h-100 border-warning">
+                <div class="card-header bg-warning text-dark">✖️ Умножение</div>
+                <div class="card-body">
+                    <pre class="bg-body-tertiary p-2 rounded"><code>12 * 4
+48</code></pre>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card h-100 border-danger">
+                <div class="card-header bg-danger text-white">➗ Деление</div>
+                <div class="card-body">
+                    <pre class="bg-body-tertiary p-2 rounded"><code>12 / 4
+3.0</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Скобки -->
+    <div class="card mb-4 border-info">
+        <div class="card-header bg-info text-white">📐 Использование скобок</div>
+        <div class="card-body">
+            <p>Скобки меняют порядок вычислений:</p>
+            <div class="row">
+                <div class="col-md-6">
+                    <pre class="bg-body-tertiary p-2 rounded"><code>(6 + 5) * 3
+33</code></pre>
+                </div>
+                <div class="col-md-6">
+                    <pre class="bg-body-tertiary p-2 rounded"><code>6 + (5 * 3)
+21</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Переменные -->
+    <div class="card mb-4 border-secondary">
+        <div class="card-header bg-secondary text-white">📦 Результат в переменной</div>
+        <div class="card-body">
+            <p>Переменным можно присваивать результат выражения:</p>
+            <pre class="bg-body-tertiary p-2 rounded"><code>ants = 22
+spiders = 35
+bugs = ants + spiders
+print(bugs)  # 57</code></pre>
+            <p class="mt-2">Если изменить значение переменных и не обновлять <code>bugs</code>, её значение останется прежним:</p>
+            <pre class="bg-body-tertiary p-2 rounded"><code>ants = 11
+spiders = 17
+print(bugs)  # 57 (не изменилось!)</code></pre>
+        </div>
+    </div>
+
+    <!-- Случайные числа -->
+    <div class="card mb-4 border-dark">
+        <div class="card-header bg-dark text-white">🎲 Случайные числа</div>
+        <div class="card-body">
+            <p>Функция <code>randint()</code> из модуля <code>random</code> генерирует случайное целое число в заданном диапазоне:</p>
+            <pre class="bg-body-tertiary p-2 rounded"><code>from random import randint
+randint(1, 10)  # например, 7</code></pre>
+        </div>
+    </div>
+
+    <!-- Игра -->
+    <div class="my-5">
+        <h3 class="mb-4">🎮 Игра: Математические пузырьки</h3>
+        <p class="text-muted">Решай примеры и выбирай правильный ответ! 10 вопросов, максимум 100 очков.</p>
+        <button class="btn btn-primary btn-lg" onclick="openGame()">
+            🕹️ Начать игру
+        </button>
+    </div>
+
+    <!-- ✅ Обновлённая кнопка: button с onclick -->
+    <div class="d-flex justify-content-end mt-4">
+        <button type="button"
+                class="btn btn-success btn-lg"
+                id="complete-lesson"
+                style="display: none;"
+                onclick="completeLesson()">
+            🎓 Завершить урок
+        </button>
+    </div>
+</div>
+
+<!-- Модальное окно игры (упрощённое, без анимации) -->
+<div id="game-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 9999;" class="bg-dark bg-opacity-75">
+    <button onclick="closeGame()" class="btn btn-light position-absolute top-0 end-0 m-3 rounded-circle" style="z-index: 10001; width: 40px; height: 40px; font-size: 24px; line-height: 1;">×</button>
+    <div id="game-ui" style="position: relative; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
+        <!-- Стартовый экран -->
+        <div id="start-screen" class="p-4 rounded-4 shadow-lg" style="width: 90%; max-width: 500px; background-color: var(--bs-body-bg); color: var(--bs-body-color); z-index: 10;">
+            <h1 class="text-center mb-4" style="color: var(--bs-primary);">🧮 Математические пузырьки</h1>
+            <p class="text-center">Реши пример и выбери правильный ответ.<br>10 вопросов, максимум 100 очков.</p>
+            <div class="d-grid">
+                <button class="btn btn-primary btn-lg" onclick="startGame()">Начать игру</button>
+            </div>
+        </div>
+        <!-- Экран вопроса -->
+        <div id="game-screen" style="display: none; width: 90%; max-width: 600px; background-color: var(--bs-body-bg); color: var(--bs-body-color); border-radius: 20px; padding: 30px; box-shadow: 0 8px 32px rgba(0,0,0,0.3);">
+            <div class="d-flex justify-content-between mb-4">
+                <div><span class="text-secondary">Очки:</span> <span class="fs-4 fw-bold text-primary" id="game-score">0</span><span class="text-secondary">/100</span></div>
+                <div><span class="text-secondary">Вопрос:</span> <span class="fs-4 fw-bold text-success" id="question-counter">1</span><span class="text-secondary">/10</span></div>
+            </div>
+            <div class="text-center mb-4">
+                <div style="font-size: 2.5rem; font-weight: bold;" id="question-text"></div>
+            </div>
+            <div id="answers-container" class="row g-3"></div>
+            <!-- 🔥 ОДИН блок для сообщений вместо множества уведомлений -->
+            <div id="game-message" class="alert alert-info mt-3" style="display: none;"></div>
+        </div>
+        <!-- Экран завершения -->
+        <div id="end-screen" style="display: none; width: 90%; max-width: 500px; background-color: var(--bs-body-bg); color: var(--bs-body-color); border-radius: 20px; padding: 30px; text-align: center; box-shadow: 0 8px 32px rgba(0,0,0,0.3);">
+            <h2 class="mb-4" style="color: var(--bs-primary);">🎉 Игра окончена!</h2>
+            <div class="display-1 fw-bold text-primary mb-3" id="final-game-score">0</div>
+            <div class="fs-3 fw-bold text-success mb-2" id="xp-earned"></div>
+            <p class="lead mb-4" id="end-message"></p>
+            <div id="end-buttons" class="d-flex justify-content-center gap-3"></div>
+        </div>
+    </div>
+</div>
+
+<style>
+/* ✨ Стили для спиннера загрузки */
+.spinner-border {
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    animation: spinner-border 0.75s linear infinite;
+    vertical-align: text-bottom;
+}
+@keyframes spinner-border {
+    to { transform: rotate(360deg); }
+}
+</style>
+
+<script>
+const LESSON_ID = {{ lesson_id }};
+
+// 🔔 Показ уведомления (для использования вне игры — например, после сохранения)
+function showNotification(message, type = 'success') {
+    const notification = document.createElement('div');
+    notification.className = `alert alert-${type} position-fixed top-0 start-50 translate-middle-x mt-3 shadow`;
+    notification.style.zIndex = '10002';
+    notification.textContent = message;
+    document.body.appendChild(notification);
+    setTimeout(() => notification.remove(), 3000);
+}
+
+// 🔔 Показ сообщения внутри игры (переиспользуемый блок)
+function showGameMessage(message, type = 'info') {
+    const msgDiv = document.getElementById('game-message');
+    if (!msgDiv) return;
+    msgDiv.textContent = message;
+    msgDiv.className = `alert alert-${type} mt-3`;
+    msgDiv.style.display = 'block';
+    // Автоматически скрыть через 1 секунду
+    setTimeout(() => {
+        msgDiv.style.display = 'none';
+    }, 1000);
+}
+
+// 💾 Сохранение прогресса на сервер
+async function saveProgress(score, total, xp) {
+    try {
+        const response = await fetch('/api/save-progress', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ lesson_id: LESSON_ID, score, total, xp })
+        });
+        const data = await response.json();
+
+        if (!data.success) {
+            console.error('Ошибка сохранения:', data.message);
+            showNotification('❌ ' + data.message, 'danger');
+            return null;
+        }
+        return data;
+    } catch (error) {
+        console.error('Ошибка сети:', error);
+        showNotification('❌ Ошибка соединения с сервером', 'danger');
+        return null;
+    }
+}
+
+// ✅ Функция завершения урока (вызывается по onclick)
+async function completeLesson() {
+    const button = document.getElementById('complete-lesson');
+    const originalText = button.innerHTML;
+
+    // Блокируем кнопку и показываем загрузку
+    button.disabled = true;
+    button.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Сохранение...';
+
+    // Для урока 11: прогресс уже сохранён в игре, но делаем повторный запрос для надёжности
+    const result = await saveProgress(5, 5, 100); // 100 XP за прохождение
+
+    if (result) {
+        showNotification(`✅ Прогресс обновлён! Всего: ${result.total_xp} XP`);
+
+        if (result.next_lesson_unlocked) {
+            setTimeout(() => showNotification('🎉 Следующий урок разблокирован!', 'success'), 1000);
+        }
+
+        // 🔥 Перенаправление с cache-busting параметром
+        setTimeout(() => {
+            window.location.href = `/lessons?t=${Date.now()}`;
+        }, 1200);
+    } else {
+        // Восстанавливаем кнопку при ошибке
+        button.disabled = false;
+        button.innerHTML = originalText;
+    }
+}
+
+// Game variables
+let gameScore = 0;
+let currentQuestionIndex = 0;
+const totalQuestions = 10;
+let questions = [];
+let gameActive = false;
+let answerLock = false;
+
+// 🆕 Массив для переиспользуемых кнопок ответов
+let answerButtons = [];
+
+// 🆕 Создаёт кнопки один раз
+function createAnswerButtons() {
+    const container = document.getElementById('answers-container');
+    container.innerHTML = ''; // очищаем при первом создании
+    for (let i = 0; i < 4; i++) {
+        const col = document.createElement('div');
+        col.className = 'col-6';
+        const btn = document.createElement('button');
+        btn.className = 'btn btn-outline-primary btn-lg w-100';
+        btn.style.padding = '1rem';
+        btn.dataset.index = i;
+        col.appendChild(btn);
+        container.appendChild(col);
+        answerButtons.push(btn);
+    }
+}
+
+function openGame() {
+    document.getElementById('game-modal').style.display = 'block';
+    document.body.style.overflow = 'hidden';
+    generateQuestions();
+    document.getElementById('start-screen').style.display = 'block';
+    document.getElementById('game-screen').style.display = 'none';
+    document.getElementById('end-screen').style.display = 'none';
+}
+
+function closeGame() {
+    document.getElementById('game-modal').style.display = 'none';
+    document.body.style.overflow = 'auto';
+    gameActive = false;
+}
+
+function generateQuestions() {
+    questions = [];
+    for (let i = 0; i < totalQuestions; i++) {
+        let a = Math.floor(Math.random() * 12) + 1;
+        let b = Math.floor(Math.random() * 12) + 1;
+        let opIndex = Math.floor(Math.random() * 3);
+        let op = ['+', '-', '*'][opIndex];
+        let correct;
+        if (op === '+') correct = a + b;
+        else if (op === '-') correct = a - b;
+        else correct = a * b;
+        let options = [correct];
+        while (options.length < 4) {
+            let offset = Math.floor(Math.random() * 5) + 1;
+            let variant = correct + (Math.random() > 0.5 ? offset : -offset);
+            if (!options.includes(variant) && variant > -20 && variant < 50) options.push(variant);
+        }
+        options.sort(() => Math.random() - 0.5);
+        questions.push({
+            text: `${a} ${op} ${b} = ?`,
+            correct: correct,
+            options: options
+        });
+    }
+}
+
+function startGame() {
+    gameScore = 0;
+    currentQuestionIndex = 0;
+    answerLock = false;
+    gameActive = true;
+
+    // 🆕 Создаём кнопки, если ещё не созданы
+    if (answerButtons.length === 0) {
+        createAnswerButtons();
+    }
+
+    document.getElementById('start-screen').style.display = 'none';
+    document.getElementById('game-screen').style.display = 'block';
+    updateScore();
+    nextQuestion();
+}
+
+function nextQuestion() {
+    if (currentQuestionIndex >= totalQuestions) {
+        endGame();
+        return;
+    }
+    answerLock = false;
+    const q = questions[currentQuestionIndex];
+    document.getElementById('question-text').textContent = q.text;
+    document.getElementById('question-counter').textContent = currentQuestionIndex + 1;
+    renderAnswers(q.options, q.correct);
+}
+
+// 🆕 Обновлённая функция — переиспользует кнопки
+function renderAnswers(options, correct) {
+    for (let i = 0; i < answerButtons.length; i++) {
+        const btn = answerButtons[i];
+        btn.textContent = options[i];
+        // Удаляем старый обработчик, назначаем новый
+        btn.onclick = () => handleAnswer(options[i], correct);
+    }
+}
+
+function handleAnswer(selected, correct) {
+    if (!gameActive || answerLock) return;
+    answerLock = true;
+
+    if (selected === correct) {
+        gameScore += 10;
+        showGameMessage('✅ Правильно! +10', 'success');
+        updateScore();
+    } else {
+        showGameMessage('❌ Неправильно!', 'danger');
+    }
+
+    setTimeout(() => {
+        currentQuestionIndex++;
+        nextQuestion();
+    }, 400);
+}
+
+function updateScore() {
+    document.getElementById('game-score').textContent = gameScore;
+}
+
+// ✅ Обновлённая endGame() — использует await saveProgress()
+async function endGame() {
+    gameActive = false;
+    document.getElementById('game-screen').style.display = 'none';
+    document.getElementById('end-screen').style.display = 'block';
+    document.getElementById('final-game-score').textContent = gameScore + ' очков';
+
+    let xpEarned = gameScore;
+    let message = gameScore === 100 ? '🏆 Превосходно! Ты решил все примеры!' :
+                  gameScore >= 80 ? '🌟 Отлично! Ты хорошо считаешь!' :
+                  gameScore >= 60 ? '👍 Хорошо! Продолжай практиковаться!' :
+                  '📚 Неплохо! Попробуй ещё раз!';
+
+    document.getElementById('xp-earned').textContent = '+' + xpEarned + ' XP';
+    document.getElementById('end-message').textContent = message;
+
+    const buttonsContainer = document.getElementById('end-buttons');
+    buttonsContainer.innerHTML = '';
+
+    // 💾 Сохраняем прогресс через await
+    const result = await saveProgress(5, 5, xpEarned);
+
+    if (result) {
+        if (result.is_improvement && result.xp_added > 0) {
+            // Используем игровое сообщение для фидбека внутри модалки
+            showGameMessage(`✅ +${result.xp_added} XP! Всего: ${result.total_xp} XP`, 'success');
+        } else {
+            showGameMessage(`✅ Прогресс сохранён! Всего: ${result.total_xp} XP`, 'success');
+        }
+
+        if (result.next_lesson_unlocked) {
+            setTimeout(() => showGameMessage('🎉 Следующий урок разблокирован!', 'success'), 1000);
+        }
+    }
+
+    const finishBtn = document.createElement('button');
+    finishBtn.className = 'btn btn-success btn-lg';
+    finishBtn.textContent = 'Завершить игру';
+    finishBtn.onclick = finishLesson;
+    buttonsContainer.appendChild(finishBtn);
+
+    const restartBtn = document.createElement('button');
+    restartBtn.className = 'btn btn-primary btn-lg ms-3';
+    restartBtn.textContent = 'Играть снова';
+    restartBtn.onclick = () => {
+        document.getElementById('end-screen').style.display = 'none';
+        startGame();
+    };
+    buttonsContainer.appendChild(restartBtn);
+}
+
+function finishLesson() {
+    closeGame();
+    setTimeout(() => {
+        document.getElementById('complete-lesson').style.display = 'inline-block';
+        document.getElementById('complete-lesson').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 300);
+}
+</script>
+{% endblock %}

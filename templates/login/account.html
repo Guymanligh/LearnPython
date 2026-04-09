@@ -1,0 +1,189 @@
+{% extends "base.html" %}
+
+{% block title %}LearnPython{% endblock %}
+
+{% block link1 %}{{ url_for('home') }}{% endblock %}
+{% block link2 %}{{ url_for('lessons') }}{% endblock %}
+{% block link3 %}{{ url_for('interpreter') }}{% endblock %}
+{% block link4 %}#{% endblock %}
+
+{% block tillink1 %}{{ _t('nav_home') }}{% endblock %}
+{% block tillink2 %}{{ _t('nav_lessons') }}{% endblock %}
+{% block tillink3 %}{{ _t('nav_interpreter') }}{% endblock %}
+{% block tillink4 %}{{ _t('nav_account') }}{% endblock %}
+
+{% block main %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-sm border-0 mb-4">
+                <div class="card-body p-4 p-md-5">
+                    <div class="d-flex align-items-center mb-4">
+                        <div class="flex-shrink-0">
+                            <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center"
+                                style="width: 64px; height: 64px;">
+                                <i class="bi bi-person-badge fs-2"></i>
+                            </div>
+                        </div>
+                        <div class="ms-3">
+                            <h2 class="fw-bold mb-1 text-body">{{ _t('acc_title') }}</h2>
+                            {% if '@' in user_id %}
+                            <span class="badge bg-info text-dark">{{ _t('acc_auth_badge') }}</span>
+                            {% else %}
+                            <span class="badge bg-warning text-dark">{{ _t('acc_guest_badge') }}</span>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-4">
+                            <div class="p-3 border rounded bg-body-tertiary">
+                                <label class="text-secondary small text-uppercase d-block mb-1 fw-semibold">{{ _t('acc_id_email') }}</label>
+                                <span class="fw-bold text-break text-body">{{ user_id }}</span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="p-3 border rounded bg-body-tertiary">
+                                <label class="text-secondary small text-uppercase d-block mb-1 fw-semibold">{{ _t('acc_total_xp') }}</label>
+                                <span class="fw-bold text-success fs-5"><i class="bi bi-lightning-fill"></i> {{
+                                    lesson_xp }} XP</span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="p-3 border rounded bg-body-tertiary">
+                                <label class="text-secondary small text-uppercase d-block mb-1 fw-semibold">{{ _t('acc_game_xp') }}</label>
+                                <span class="fw-bold text-info fs-5"><i class="bi bi-controller"></i> {{ game_xp }}
+                                    XP</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Прогресс по урокам -->
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between align-items-end mb-2">
+                            <h5 class="fw-bold mb-0 text-body">{{ _t('acc_lessons_title') }}</h5>
+                            <span class="text-primary fw-bold">{{ lessons_percent }}%</span>
+                        </div>
+                        <div class="progress" style="height: 12px; border-radius: 30px;">
+                            <div class="progress-bar bg-success progress-bar-striped progress-bar-animated js-progress-bar"
+                                role="progressbar" data-width="{{ lessons_percent | default(0) }}%"
+                                aria-valuenow="{{ lessons_percent | default(0) }}" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                        </div>
+                        <div class="mt-1 text-secondary small">
+                            {{ _t('acc_lessons_done') }} <strong class="text-body">{{ completed_lessons }}</strong> {{ _t('lessons_of') }} {{
+                            total_lessons }}
+                        </div>
+                    </div>
+
+                    <!-- Прогресс по миссиям -->
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between align-items-end mb-2">
+                            <h5 class="fw-bold mb-0 text-body">{{ _t('acc_missions_title') }}</h5>
+                            <span class="text-info fw-bold">{{ missions_percent }}%</span>
+                        </div>
+                        <div class="progress" style="height: 12px; border-radius: 30px;">
+                            <div class="progress-bar bg-info progress-bar-striped progress-bar-animated js-progress-bar"
+                                role="progressbar" data-width="{{ missions_percent | default(0) }}%"
+                                aria-valuenow="{{ missions_percent | default(0) }}" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                        </div>
+                        <div class="mt-1 text-secondary small">
+                            {{ _t('acc_missions_done') }} <strong class="text-body">{{ completed_missions }}</strong> {{ _t('lessons_of') }} {{
+                            total_missions }}
+                        </div>
+                    </div>
+
+                    <div class="d-flex flex-wrap gap-2 mb-2">
+                        <a href="{{ url_for('lessons') }}" class="btn btn-primary px-4 shadow-sm">
+                            <i class="bi bi-book me-2"></i>{{ _t('acc_to_lessons') }}
+                        </a>
+                        <a href="{{ url_for('game_index') }}" class="btn btn-info px-4 shadow-sm text-white">
+                            <i class="bi bi-controller me-2"></i>{{ _t('acc_to_missions') }}
+                        </a>
+                        <a href="{{ url_for('home') }}" class="btn btn-outline-secondary px-4">{{ _t('acc_to_home') }}</a>
+
+                        {% if is_teacher %}
+                        <a href="{{ url_for('teacher_dashboard') }}" class="btn btn-warning px-4 shadow-sm">
+                            <i class="bi bi-mortarboard me-2"></i>{{ _t('acc_teacher_panel') }}
+                        </a>
+                        {% elif bound_teacher_name %}
+                        <span class="btn btn-outline-success px-4 disabled">
+                            <i class="bi bi-person-check me-2"></i>{{ _t('acc_bound_to') }} {{ bound_teacher_name }}
+                        </span>
+                        {% else %}
+                        <a href="{{ url_for('teacher_register') }}" class="btn btn-outline-warning px-4">
+                            <i class="bi bi-mortarboard me-2"></i>{{ _t('acc_become_teacher') }}
+                        </a>
+                        {% endif %}
+
+                        {% if 'user_id' in session and '@' in session['user_id'] %}
+                        <a href="{{ url_for('logout') }}" class="btn btn-outline-danger px-4 ms-auto">
+                            <i class="bi bi-box-arrow-right me-2"></i>{{ _t('acc_logout') }}
+                        </a>
+                        {% elif '@' not in user_id %}
+                        <a href="{{ url_for('login') }}" class="btn btn-success px-4 ms-auto shadow-sm">{{ _t('acc_login_btn') }}</a>
+                        {% endif %}
+                    </div>
+
+                    <div class="mt-5 border-top pt-4">
+                        <h6 class="text-danger fw-bold mb-3 text-uppercase small" style="letter-spacing: 1px;">{{ _t('acc_danger_zone') }}</h6>
+                        <div class="d-flex flex-wrap gap-2">
+                            <form action="{{ url_for('api_delete_progress') }}" method="POST" class="js-confirm-form" data-confirm="{{ _t('acc_confirm_reset') }}">
+                                <button type="submit" class="btn btn-outline-warning btn-sm px-3">
+                                    <i class="bi bi-arrow-counterclockwise me-1"></i> {{ _t('acc_reset_progress') }}
+                                </button>
+                            </form>
+
+                            {% if is_teacher %}
+                            <form action="{{ url_for('teacher_unregister') }}" method="POST" class="js-confirm-form" data-confirm="{{ _t('acc_confirm_unregister') }}">
+                                <button type="submit" class="btn btn-outline-warning btn-sm px-3">
+                                    <i class="bi bi-mortarboard me-1"></i> {{ _t('acc_unregister_teacher') }}
+                                </button>
+                            </form>
+                            {% endif %}
+
+                            {% if '@' in user_id %}
+                            <form action="{{ url_for('api_delete_account') }}" method="POST" class="js-confirm-form" data-confirm="{{ _t('acc_confirm_delete') }}">
+                                <button type="submit" class="btn btn-outline-danger btn-sm px-3">
+                                    <i class="bi bi-person-x me-1"></i> {{ _t('acc_delete_account') }}
+                                </button>
+                            </form>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {% if '@' not in user_id %}
+            <div class="alert alert-info border-0 shadow-sm d-flex align-items-center" role="alert">
+                <i class="bi bi-info-circle-fill fs-4 me-3"></i>
+                <div class="text-body">
+                    {{ _t('acc_guest_info') }}
+                    <a href="{{ url_for('login') }}"
+                        class="fw-bold text-decoration-none border-bottom border-primary">{{ _t('acc_guest_login') }}</a>,
+                    {{ _t('acc_guest_save') }}
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Применяем ширину прогресс-баров
+            document.querySelectorAll('.js-progress-bar').forEach(function(bar) {
+                bar.style.width = bar.getAttribute('data-width');
+            });
+
+            // Навешиваем подтверждение на формы
+            document.querySelectorAll('.js-confirm-form').forEach(function(form) {
+                form.addEventListener('submit', function(e) {
+                    if (!confirm(this.getAttribute('data-confirm'))) {
+                        e.preventDefault();
+                    }
+                });
+            });
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}
+LearnPython - Урок заблокирован
+{% endblock %}
+
+{% block link1 %}
+{{ url_for('home') }}
+{% endblock %}
+
+{% block link2 %}
+{{ url_for('lessons') }}
+{% endblock %}
+
+{% block link3 %}
+{{ url_for('home') }}
+{% endblock %}
+
+{% block link4 %}
+{{ url_for('home') }}
+{% endblock %}
+
+{% block tillink1 %}{{ _t('nav_home') }}{% endblock %}
+{% block tillink2 %}{{ _t('nav_lessons') }}{% endblock %}
+{% block tillink3 %}{{ _t('nav_interpreter') }}{% endblock %}
+{% block tillink4 %}{{ _t('nav_account') }}{% endblock %}
+
+{% block h1 %}{{ _t('lessons_lesson') }} {{ lesson_id }}{% endblock %}
+{% block p %}{{ _t('locked_h1') }}{% endblock %}
+
+{% block main %}
+<div class="alert alert-warning" role="alert">
+    <h4 class="alert-heading">{{ _t('locked_heading') }}</h4>
+    <p>{{ _t('locked_text') }}</p>
+    <hr>
+    <p class="mb-0">{{ _t('locked_go_back') }} {{ lesson_id - 1 }}.</p>
+</div>
+
+<div class="text-center mt-4">
+    <a href="{{ url_for('lessons') }}" class="btn btn-primary btn-lg">
+        {{ _t('locked_btn') }}
+    </a>
+</div>
+
+<div class="card mt-4">
+    <div class="card-body">
+        <h5 class="card-title">{{ _t('locked_why_title') }}</h5>
+        <p class="card-text">{{ _t('locked_why_text') }}</p>
+        <ul>
+            <li>{{ _t('locked_tip1') }}</li>
+            <li>{{ _t('locked_tip2') }}</li>
+            <li>{{ _t('locked_tip3') }}</li>
+        </ul>
+    </div>
+</div>
+{% endblock %}

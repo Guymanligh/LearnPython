@@ -1,0 +1,151 @@
+{% extends "base.html" %}
+
+{% block title %}
+LearnPython
+{% endblock %}
+
+{% block link1 %}
+{{ url_for('home') }}
+{% endblock %}
+
+{% block link2 %}
+{{ url_for('lessons') }}
+{% endblock %}
+
+{% block link3 %}
+{{ url_for('interpreter') }}
+{% endblock %}
+
+{% block link4 %}
+{{ url_for('account') }}
+{% endblock %}
+
+{% block tillink1 %}
+Главная страница
+{% endblock %}
+
+{% block tillink2 %}
+Уроки
+{% endblock %}
+
+{% block tillink3 %}
+Интерпретатор
+{% endblock %}
+
+{% block tillink4 %}
+Аккаунт
+{% endblock %}
+
+{% block h1 %}
+Админ-панель
+{% endblock %}
+
+{% block p %}
+Настройка и регуляция сайта для администраторов проекта
+{% endblock %}
+
+{% block main %}
+<div class="container-fluid py-4">
+    <div class="row">
+        <!-- Боковое меню -->
+        <div class="col-md-3 col-lg-2 mb-4">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-header bg-primary text-white text-center py-3">
+                    <div class="d-flex justify-content-center align-items-center mb-2">
+                        <i class="fas fa-user-shield fs-1"></i>
+                    </div>
+                    <h5 class="mb-0 fw-bold">Админ-панель</h5>
+                </div>
+                <div class="card-body p-0">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item bg-secondary fw-bold text-uppercase small text-white px-3 py-2">
+                            Основное
+                        </li>
+                        <li class="list-group-item {% if request.path == '/admin' %}active{% endif %}">
+                            <a href="{{ url_for('admin_dashboard') }}" class="text-decoration-none text-body d-block py-2 px-3">
+                                <i class="fas fa-tachometer-alt me-2"></i>Статистика
+                            </a>
+                        </li>
+                        <li class="list-group-item {% if request.path == '/admin/users' %}active{% endif %}">
+                            <a href="{{ url_for('admin_users') }}" class="text-decoration-none text-body d-block py-2 px-3">
+                                <i class="fas fa-users me-2"></i>Пользователи
+                            </a>
+                        </li>
+                        <li class="list-group-item {% if request.path == '/admin/lessons' %}active{% endif %}">
+                            <a href="{{ url_for('admin_lessons') }}" class="text-decoration-none text-body d-block py-2 px-3">
+                                <i class="fas fa-book-open me-2"></i>Уроки
+                            </a>
+                        </li>
+
+                        <li class="list-group-item bg-secondary fw-bold text-uppercase small text-white px-3 py-2 mt-3">
+                            Система
+                        </li>
+                        <li class="list-group-item {% if request.path == '/admin/system-logs' %}active{% endif %}">
+                            <a href="{{ url_for('admin_system_logs') }}" class="text-decoration-none text-body d-block py-2 px-3">
+                                <i class="fas fa-clipboard-list me-2"></i>Системные логи
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-footer bg-secondary text-center py-2">
+                    <div class="small text-white opacity-75 mb-2">
+                        <i class="fas fa-user me-1"></i> {{ session.user_id }}
+                    </div>
+                    <form method="POST" action="{{ url_for('logout') }}">
+                        <button type="submit" class="btn btn-sm btn-outline-danger w-100">
+                            <i class="fas fa-sign-out-alt me-1"></i>Выйти
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Основной контент -->
+        <div class="col-md-9 col-lg-10">
+            {% block admin_content %}{% endblock %}
+        </div>
+    </div>
+</div>
+
+<style>
+    .list-group-item {
+        border: none;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+    .list-group-item:hover {
+        background-color: #f8f9fa;
+        transform: translateX(2px);
+    }
+    .list-group-item.active {
+        background-color: #4a6bff;
+        color: white;
+        font-weight: 500;
+        position: relative;
+    }
+    .list-group-item.active::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 4px;
+        background-color: white;
+    }
+    .list-group-item.active a {
+        color: white;
+    }
+    .card-header {
+        border-radius: 0.5rem 0.5rem 0 0 !important;
+    }
+    .card {
+        border-radius: 0.5rem !important;
+        margin-bottom: 1rem;
+    }
+    .progress {
+        border-radius: 10px !important;
+    }
+</style>
+
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+{% endblock %}

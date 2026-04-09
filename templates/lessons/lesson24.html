@@ -1,0 +1,211 @@
+{% extends "base.html" %}
+
+{% block title %}
+LearnPython
+{% endblock %}
+
+{% block link1 %}
+{{ url_for('home') }}
+{% endblock %}
+
+{% block link2 %}
+{{ url_for('lessons') }}
+{% endblock %}
+
+{% block link3 %}
+{{ url_for('interpreter') }}
+{% endblock %}
+
+{% block link4 %}
+{{ url_for('account') }}
+{% endblock %}
+
+{% block tillink1 %}
+Главная страница
+{% endblock %}
+
+{% block tillink2 %}
+Уроки
+{% endblock %}
+
+{% block tillink3 %}
+Интерпретатор
+{% endblock %}
+
+{% block tillink4 %}
+Аккаунт
+{% endblock %}
+
+{% block h1 %}
+24 урок
+{% endblock %}
+
+{% block p %}
+Переменные и функции в Python
+{% endblock %}
+
+{% block main %}
+<div class="container my-4">
+    {% if completed %}
+    <div class="alert alert-success" role="alert">
+        ✅ Вы уже завершили этот урок! Результат: {{ score }}/{{ total }} ({{ (score/total*100)|round(1) }}%)
+    </div>
+    {% endif %}
+
+    <p class="lead">
+        Функции и переменные тесно взаимодействуют. Понимание области видимости переменных и способов передачи данных в функции — ключ к написанию надёжного кода.
+    </p>
+
+    <!-- Карточка: локальные переменные -->
+    <div class="card mb-4 border-primary shadow-sm">
+        <div class="card-header bg-primary text-white d-flex align-items-center">
+            <span class="fs-4 me-2">🔒</span>
+            <h5 class="mb-0">Локальные переменные</h5>
+        </div>
+        <div class="card-body">
+            <p>Переменные, созданные внутри функции, называются локальными. Они существуют только во время выполнения функции и недоступны снаружи.</p>
+            <pre class="bg-body-tertiary p-3 rounded"><code>def my_func():
+    x = 10          # локальная переменная
+    print(x)
+
+my_func()           # 10
+# print(x)          # Ошибка: name 'x' is not defined</code></pre>
+        </div>
+    </div>
+
+    <!-- Карточка: глобальные переменные -->
+    <div class="card mb-4 border-success shadow-sm">
+        <div class="card-header bg-success text-white d-flex align-items-center">
+            <span class="fs-4 me-2">🌍</span>
+            <h5 class="mb-0">Глобальные переменные</h5>
+        </div>
+        <div class="card-body">
+            <p>Переменные, объявленные вне функций, называются глобальными. Они доступны в любой части модуля, но внутри функции их нельзя изменить без специального ключевого слова.</p>
+            <pre class="bg-body-tertiary p-3 rounded"><code>y = 20              # глобальная переменная
+
+def show():
+    print(y)        # можно прочитать
+
+show()              # 20</code></pre>
+        </div>
+    </div>
+
+    <!-- Карточка: изменение глобальных переменных (global) -->
+    <div class="card mb-4 border-warning shadow-sm">
+        <div class="card-header bg-warning text-dark d-flex align-items-center">
+            <span class="fs-4 me-2">✏️</span>
+            <h5 class="mb-0">Изменение глобальных переменных</h5>
+        </div>
+        <div class="card-body">
+            <p>Чтобы изменить глобальную переменную внутри функции, нужно объявить её как <code>global</code>.</p>
+            <pre class="bg-body-tertiary p-3 rounded"><code>counter = 0
+
+def increment():
+    global counter
+    counter += 1
+
+increment()
+increment()
+print(counter)      # 2</code></pre>
+            <p class="text-muted small">Без <code>global</code> Python создаст локальную переменную с тем же именем.</p>
+        </div>
+    </div>
+
+    <!-- Карточка: изменяемые и неизменяемые объекты в аргументах -->
+    <div class="card mb-4 border-info shadow-sm">
+        <div class="card-header bg-info text-white d-flex align-items-center">
+            <span class="fs-4 me-2">📦</span>
+            <h5 class="mb-0">Передача изменяемых объектов</h5>
+        </div>
+        <div class="card-body">
+            <p>Если передать в функцию изменяемый объект (список, словарь), функция может его модифицировать, и изменения отразятся на оригинале.</p>
+            <pre class="bg-body-tertiary p-3 rounded"><code>def add_item(lst, item):
+    lst.append(item)
+
+my_list = [1, 2]
+add_item(my_list, 3)
+print(my_list)      # [1, 2, 3]</code></pre>
+            <p>Неизменяемые объекты (числа, строки, кортежи) нельзя изменить — функция получит копию значения.</p>
+        </div>
+    </div>
+
+    <!-- Карточка: возврат значений и присваивание -->
+    <div class="card mb-4 border-secondary shadow-sm">
+        <div class="card-header bg-secondary text-white d-flex align-items-center">
+            <span class="fs-4 me-2">📤</span>
+            <h5 class="mb-0">Возврат значений</h5>
+        </div>
+        <div class="card-body">
+            <p>Функция может вернуть результат через <code>return</code>, и этот результат можно присвоить переменной.</p>
+            <pre class="bg-body-tertiary p-3 rounded"><code>def square(x):
+    return x * x
+
+a = square(5)
+print(a)            # 25</code></pre>
+            <p>Если функция ничего не возвращает, она возвращает <code>None</code>.</p>
+        </div>
+    </div>
+
+    <!-- Карточка: пример счётчика вызовов -->
+    <div class="card mb-4 border-dark shadow-sm">
+        <div class="card-header bg-dark text-white d-flex align-items-center">
+            <span class="fs-4 me-2">🔢</span>
+            <h5 class="mb-0">Пример: счётчик вызовов</h5>
+        </div>
+        <div class="card-body">
+            <p>С помощью глобальной переменной можно подсчитать, сколько раз вызывалась функция.</p>
+            <pre class="bg-body-tertiary p-3 rounded"><code>calls = 0
+
+def greet(name):
+    global calls
+    calls += 1
+    print(f"Привет, {name}!")
+
+greet("Анна")
+greet("Борис")
+print(f"Функция вызвана {calls} раз(а)")  # 2</code></pre>
+        </div>
+    </div>
+
+    <!-- Квиз -->
+    <div class="my-5">
+        <h3 class="mb-4">🎮 Проверь свои знания</h3>
+        <div id="quiz-root"></div>
+    </div>
+
+    <!-- Кнопка завершения урока -->
+    <div class="d-flex justify-content-end mt-4">
+        <button type="button"
+                class="btn btn-success btn-lg"
+                id="complete-lesson"
+                style="display: none;"
+                onclick="completeLesson()">
+            🎓 Завершить урок
+        </button>
+    </div>
+</div>
+
+<!-- React and ReactDOM (production) -->
+<script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+
+<style>
+.spinner-border {
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    animation: spinner-border 0.75s linear infinite;
+    vertical-align: text-bottom;
+}
+@keyframes spinner-border {
+    to { transform: rotate(360deg); }
+}
+</style>
+<script>
+  const LESSON_ID = {{ lesson_id }}; // Теперь это глобальная переменная для JS
+</script>
+<script src="{{ url_for('static',filename='js/quizinit.js') }}"></script>
+{% endblock %}
