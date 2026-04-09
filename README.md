@@ -47,26 +47,9 @@ pip install -r requirements.txt
 ```
 
 ### 4. Настройка окружения
-Создайте файл `.env` в корневой директории и укажите следующие параметры:
+Создайте файл `.env` в корневой директории и укажите необходимые ключи:
 ```ini
-# Flask
-APP_SECRET=ваш-секретный-ключ-сессии
-FLASK_SERVER_NAME=localhost:5000
-
-# Почта (Gmail SMTP)
-MAIL_USERNAME=your-email@gmail.com
-MAIL_PASSWORD=your-app-password
-
-# OAuth Google
-GOOGLE_CLIENT_ID=your-google-id
-GOOGLE_CLIENT_SECRET=your-google-secret
-
-# OAuth GitHub
-GITHUB_CLIENT_ID=your-github-id
-GITHUB_CLIENT_SECRET=your-github-secret
-
-# HuggingFace (для AI функций)
-HF_API_TOKEN=your-hf-token
+HF_API_TOKEN=API-ключ-получить-на-huggingface.co
 ```
 
 ### 5. Инициализация базы данных
